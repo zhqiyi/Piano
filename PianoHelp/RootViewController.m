@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "MelodyCategoryViewController.h"
 
 @interface RootViewController ()
 
@@ -27,6 +28,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.lastClickButton = self.btnMelody;
+    [self.lastClickButton setSelected:YES];
+    self.title = @"首页";
+//    
+//    MelodyCategoryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MelodyCategoryViewController"];
+//    [self addChildViewController:vc];
+//    [self.contentView addSubview:vc.view];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,7 +49,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -43,7 +57,51 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"pushMelodyLevel"])
+    {
+        MelodyCategoryViewController *vc = [segue destinationViewController];
+        vc.levelIndent = 1;
+    }
 }
-*/
+
+
+- (IBAction)buttonToolbar_click:(id)sender
+{
+    if(self.lastClickButton)
+    {
+        [self.lastClickButton setSelected:NO];
+    }
+    self.lastClickButton = sender;
+    [self.lastClickButton setSelected:YES];
+    if(sender == self.btnMelody)
+    {
+        self.melodyContainerView.hidden = NO;
+        self.qinFangContainerView.hidden = YES;
+        self.shopContainerView.hidden = YES;
+        self.showContainerView.hidden = YES;
+    }
+    else if(sender ==  self.btnQinFang)
+    {
+        self.qinFangContainerView.hidden = NO;
+        self.melodyContainerView.hidden = YES;
+        self.shopContainerView.hidden = YES;
+        self.showContainerView.hidden = YES;
+    }
+    else if(sender == self.btnShop)
+    {
+        self.melodyContainerView.hidden = YES;
+        self.qinFangContainerView.hidden = YES;
+        self.shopContainerView.hidden = NO;
+        self.showContainerView.hidden = YES;
+    }
+    else if(sender == self.btnShow)
+    {
+        self.melodyContainerView.hidden = YES;
+        self.qinFangContainerView.hidden = YES;
+        self.shopContainerView.hidden = YES;
+        self.showContainerView.hidden = NO;
+    }
+}
+
 
 @end
