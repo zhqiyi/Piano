@@ -24,11 +24,20 @@
 		8907102019219EC000BB9E2F /* PianoHelpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907101F19219EC000BB9E2F /* PianoHelpTests.m */; };
 		8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8907102919219F3A00BB9E2F /* Storyboard.storyboard */; };
 		8907102D1921A03900BB9E2F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907102C1921A03900BB9E2F /* RootViewController.m */; };
+		8936CF64192440F0001E5DCC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8936CF63192440F0001E5DCC /* SearchViewController.m */; };
+		8987A55419258DEA00DEE6AE /* MelodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A55319258DEA00DEE6AE /* MelodyViewController.m */; };
+		8987A55719258E2200DEE6AE /* MelodyCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A55619258E2200DEE6AE /* MelodyCategoryViewController.m */; };
+		8987A55A19258FA500DEE6AE /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A55919258FA500DEE6AE /* ShopViewController.m */; };
+		8987A55D19258FB900DEE6AE /* QinFangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A55C19258FB900DEE6AE /* QinFangViewController.m */; };
+		8987A55F1925A29D00DEE6AE /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 8987A55E1925A29D00DEE6AE /* 02.png */; };
+		8987A5621925B12600DEE6AE /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A5611925B12600DEE6AE /* ShowViewController.m */; };
+		8987A5651925B54600DEE6AE /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A5641925B54600DEE6AE /* BaseViewController.m */; };
 		89A15D821921B78400647F7B /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A15D811921B78400647F7B /* 01.png */; };
 		89A15D921921BEBF00647F7B /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D911921BEBF00647F7B /* Score.m */; };
 		89A15D951921BEBF00647F7B /* MelodyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D941921BEBF00647F7B /* MelodyCategory.m */; };
 		89A15D981921BEBF00647F7B /* Melody.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D971921BEBF00647F7B /* Melody.m */; };
 		89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15DA01921BF2600647F7B /* MelodyFavorite.m */; };
+		89D61FD21927965400355EF0 /* APLProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D61FD11927965400355EF0 /* APLProduct.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +72,21 @@
 		8907102919219F3A00BB9E2F /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		8907102B1921A03900BB9E2F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		8907102C1921A03900BB9E2F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		8936CF62192440F0001E5DCC /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		8936CF63192440F0001E5DCC /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		8987A55219258DEA00DEE6AE /* MelodyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyViewController.h; sourceTree = "<group>"; };
+		8987A55319258DEA00DEE6AE /* MelodyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyViewController.m; sourceTree = "<group>"; };
+		8987A55519258E2200DEE6AE /* MelodyCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategoryViewController.h; sourceTree = "<group>"; };
+		8987A55619258E2200DEE6AE /* MelodyCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategoryViewController.m; sourceTree = "<group>"; };
+		8987A55819258FA500DEE6AE /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		8987A55919258FA500DEE6AE /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		8987A55B19258FB900DEE6AE /* QinFangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QinFangViewController.h; sourceTree = "<group>"; };
+		8987A55C19258FB900DEE6AE /* QinFangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QinFangViewController.m; sourceTree = "<group>"; };
+		8987A55E1925A29D00DEE6AE /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
+		8987A5601925B12600DEE6AE /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
+		8987A5611925B12600DEE6AE /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
+		8987A5631925B54600DEE6AE /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		8987A5641925B54600DEE6AE /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		89A15D811921B78400647F7B /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
 		89A15D901921BEBF00647F7B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		89A15D911921BEBF00647F7B /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
@@ -72,6 +96,8 @@
 		89A15D971921BEBF00647F7B /* Melody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melody.m; sourceTree = "<group>"; };
 		89A15D9F1921BF2600647F7B /* MelodyFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyFavorite.h; sourceTree = "<group>"; };
 		89A15DA01921BF2600647F7B /* MelodyFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyFavorite.m; sourceTree = "<group>"; };
+		89D61FD01927965400355EF0 /* APLProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLProduct.h; sourceTree = "<group>"; };
+		89D61FD11927965400355EF0 /* APLProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLProduct.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +165,24 @@
 				8907100519219EC000BB9E2F /* AppDelegate.h */,
 				8907100619219EC000BB9E2F /* AppDelegate.m */,
 				8907102919219F3A00BB9E2F /* Storyboard.storyboard */,
+				8987A5631925B54600DEE6AE /* BaseViewController.h */,
+				8987A5641925B54600DEE6AE /* BaseViewController.m */,
 				8907102B1921A03900BB9E2F /* RootViewController.h */,
 				8907102C1921A03900BB9E2F /* RootViewController.m */,
+				8987A55819258FA500DEE6AE /* ShopViewController.h */,
+				8987A55919258FA500DEE6AE /* ShopViewController.m */,
+				8987A55B19258FB900DEE6AE /* QinFangViewController.h */,
+				8987A55C19258FB900DEE6AE /* QinFangViewController.m */,
+				8987A55519258E2200DEE6AE /* MelodyCategoryViewController.h */,
+				8987A55619258E2200DEE6AE /* MelodyCategoryViewController.m */,
+				8987A55219258DEA00DEE6AE /* MelodyViewController.h */,
+				8987A55319258DEA00DEE6AE /* MelodyViewController.m */,
+				8987A5601925B12600DEE6AE /* ShowViewController.h */,
+				8987A5611925B12600DEE6AE /* ShowViewController.m */,
+				8936CF62192440F0001E5DCC /* SearchViewController.h */,
+				8936CF63192440F0001E5DCC /* SearchViewController.m */,
+				89D61FD01927965400355EF0 /* APLProduct.h */,
+				89D61FD11927965400355EF0 /* APLProduct.m */,
 				8907100B19219EC000BB9E2F /* Images.xcassets */,
 				8907100819219EC000BB9E2F /* PianoHelp.xcdatamodeld */,
 				89070FFD19219EC000BB9E2F /* Supporting Files */,
@@ -181,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				89A15D811921B78400647F7B /* 01.png */,
+				8987A55E1925A29D00DEE6AE /* 02.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -275,6 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8987A55F1925A29D00DEE6AE /* 02.png in Resources */,
 				8907100119219EC000BB9E2F /* InfoPlist.strings in Resources */,
 				8907100C19219EC000BB9E2F /* Images.xcassets in Resources */,
 				89A15D821921B78400647F7B /* 01.png in Resources */,
@@ -298,10 +342,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8907100719219EC000BB9E2F /* AppDelegate.m in Sources */,
+				8987A5651925B54600DEE6AE /* BaseViewController.m in Sources */,
 				89A15D951921BEBF00647F7B /* MelodyCategory.m in Sources */,
+				8987A55419258DEA00DEE6AE /* MelodyViewController.m in Sources */,
+				8987A5621925B12600DEE6AE /* ShowViewController.m in Sources */,
+				89D61FD21927965400355EF0 /* APLProduct.m in Sources */,
 				8907100A19219EC000BB9E2F /* PianoHelp.xcdatamodeld in Sources */,
+				8987A55A19258FA500DEE6AE /* ShopViewController.m in Sources */,
 				89A15D921921BEBF00647F7B /* Score.m in Sources */,
+				8936CF64192440F0001E5DCC /* SearchViewController.m in Sources */,
 				8907102D1921A03900BB9E2F /* RootViewController.m in Sources */,
+				8987A55719258E2200DEE6AE /* MelodyCategoryViewController.m in Sources */,
+				8987A55D19258FB900DEE6AE /* QinFangViewController.m in Sources */,
 				89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */,
 				8907100319219EC000BB9E2F /* main.m in Sources */,
 				89A15D981921BEBF00647F7B /* Melody.m in Sources */,
@@ -362,7 +414,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 林 Lin (R8TVBQFHB2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 林 Lin (R8TVBQFHB2)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -380,6 +433,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -412,6 +466,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -423,11 +478,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 林 Lin (R8TVBQFHB2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianoHelp/PianoHelp-Prefix.pch";
 				INFOPLIST_FILE = "PianoHelp/PianoHelp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -442,6 +499,7 @@
 				INFOPLIST_FILE = "PianoHelp/PianoHelp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
