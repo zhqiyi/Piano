@@ -40,7 +40,7 @@ extern NSString *ScopeSongName;
 //                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第四交响曲"],
 //                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第五交响曲"]];
 
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     self.melodyArray = [[self.melodySet allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
     
     self.searchResults = [NSMutableArray arrayWithCapacity:[self.melodyArray count]];

@@ -22,9 +22,11 @@
         if([self.melody.favorite.sort intValue] == 1)
         {
             [self.btnFavorite setSelected:YES];
+            [self.btnTask setSelected:NO];
         }
         else if([self.melody.favorite.sort intValue] == 2)
         {
+            [self.btnFavorite setSelected:NO];
             [self.btnTask setSelected:YES];
         }
         else if([self.melody.favorite.sort intValue] == 3)
@@ -98,7 +100,45 @@
     [self updateContent:self.melody];
 }
 
-- (IBAction)btnTask_click:(id)sender {
+- (IBAction)btnTask_click:(id)sender
+{
+    NSManagedObjectContext *moc = ((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext;
+    if (self.melody.favorite == nil)
+    {
+        MelodyFavorite *favo = (MelodyFavorite*)[NSEntityDescription insertNewObjectForEntityForName:@"MelodyFavorite" inManagedObjectContext:moc];
+        [favo addMelodyObject:self.melody];
+        favo.sort = [NSNumber numberWithInt:2];
+    }
+    else
+    {
+        if([self.melody.favorite.sort intValue] == 1)
+        {
+            self.melody.favorite.sort = [NSNumber numberWithInt:3];
+        }
+        else if([self.melody.favorite.sort intValue] == 2)
+        {
+            [moc deleteObject:self.melody.favorite];
+        }
+        else if([self.melody.favorite.sort intValue] == 3)
+        {
+            self.melody.favorite.sort = [NSNumber numberWithInt:1];
+        }
+    }
+    
+    NSError *error;
+    if(![moc save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    //    if([self.updateDelegate conformsToProtocol:@protocol(MelodyTableViewCellDelegate) ])
+    //    {
+    //        [self.updateDelegate updateMelodyState];
+    //    }
+    if ([self.updateDelegate respondsToSelector:@selector(updateMelodyState)])
+    {
+        [self.updateDelegate updateMelodyState];
+    }
+    [self updateContent:self.melody];
 }
 
 - (IBAction)btnBuy_click:(id)sender {

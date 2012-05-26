@@ -5,6 +5,60 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="zOO-Z1-QYo">
+            <objects>
+                <viewController id="dTG-LN-rZD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UqK-FA-Bha"/>
+                        <viewControllerLayoutGuide type="bottom" id="0LU-i9-EWh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eM8-hc-jxX">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="126"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="bangdingxuliehao.png" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-SH-iZl">
+                                <rect key="frame" x="116" y="17" width="35" height="25"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="tuichudangqianzhanghao1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-Dx-9Pj">
+                                <rect key="frame" x="20" y="81" width="32" height="36"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="xiaoxi1.png" translatesAutoresizingMaskIntoConstraints="NO" id="UVX-AY-s8E">
+                                <rect key="frame" x="20" y="20" width="35" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="退出当前登录账号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYT-Es-Fwu">
+                                <rect key="frame" x="60" y="88" width="187" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="消息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9t-zQ-m6q">
+                                <rect key="frame" x="16" y="44" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="绑定序列号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-1h-izg">
+                                <rect key="frame" x="73" y="44" width="121" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="126"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O3e-OP-40G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1181" y="22"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="Z0v-kx-HF7">
             <objects>
@@ -96,6 +150,11 @@
                                                     <state key="selected" image="gengduo1.png">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="dTG-LN-rZD" kind="popover" popoverAnchorView="MMA-dc-ZlP" id="vuR-Uy-pXj">
+                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                                                        </segue>
+                                                    </connections>
                                                 </button>
                                             </barButtonItem>
                                         </items>
@@ -158,7 +217,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="gkD-fm-egc" kind="push" id="wFy-fu-Lhp"/>
+                                            <segue destination="Odp-jn-4fx" kind="modal" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="wFy-fu-Lhp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -194,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPf-3a-CRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="200"/>
+            <point key="canvasLocation" x="357" y="288"/>
         </scene>
         <!--Melody Category View Controller 1 Level-->
         <scene sceneID="3HD-iB-jz6">
@@ -263,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRM-9e-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1925" y="-838"/>
+            <point key="canvasLocation" x="1589" y="-1342"/>
         </scene>
         <!--Melody View Controller-->
         <scene sceneID="ycf-zh-roz">
@@ -370,6 +429,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="btnView_click:" destination="yu7-Vz-Vhd" eventType="touchUpInside" id="Ynt-el-Oju"/>
+                                                        <segue destination="71i-e3-K5Z" kind="push" identifier="melodyDetailSegue" id="MOC-Ke-sGC"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="查看" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIx-mq-dmh">
@@ -419,7 +479,56 @@
                 </searchDisplayController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fql-ta-1cR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3136" y="-838"/>
+            <point key="canvasLocation" x="2800" y="-1342"/>
+        </scene>
+        <!--Melody Detail View Controller-->
+        <scene sceneID="Qqa-H3-aYb">
+            <objects>
+                <viewController id="71i-e3-K5Z" customClass="MelodyDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Li-Yg-eQU"/>
+                        <viewControllerLayoutGuide type="bottom" id="LQs-o9-Q8c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mYp-ZP-CdH">
+                        <rect key="frame" x="0.0" y="44" width="1024" height="724"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="ditu.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ai-ve-m34">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tongguan.png" translatesAutoresizingMaskIntoConstraints="NO" id="hpo-pT-yPq">
+                                <rect key="frame" x="114" y="10" width="179" height="140"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="hGW-x4-xhw"/>
+                                    <constraint firstAttribute="width" constant="179" id="hbE-JT-Tl4"/>
+                                </constraints>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tanzou1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lc1-xW-IgN">
+                                <rect key="frame" x="458" y="40" width="56" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="QGg-eX-XKA"/>
+                                    <constraint firstAttribute="width" constant="56" id="TlV-dC-VUH"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hpo-pT-yPq" firstAttribute="leading" secondItem="mYp-ZP-CdH" secondAttribute="leading" constant="114" id="576-Rd-juS"/>
+                            <constraint firstItem="hpo-pT-yPq" firstAttribute="top" secondItem="1Li-Yg-eQU" secondAttribute="bottom" constant="10" id="6CP-ga-BGv"/>
+                            <constraint firstItem="Lc1-xW-IgN" firstAttribute="top" secondItem="1Li-Yg-eQU" secondAttribute="bottom" constant="40" id="nae-HN-CDb"/>
+                            <constraint firstItem="Lc1-xW-IgN" firstAttribute="leading" secondItem="hpo-pT-yPq" secondAttribute="trailing" constant="165" id="vsF-t6-ijO"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jZY-Qt-sGV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VR8-U9-owF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3985" y="-1342"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="Gc9-06-jb0">
@@ -527,6 +636,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="btnView_click:" destination="eJR-xh-T8e" eventType="touchUpInside" id="2Q3-c6-ipa"/>
+                                                        <segue destination="71i-e3-K5Z" kind="push" identifier="searchPushMelodyDetailSegue" id="2mR-bz-3dG"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="查看" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIN-gx-4ye">
@@ -576,7 +686,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1925" y="200"/>
+            <point key="canvasLocation" x="2800" y="-304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S4V-Iy-S7b">
@@ -606,7 +716,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rez-Ss-mAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-579" y="200"/>
+            <point key="canvasLocation" x="-887" y="288"/>
         </scene>
         <!--Melody Category View Controller 0 Level-->
         <scene sceneID="neI-WS-BPF">
@@ -688,7 +798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lo-sc-yys" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="1368"/>
+            <point key="canvasLocation" x="1589" y="1336"/>
         </scene>
         <!--Qin Fang View Controller-->
         <scene sceneID="eet-AZ-WlR">
@@ -717,7 +827,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyE-TW-Inu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1925" y="1368"/>
+            <point key="canvasLocation" x="2849" y="1336"/>
         </scene>
         <!--Shop View Controller-->
         <scene sceneID="kNB-qH-Wwa">
@@ -746,7 +856,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afA-63-ycN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4210" y="1356"/>
+            <point key="canvasLocation" x="5134" y="1324"/>
         </scene>
         <!--Shop View Controller-->
         <scene sceneID="I9L-20-2xh">
@@ -775,11 +885,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Mh-ZT-q9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3069" y="1356"/>
+            <point key="canvasLocation" x="3993" y="1324"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="obd-9N-kG8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Odp-jn-4fx" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qz5-Pc-xlG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.37647062539999998" green="0.56078433989999998" blue="0.70588237050000002" alpha="1" colorSpace="deviceRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gkD-fm-egc" kind="relationship" relationship="rootViewController" id="MDp-LN-owZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TJK-ER-H3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1589" y="-304"/>
         </scene>
     </scenes>
     <resources>
+        <image name="bangdingxuliehao.png" width="69" height="51"/>
         <image name="chakan1.png" width="63" height="69"/>
+        <image name="ditu.png" width="2057" height="1539"/>
         <image name="gengduo.png" width="95" height="133"/>
         <image name="gengduo1.png" width="95" height="133"/>
         <image name="huiyuanqupu.png" width="442" height="572"/>
@@ -792,9 +927,13 @@
         <image name="renwu1.png" width="80" height="81"/>
         <image name="shangcehng.png" width="95" height="132"/>
         <image name="shangcheng1.png" width="95" height="132"/>
+        <image name="tanzou1.png" width="56" height="50"/>
+        <image name="tongguan.png" width="179" height="140"/>
         <image name="toobar_bg.png" width="1024" height="75"/>
+        <image name="tuichudangqianzhanghao1.png" width="73" height="72"/>
         <image name="weigoumaitubiao.png" width="136" height="71"/>
         <image name="xiai1.png" width="80" height="76"/>
+        <image name="xiaoxi1.png" width="69" height="43"/>
         <image name="xihai.png" width="80" height="76"/>
         <image name="yigouwu.png" width="65" height="60"/>
         <image name="yigouwu1.png" width="65" height="60"/>
@@ -806,4 +945,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="2mR-bz-3dG"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -42,12 +42,27 @@
 //    MelodyCategoryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MelodyCategoryViewController"];
 //    [self addChildViewController:vc];
 //    [self.contentView addSubview:vc.view];
+    //if(!IS_RUNNING_IOS7)
+    {
+        for (UIView *subView in self.topToolbar.subviews)
+        {
+            if([subView isKindOfClass:[UIImageView class]])
+            {
+                [subView removeFromSuperview];
+            }
+        }
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+
+    if(!IS_RUNNING_IOS7)
+    {
+        self.navigationController.navigationBar.tintColor = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning

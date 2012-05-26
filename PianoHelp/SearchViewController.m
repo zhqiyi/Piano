@@ -45,6 +45,15 @@
     self.title = @"搜索曲库";
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+
+    self.navigationController.navigationBar.tintColor = nil;
+
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -126,6 +135,14 @@
     
     self.searchResults = [self.melodyArray mutableCopy];//save result for sort of scope.
     [self.tableView reloadData];
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    [super searchDisplayControllerDidEndSearch:controller];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

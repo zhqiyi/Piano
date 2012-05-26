@@ -92,6 +92,7 @@
 		89BE8D78192AE16900686AC7 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BE8D77192AE16900686AC7 /* BaseTableViewCell.m */; };
 		89D61FD21927965400355EF0 /* APLProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D61FD11927965400355EF0 /* APLProduct.m */; };
 		89DB78E8156722B200332CB6 /* toobar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DB78E7156722B200332CB6 /* toobar_bg.png */; };
+		89F6C0D9193222ED00823EF5 /* MelodyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F6C0D8193222ED00823EF5 /* MelodyDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +210,8 @@
 		89D61FD01927965400355EF0 /* APLProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLProduct.h; sourceTree = "<group>"; };
 		89D61FD11927965400355EF0 /* APLProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLProduct.m; sourceTree = "<group>"; };
 		89DB78E7156722B200332CB6 /* toobar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toobar_bg.png; sourceTree = "<group>"; };
+		89F6C0D7193222ED00823EF5 /* MelodyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyDetailViewController.h; sourceTree = "<group>"; };
+		89F6C0D8193222ED00823EF5 /* MelodyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +297,8 @@
 				8987A5611925B12600DEE6AE /* ShowViewController.m */,
 				8936CF62192440F0001E5DCC /* SearchViewController.h */,
 				8936CF63192440F0001E5DCC /* SearchViewController.m */,
+				89F6C0D7193222ED00823EF5 /* MelodyDetailViewController.h */,
+				89F6C0D8193222ED00823EF5 /* MelodyDetailViewController.m */,
 				89D61FD01927965400355EF0 /* APLProduct.h */,
 				89D61FD11927965400355EF0 /* APLProduct.m */,
 				8907100B19219EC000BB9E2F /* Images.xcassets */,
@@ -591,6 +596,7 @@
 				89A15D921921BEBF00647F7B /* Score.m in Sources */,
 				8936CF64192440F0001E5DCC /* SearchViewController.m in Sources */,
 				8907102D1921A03900BB9E2F /* RootViewController.m in Sources */,
+				89F6C0D9193222ED00823EF5 /* MelodyDetailViewController.m in Sources */,
 				8987A55719258E2200DEE6AE /* MelodyCategoryViewController.m in Sources */,
 				8987A55D19258FB900DEE6AE /* QinFangViewController.m in Sources */,
 				89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */,
