@@ -177,7 +177,7 @@
 - (IBAction)btnTryListen_click:(id)sender
 {
     [self setCurrentButtonState:sender];
-    [player playByType:1];
+    [self.sfCountdownView start];
 }
 
 - (IBAction)btnRePlay_click:(id)sender
