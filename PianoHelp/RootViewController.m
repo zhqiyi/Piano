@@ -12,7 +12,10 @@
 #import "LoginViewController.h"
 
 @interface RootViewController ()
-
+{
+    LoginViewController *loginVC;
+    UIPopoverController *popVC;
+}
 @end
 
 @implementation RootViewController
@@ -40,9 +43,9 @@
     UIImage *image = [UIImage imageNamed:@"daohangtiao.png"];
     self.topToolbar.backgroundColor = [UIColor colorWithPatternImage:image];
     
-    LoginViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
+    loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self addChildViewController:loginVC];
+    [self.view addSubview:loginVC.view];
     //if(!IS_RUNNING_IOS7)
     {
         for (UIView *subView in self.topToolbar.subviews)
@@ -72,6 +75,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - LoginViewControllerDelegate
+
+-(void)quit
+{
+    [popVC dismissPopoverAnimated:NO];
+    loginVC.view.alpha=0;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view addSubview:loginVC.view];
+        loginVC.view.alpha = 1;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 
 #pragma mark - Navigation
 
@@ -86,6 +102,12 @@
         vc.levelIndent = 1;
         vc.title = ((MelodyCategory*)sender).name;
         vc.parentCategory = sender;
+    }
+    else if ([[segue identifier] isEqualToString:@"morePopSegue"])
+    {
+        MorePopViewController *vc = [segue destinationViewController];
+        vc.loginDelegate = self;
+        popVC = ((UIStoryboardPopoverSegue*)segue).popoverController;
     }
 }
 

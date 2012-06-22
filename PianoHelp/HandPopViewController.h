@@ -18,5 +18,6 @@
 
 - (IBAction)btnLeft:(UIButton *)sender;
 - (IBAction)btnRight:(UIButton *)sender;
+- (IBAction)btnLeftRight_onclick:(id)sender;
 
 @end

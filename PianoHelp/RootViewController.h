@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "MorePopViewController.h"
 
-@interface RootViewController : BaseViewController
+@interface RootViewController : BaseViewController <LoginViewControllerDelegate>
 
 @property (nonatomic,weak) UIButton *lastClickButton;
 

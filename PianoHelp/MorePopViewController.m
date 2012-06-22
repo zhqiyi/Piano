@@ -1,18 +1,18 @@
 //
-//  HandPopViewController.m
+//  MorePopViewController.m
 //  PianoHelp
 //
-//  Created by luo on 14-6-21.
-//  Copyright (c) 2014年 FlintInfo. All rights reserved.
+//  Created by Jobs on 6/21/14.
+//  Copyright (c) 2014 FlintInfo. All rights reserved.
 //
 
-#import "HandPopViewController.h"
+#import "MorePopViewController.h"
 
-@interface HandPopViewController ()
+@interface MorePopViewController ()
 
 @end
 
-@implementation HandPopViewController
+@implementation MorePopViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,18 +46,11 @@
 }
 */
 
-- (IBAction)btnLeft:(UIButton *)sender
+- (IBAction)btnQuit_onclick:(id)sender
 {
-    [self.shd handModel:1];
-}
-
-- (IBAction)btnRight:(UIButton *)sender
-{
-    [self.shd handModel:2];
-}
-
-- (IBAction)btnLeftRight_onclick:(id)sender
-{
-    [self.shd handModel:0];
+    if([self.loginDelegate respondsToSelector:@selector(quit)])
+    {
+        [self.loginDelegate quit];
+    }
 }
 @end

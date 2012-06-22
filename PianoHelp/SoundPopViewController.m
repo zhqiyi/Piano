@@ -46,13 +46,14 @@
 }
 */
 
-- (IBAction)btnPeiLian:(UIButton *)sender {
+- (IBAction)btnPeiLian:(UIButton *)sender
+{
     int value = 0;//add test by zyw
     [self.shd SparringMute:value];
 }
 
-- (IBAction)btnJiePai:(UIButton *)sender {
-    
+- (IBAction)btnJiePai:(UIButton *)sender
+{
     int value = 0;//add test by zyw
     [self.shd beatMute:value];
 }

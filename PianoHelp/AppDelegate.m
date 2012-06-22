@@ -31,7 +31,7 @@
         [self initCategoryAndMelody];
         iLoop--;
     }
-//    [self loadDemoMidiToSQL];
+    [self loadDemoMidiToSQL];
     return YES;
 }
 
@@ -236,6 +236,14 @@
 
 -(void)loadDemoMidiToSQL
 {
+    NSString *strDocumentPath = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES ) objectAtIndex:0];
+    NSString *strImageDir = [strDocumentPath stringByAppendingPathComponent:@"initialedData.file"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:strImageDir])
+    {
+        [[NSFileManager defaultManager] createFileAtPath:strImageDir contents:nil attributes:nil];
+    }
+    else return;
+//    
     MelodyCategory *cate = (MelodyCategory*)[NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
     cate.name = @"考级";
     

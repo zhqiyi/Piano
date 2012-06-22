@@ -177,6 +177,7 @@
 - (IBAction)btnTryListen_click:(id)sender
 {
     [self setCurrentButtonState:sender];
+    [player playByType:1];
 }
 
 - (IBAction)btnRePlay_click:(id)sender
@@ -188,6 +189,15 @@
 - (IBAction)btnPlay_click:(id)sender
 {
     [self.sfCountdownView start];
+    if([((UIButton*)sender) isSelected])
+    {
+        [((UIButton*)sender) setSelected:false];
+        [player playPause];
+    }
+    else
+    {
+        [((UIButton*)sender) setSelected:true];
+    }
 }
 
 - (IBAction)btnSudu_click:(id)sender
@@ -333,6 +343,7 @@
 #pragma mark MidiPlayerDelegate
 -(void)endSongs
 {
+    [self.view bringSubviewToFront:scrollView];
     NSLog(@"the song is end");
 }
 
@@ -387,22 +398,29 @@
 //左右手模式
 - (void) handModel:(int)value
 {
-    switch (value) {
+    switch (value)
+    {
         case 0://左右手模式
             [midifile leftHandMute:&options andState:NO];
             [midifile rightHandMute:&options andState:NO];
             break;
         case 1://左手模式
-            if ([midifile getLeftHadnMuteState:&options] == YES) {
+            if ([midifile getLeftHadnMuteState:&options] == YES)
+            {
                 [midifile leftHandMute:&options andState:NO];
-            }else{
+            }
+            else
+            {
                 [midifile leftHandMute:&options andState:YES];
             }
             break;
         case 2://右手模式
-            if ([midifile getRightHadnMuteState:&options] == YES) {
+            if ([midifile getRightHadnMuteState:&options] == YES)
+            {
                 [midifile rightHandMute:&options andState:NO];
-            }else{
+            }
+            else
+            {
                 [midifile rightHandMute:&options andState:YES];
             }
             break;
@@ -433,6 +451,11 @@
         
     }
 
+}
+
+-(void)dealloc
+{
+    
 }
 
 

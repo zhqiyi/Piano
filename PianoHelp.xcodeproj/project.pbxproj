@@ -31,6 +31,7 @@
 		8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8907102919219F3A00BB9E2F /* Storyboard.storyboard */; };
 		8907102D1921A03900BB9E2F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907102C1921A03900BB9E2F /* RootViewController.m */; };
 		89257490192E40450049EF14 /* MelodyCategoryCollectioViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */; };
+		892A188F195678C4003E209A /* MorePopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 892A188E195678C4003E209A /* MorePopViewController.m */; };
 		892DBBC019468E8E00621003 /* ShelfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBBF19468E8E00621003 /* ShelfView.m */; };
 		892DBBC519468F6C00621003 /* GridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBC419468F6C00621003 /* GridLayout.m */; };
 		892DBBC81946944B00621003 /* ConferenceLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBC71946944B00621003 /* ConferenceLayoutAttributes.m */; };
@@ -247,6 +248,8 @@
 		8907102C1921A03900BB9E2F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		8925748E192E40450049EF14 /* MelodyCategoryCollectioViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategoryCollectioViewCell.h; sourceTree = "<group>"; };
 		8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategoryCollectioViewCell.m; sourceTree = "<group>"; };
+		892A188D195678C4003E209A /* MorePopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MorePopViewController.h; sourceTree = "<group>"; };
+		892A188E195678C4003E209A /* MorePopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MorePopViewController.m; sourceTree = "<group>"; };
 		892DBBBE19468E8E00621003 /* ShelfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfView.h; sourceTree = "<group>"; };
 		892DBBBF19468E8E00621003 /* ShelfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfView.m; sourceTree = "<group>"; };
 		892DBBC319468F6C00621003 /* GridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridLayout.h; sourceTree = "<group>"; };
@@ -502,6 +505,8 @@
 				8987A5641925B54600DEE6AE /* BaseViewController.m */,
 				8907102B1921A03900BB9E2F /* RootViewController.h */,
 				8907102C1921A03900BB9E2F /* RootViewController.m */,
+				892A188D195678C4003E209A /* MorePopViewController.h */,
+				892A188E195678C4003E209A /* MorePopViewController.m */,
 				8987A55819258FA500DEE6AE /* ShopViewController.h */,
 				8987A55919258FA500DEE6AE /* ShopViewController.m */,
 				8987A55B19258FB900DEE6AE /* QinFangViewController.h */,
@@ -1050,6 +1055,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89F5B9BC193D5DFA006D40F9 /* SectionPopViewController.m in Sources */,
+				892A188F195678C4003E209A /* MorePopViewController.m in Sources */,
 				89BE8D78192AE16900686AC7 /* BaseTableViewCell.m in Sources */,
 				8907100719219EC000BB9E2F /* AppDelegate.m in Sources */,
 				892DBBC81946944B00621003 /* ConferenceLayoutAttributes.m in Sources */,
@@ -1207,7 +1213,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1224,7 +1230,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
