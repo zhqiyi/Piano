@@ -22,6 +22,13 @@
 		8907101619219EC000BB9E2F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89070FFA19219EC000BB9E2F /* CoreData.framework */; };
 		8907101E19219EC000BB9E2F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8907101C19219EC000BB9E2F /* InfoPlist.strings */; };
 		8907102019219EC000BB9E2F /* PianoHelpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907101F19219EC000BB9E2F /* PianoHelpTests.m */; };
+		8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8907102919219F3A00BB9E2F /* Storyboard.storyboard */; };
+		8907102D1921A03900BB9E2F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907102C1921A03900BB9E2F /* RootViewController.m */; };
+		89A15D821921B78400647F7B /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A15D811921B78400647F7B /* 01.png */; };
+		89A15D921921BEBF00647F7B /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D911921BEBF00647F7B /* Score.m */; };
+		89A15D951921BEBF00647F7B /* MelodyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D941921BEBF00647F7B /* MelodyCategory.m */; };
+		89A15D981921BEBF00647F7B /* Melody.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D971921BEBF00647F7B /* Melody.m */; };
+		89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15DA01921BF2600647F7B /* MelodyFavorite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,18 @@
 		8907101B19219EC000BB9E2F /* PianoHelpTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PianoHelpTests-Info.plist"; sourceTree = "<group>"; };
 		8907101D19219EC000BB9E2F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8907101F19219EC000BB9E2F /* PianoHelpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PianoHelpTests.m; sourceTree = "<group>"; };
+		8907102919219F3A00BB9E2F /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		8907102B1921A03900BB9E2F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		8907102C1921A03900BB9E2F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		89A15D811921B78400647F7B /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
+		89A15D901921BEBF00647F7B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		89A15D911921BEBF00647F7B /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		89A15D931921BEBF00647F7B /* MelodyCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategory.h; sourceTree = "<group>"; };
+		89A15D941921BEBF00647F7B /* MelodyCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategory.m; sourceTree = "<group>"; };
+		89A15D961921BEBF00647F7B /* Melody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melody.h; sourceTree = "<group>"; };
+		89A15D971921BEBF00647F7B /* Melody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melody.m; sourceTree = "<group>"; };
+		89A15D9F1921BF2600647F7B /* MelodyFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyFavorite.h; sourceTree = "<group>"; };
+		89A15DA01921BF2600647F7B /* MelodyFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyFavorite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +134,13 @@
 		89070FFC19219EC000BB9E2F /* PianoHelp */ = {
 			isa = PBXGroup;
 			children = (
+				89A15D831921B82C00647F7B /* SQLModel */,
+				89A15D801921B78400647F7B /* images */,
 				8907100519219EC000BB9E2F /* AppDelegate.h */,
 				8907100619219EC000BB9E2F /* AppDelegate.m */,
+				8907102919219F3A00BB9E2F /* Storyboard.storyboard */,
+				8907102B1921A03900BB9E2F /* RootViewController.h */,
+				8907102C1921A03900BB9E2F /* RootViewController.m */,
 				8907100B19219EC000BB9E2F /* Images.xcassets */,
 				8907100819219EC000BB9E2F /* PianoHelp.xcdatamodeld */,
 				89070FFD19219EC000BB9E2F /* Supporting Files */,
@@ -151,6 +175,29 @@
 				8907101C19219EC000BB9E2F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		89A15D801921B78400647F7B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				89A15D811921B78400647F7B /* 01.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		89A15D831921B82C00647F7B /* SQLModel */ = {
+			isa = PBXGroup;
+			children = (
+				89A15D9F1921BF2600647F7B /* MelodyFavorite.h */,
+				89A15DA01921BF2600647F7B /* MelodyFavorite.m */,
+				89A15D961921BEBF00647F7B /* Melody.h */,
+				89A15D971921BEBF00647F7B /* Melody.m */,
+				89A15D931921BEBF00647F7B /* MelodyCategory.h */,
+				89A15D941921BEBF00647F7B /* MelodyCategory.m */,
+				89A15D901921BEBF00647F7B /* Score.h */,
+				89A15D911921BEBF00647F7B /* Score.m */,
+			);
+			name = SQLModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +277,8 @@
 			files = (
 				8907100119219EC000BB9E2F /* InfoPlist.strings in Resources */,
 				8907100C19219EC000BB9E2F /* Images.xcassets in Resources */,
+				89A15D821921B78400647F7B /* 01.png in Resources */,
+				8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +298,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8907100719219EC000BB9E2F /* AppDelegate.m in Sources */,
+				89A15D951921BEBF00647F7B /* MelodyCategory.m in Sources */,
 				8907100A19219EC000BB9E2F /* PianoHelp.xcdatamodeld in Sources */,
+				89A15D921921BEBF00647F7B /* Score.m in Sources */,
+				8907102D1921A03900BB9E2F /* RootViewController.m in Sources */,
+				89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */,
 				8907100319219EC000BB9E2F /* main.m in Sources */,
+				89A15D981921BEBF00647F7B /* Melody.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +426,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianoHelp/PianoHelp-Prefix.pch";
 				INFOPLIST_FILE = "PianoHelp/PianoHelp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -385,6 +440,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianoHelp/PianoHelp-Prefix.pch";
 				INFOPLIST_FILE = "PianoHelp/PianoHelp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -449,6 +505,7 @@
 				8907102519219EC000BB9E2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8907102619219EC000BB9E2F /* Build configuration list for PBXNativeTarget "PianoHelpTests" */ = {
 			isa = XCConfigurationList;
@@ -457,6 +514,7 @@
 				8907102819219EC000BB9E2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

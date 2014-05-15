@@ -1,4 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Category" representedClassName="MelodyCategory" syncable="YES">
+        <attribute name="buy" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="buyURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="cover" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sale" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="saleURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="melody" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Melody" inverseName="category" inverseEntity="Melody" syncable="YES"/>
+    </entity>
+    <entity name="Melody" representedClassName="Melody" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buy" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="buyURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="melodyID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="memo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scrawlPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="melody" inverseEntity="Category" syncable="YES"/>
+        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MelodyFavorite" inverseName="melody" inverseEntity="MelodyFavorite" syncable="YES"/>
+        <relationship name="score" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Score" inverseName="melody" inverseEntity="Score" syncable="YES"/>
+    </entity>
+    <entity name="MelodyFavorite" representedClassName="MelodyFavorite" syncable="YES">
+        <attribute name="melodyID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="1" syncable="YES"/>
+        <relationship name="melody" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Melody" inverseName="favorite" inverseEntity="Melody" syncable="YES"/>
+    </entity>
+    <entity name="Score" representedClassName="Score" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="good" optional="YES" attributeType="Integer 32" maxValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="melodyID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="miss" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pattern" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="perfect" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="toneCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="upload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="melody" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Melody" inverseName="score" inverseEntity="Melody" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-2738" positionY="-2214" width="128" height="178"/>
+        <element name="Melody" positionX="-2493" positionY="-2214" width="128" height="268"/>
+        <element name="MelodyFavorite" positionX="-2745" positionY="-1890" width="128" height="88"/>
+        <element name="Score" positionX="-2232" positionY="-2043" width="128" height="208"/>
+    </elements>
 </model>
