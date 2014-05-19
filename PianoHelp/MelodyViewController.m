@@ -95,10 +95,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *kCellID = @"CellIdentifier";
+	static NSString *kCellID = @"melodyCell";
     
     // Dequeue a cell from self's table view.
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID];
+	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kCellID];
+    
+//    if(!cell)
+//    {
+//        cell = [[UITableViewCell alloc]init];
+//    }
     
 	/*
 	 If the requesting table view is the search display controller's table view, configure the cell using the search results array, otherwise use the product array.

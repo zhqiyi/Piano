@@ -26,6 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ditu.png"]];
+    image.frame = CGRectMake(0, 0, 1024, 768);
+    [self.view addSubview:image];
     // Do any additional setup after loading the view.
 }
 
@@ -60,4 +63,13 @@
     return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 @end

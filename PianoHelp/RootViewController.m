@@ -31,6 +31,8 @@
     self.lastClickButton = self.btnMelody;
     [self.lastClickButton setSelected:YES];
     self.title = @"首页";
+    UIImage *image =  [UIImage imageNamed:@"daohangtiao.png"];
+    self.topToolbar.backgroundColor = [UIColor colorWithPatternImage:image];
 //    
 //    MelodyCategoryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MelodyCategoryViewController"];
 //    [self addChildViewController:vc];

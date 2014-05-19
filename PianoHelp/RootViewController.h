@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface RootViewController : UIViewController
+@interface RootViewController : BaseViewController
 
 @property (nonatomic,weak) UIButton *lastClickButton;
 
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIView *qinFangContainerView;
 @property (weak, nonatomic) IBOutlet UIView *shopContainerView;
 @property (weak, nonatomic) IBOutlet UIView *showContainerView;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (weak, nonatomic) IBOutlet UIToolbar *topToolbar;
 
 - (IBAction)buttonToolbar_click:(id)sender;
 @end
