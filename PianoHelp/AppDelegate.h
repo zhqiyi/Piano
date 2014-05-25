@@ -18,5 +18,5 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
+-(void)initCategoryAndMelody;
 @end

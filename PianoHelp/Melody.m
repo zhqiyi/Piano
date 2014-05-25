@@ -2,7 +2,7 @@
 //  Melody.m
 //  PianoHelp
 //
-//  Created by Jobs on 14-5-12.
+//  Created by Jobs on 14-5-20.
 //  Copyright (c) 2014年 FlintInfo. All rights reserved.
 //
 
@@ -20,14 +20,14 @@
 @dynamic categoryID;
 @dynamic deviceID;
 @dynamic filePath;
-@dynamic melodyID;
 @dynamic level;
+@dynamic melodyID;
 @dynamic memo;
 @dynamic name;
 @dynamic scrawlPath;
 @dynamic style;
 @dynamic category;
-@dynamic score;
 @dynamic favorite;
+@dynamic score;
 
 @end

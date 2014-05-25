@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8903B8A9192C44EA00B0C139 /* MelodyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8903B8A8192C44EA00B0C139 /* MelodyCategory.m */; };
+		8903B8AC192C48BB00B0C139 /* Melody.m in Sources */ = {isa = PBXBuildFile; fileRef = 8903B8AB192C48BB00B0C139 /* Melody.m */; };
 		89070FF519219EC000BB9E2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89070FF419219EC000BB9E2F /* Foundation.framework */; };
 		89070FF719219EC000BB9E2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89070FF619219EC000BB9E2F /* CoreGraphics.framework */; };
 		89070FF919219EC000BB9E2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89070FF819219EC000BB9E2F /* UIKit.framework */; };
@@ -24,6 +26,7 @@
 		8907102019219EC000BB9E2F /* PianoHelpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907101F19219EC000BB9E2F /* PianoHelpTests.m */; };
 		8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8907102919219F3A00BB9E2F /* Storyboard.storyboard */; };
 		8907102D1921A03900BB9E2F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907102C1921A03900BB9E2F /* RootViewController.m */; };
+		89257490192E40450049EF14 /* MelodyCategoryCollectioViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */; };
 		8936CF64192440F0001E5DCC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8936CF63192440F0001E5DCC /* SearchViewController.m */; };
 		89429BC31566D8A70003A7D4 /* bangdingxuliehao.png in Resources */ = {isa = PBXBuildFile; fileRef = 89429B8F1566D8A70003A7D4 /* bangdingxuliehao.png */; };
 		89429BC41566D8A70003A7D4 /* bangdingxulihao.png in Resources */ = {isa = PBXBuildFile; fileRef = 89429B901566D8A70003A7D4 /* bangdingxulihao.png */; };
@@ -84,9 +87,9 @@
 		8987A5621925B12600DEE6AE /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A5611925B12600DEE6AE /* ShowViewController.m */; };
 		8987A5651925B54600DEE6AE /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A5641925B54600DEE6AE /* BaseViewController.m */; };
 		89A15D921921BEBF00647F7B /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D911921BEBF00647F7B /* Score.m */; };
-		89A15D951921BEBF00647F7B /* MelodyCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D941921BEBF00647F7B /* MelodyCategory.m */; };
-		89A15D981921BEBF00647F7B /* Melody.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15D971921BEBF00647F7B /* Melody.m */; };
 		89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A15DA01921BF2600647F7B /* MelodyFavorite.m */; };
+		89BE8D75192ADAD100686AC7 /* MelodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BE8D74192ADAD100686AC7 /* MelodyTableViewCell.m */; };
+		89BE8D78192AE16900686AC7 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BE8D77192AE16900686AC7 /* BaseTableViewCell.m */; };
 		89D61FD21927965400355EF0 /* APLProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D61FD11927965400355EF0 /* APLProduct.m */; };
 		89DB78E8156722B200332CB6 /* toobar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 89DB78E7156722B200332CB6 /* toobar_bg.png */; };
 /* End PBXBuildFile section */
@@ -102,6 +105,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8903B8A7192C44EA00B0C139 /* MelodyCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategory.h; sourceTree = "<group>"; };
+		8903B8A8192C44EA00B0C139 /* MelodyCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategory.m; sourceTree = "<group>"; };
+		8903B8AA192C48BB00B0C139 /* Melody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melody.h; sourceTree = "<group>"; };
+		8903B8AB192C48BB00B0C139 /* Melody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melody.m; sourceTree = "<group>"; };
 		89070FF119219EC000BB9E2F /* PianoHelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PianoHelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89070FF419219EC000BB9E2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		89070FF619219EC000BB9E2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -123,6 +130,8 @@
 		8907102919219F3A00BB9E2F /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		8907102B1921A03900BB9E2F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		8907102C1921A03900BB9E2F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		8925748E192E40450049EF14 /* MelodyCategoryCollectioViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategoryCollectioViewCell.h; sourceTree = "<group>"; };
+		8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategoryCollectioViewCell.m; sourceTree = "<group>"; };
 		8936CF62192440F0001E5DCC /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		8936CF63192440F0001E5DCC /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		89429B8F1566D8A70003A7D4 /* bangdingxuliehao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bangdingxuliehao.png; sourceTree = "<group>"; };
@@ -191,12 +200,12 @@
 		8987A5641925B54600DEE6AE /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		89A15D901921BEBF00647F7B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		89A15D911921BEBF00647F7B /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
-		89A15D931921BEBF00647F7B /* MelodyCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategory.h; sourceTree = "<group>"; };
-		89A15D941921BEBF00647F7B /* MelodyCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategory.m; sourceTree = "<group>"; };
-		89A15D961921BEBF00647F7B /* Melody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Melody.h; sourceTree = "<group>"; };
-		89A15D971921BEBF00647F7B /* Melody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melody.m; sourceTree = "<group>"; };
 		89A15D9F1921BF2600647F7B /* MelodyFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyFavorite.h; sourceTree = "<group>"; };
 		89A15DA01921BF2600647F7B /* MelodyFavorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyFavorite.m; sourceTree = "<group>"; };
+		89BE8D73192ADAD100686AC7 /* MelodyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyTableViewCell.h; sourceTree = "<group>"; };
+		89BE8D74192ADAD100686AC7 /* MelodyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyTableViewCell.m; sourceTree = "<group>"; };
+		89BE8D76192AE16900686AC7 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		89BE8D77192AE16900686AC7 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		89D61FD01927965400355EF0 /* APLProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLProduct.h; sourceTree = "<group>"; };
 		89D61FD11927965400355EF0 /* APLProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APLProduct.m; sourceTree = "<group>"; };
 		89DB78E7156722B200332CB6 /* toobar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toobar_bg.png; sourceTree = "<group>"; };
@@ -264,6 +273,8 @@
 			children = (
 				89A15D831921B82C00647F7B /* SQLModel */,
 				89A15D801921B78400647F7B /* images */,
+				89BE8D72192ADAAF00686AC7 /* TableCell */,
+				8925748D192E3DB80049EF14 /* CollectionView */,
 				8907100519219EC000BB9E2F /* AppDelegate.h */,
 				8907100619219EC000BB9E2F /* AppDelegate.m */,
 				8907102919219F3A00BB9E2F /* Storyboard.storyboard */,
@@ -319,6 +330,15 @@
 				8907101C19219EC000BB9E2F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8925748D192E3DB80049EF14 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8925748E192E40450049EF14 /* MelodyCategoryCollectioViewCell.h */,
+				8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */,
+			);
+			name = CollectionView;
 			sourceTree = "<group>";
 		};
 		89A15D801921B78400647F7B /* images */ = {
@@ -384,16 +404,27 @@
 		89A15D831921B82C00647F7B /* SQLModel */ = {
 			isa = PBXGroup;
 			children = (
+				8903B8AA192C48BB00B0C139 /* Melody.h */,
+				8903B8AB192C48BB00B0C139 /* Melody.m */,
+				8903B8A7192C44EA00B0C139 /* MelodyCategory.h */,
+				8903B8A8192C44EA00B0C139 /* MelodyCategory.m */,
 				89A15D9F1921BF2600647F7B /* MelodyFavorite.h */,
 				89A15DA01921BF2600647F7B /* MelodyFavorite.m */,
-				89A15D961921BEBF00647F7B /* Melody.h */,
-				89A15D971921BEBF00647F7B /* Melody.m */,
-				89A15D931921BEBF00647F7B /* MelodyCategory.h */,
-				89A15D941921BEBF00647F7B /* MelodyCategory.m */,
 				89A15D901921BEBF00647F7B /* Score.h */,
 				89A15D911921BEBF00647F7B /* Score.m */,
 			);
 			name = SQLModel;
+			sourceTree = "<group>";
+		};
+		89BE8D72192ADAAF00686AC7 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				89BE8D76192AE16900686AC7 /* BaseTableViewCell.h */,
+				89BE8D77192AE16900686AC7 /* BaseTableViewCell.m */,
+				89BE8D73192ADAD100686AC7 /* MelodyTableViewCell.h */,
+				89BE8D74192ADAD100686AC7 /* MelodyTableViewCell.m */,
+			);
+			name = TableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,12 +576,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89BE8D78192AE16900686AC7 /* BaseTableViewCell.m in Sources */,
 				8907100719219EC000BB9E2F /* AppDelegate.m in Sources */,
 				8987A5651925B54600DEE6AE /* BaseViewController.m in Sources */,
-				89A15D951921BEBF00647F7B /* MelodyCategory.m in Sources */,
+				89BE8D75192ADAD100686AC7 /* MelodyTableViewCell.m in Sources */,
 				8987A55419258DEA00DEE6AE /* MelodyViewController.m in Sources */,
+				8903B8AC192C48BB00B0C139 /* Melody.m in Sources */,
 				8987A5621925B12600DEE6AE /* ShowViewController.m in Sources */,
 				89D61FD21927965400355EF0 /* APLProduct.m in Sources */,
+				8903B8A9192C44EA00B0C139 /* MelodyCategory.m in Sources */,
+				89257490192E40450049EF14 /* MelodyCategoryCollectioViewCell.m in Sources */,
 				8907100A19219EC000BB9E2F /* PianoHelp.xcdatamodeld in Sources */,
 				8987A55A19258FA500DEE6AE /* ShopViewController.m in Sources */,
 				89A15D921921BEBF00647F7B /* Score.m in Sources */,
@@ -560,7 +595,6 @@
 				8987A55D19258FB900DEE6AE /* QinFangViewController.m in Sources */,
 				89A15DA11921BF2600647F7B /* MelodyFavorite.m in Sources */,
 				8907100319219EC000BB9E2F /* main.m in Sources */,
-				89A15D981921BEBF00647F7B /* Melody.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

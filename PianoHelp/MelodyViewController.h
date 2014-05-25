@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APLProduct.h"
 #import "BaseViewController.h"
-@interface MelodyViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
+#import "MelodyTableViewCell.h"
+#import "Melody.h"
+
+@interface MelodyViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MelodyTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSArray *products; // The master content.
+@property (nonatomic, strong) NSSet *melodySet;
+@property (nonatomic) NSArray *melodyArray; // The master content.
+@property (nonatomic) NSMutableArray *searchResults;
 @end

@@ -48,9 +48,8 @@
 #import "APLProduct.h"
 
 
-NSString *ProductTypeDevice = @"作者";
-NSString *ProductTypeDesktop = @"曲名";
-//NSString *ProductTypePortable = @"Portable";
+NSString *ScopeAuthor = @"作者";
+NSString *ScopeSongName = @"曲名";
 
 
 @implementation APLProduct
@@ -70,7 +69,7 @@ NSString *ProductTypeDesktop = @"曲名";
     static dispatch_once_t once;
 
     dispatch_once(&once, ^{
-        deviceTypeNames = @[ProductTypeDevice, ProductTypeDesktop];
+        deviceTypeNames = @[ScopeAuthor, ScopeSongName];
     });
 
     return deviceTypeNames;

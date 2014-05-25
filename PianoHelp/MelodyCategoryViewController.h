@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface MelodyCategoryViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@class MelodyCategory;
+
+@interface MelodyCategoryViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSInteger levelIndent;
+@property (nonatomic, strong) MelodyCategory *parentCategory;
 @end

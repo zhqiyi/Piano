@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MelodyCategory.h"
+#import "Melody.h"
 
 @implementation AppDelegate
 
@@ -20,6 +22,8 @@
 //    // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
+    
+    //[self initCategoryAndMelody];
     return YES;
 }
 
@@ -144,6 +148,61 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+-(void)initCategoryAndMelody
+{
+    MelodyCategory *cate = (MelodyCategory*)[NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    //cate.categoryID = @"01";
+    cate.name = @"示范曲谱";
+    NSError *error;
+    
+    //    cate.name = @"教材曲谱";
+    
+    //    cate.name = @"会员曲谱";
+    
+    //    cate.name = @"影视金曲";
+    
+    MelodyCategory *cateYingHuang = (MelodyCategory*)[NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:self.managedObjectContext];
+    //cate.categoryID = @"02";
+    cateYingHuang.parentCategory = cate;
+    cateYingHuang.name = @"英皇考级";
+    
+    
+    Melody *melody = (Melody*)[NSEntityDescription insertNewObjectForEntityForName:@"Melody" inManagedObjectContext:self.managedObjectContext];
+    melody.melodyID = @"聂耳义勇军进行曲";
+    melody.category = cateYingHuang;
+    melody.author = @"聂耳";
+    melody.name = @"义勇军进行曲";
+    
+    Melody *melody1 = (Melody*)[NSEntityDescription insertNewObjectForEntityForName:@"Melody" inManagedObjectContext:self.managedObjectContext];
+    melody1.melodyID = @"聂耳黄河大合唱";
+    melody1.category = cateYingHuang;
+    melody1.author = @"聂耳";
+    melody1.name = @"黄河大合唱";
+    
+    Melody *melody2 = (Melody*)[NSEntityDescription insertNewObjectForEntityForName:@"Melody" inManagedObjectContext:self.managedObjectContext];
+    melody2.melodyID = @"贝多芬第一交响曲";
+    melody2.category = cateYingHuang;
+    melody2.author = @"贝多芬";
+    melody2.name = @"贝多芬第一交响曲";
+    
+    Melody *melody3 = (Melody*)[NSEntityDescription insertNewObjectForEntityForName:@"Melody" inManagedObjectContext:self.managedObjectContext];
+    melody3.melodyID = @"贝多芬第二交响曲";
+    melody3.category = cateYingHuang;
+    melody3.author = @"贝多芬";
+    melody3.name = @"贝多芬第二交响曲";
+    
+    Melody *melody4 = (Melody*)[NSEntityDescription insertNewObjectForEntityForName:@"Melody" inManagedObjectContext:self.managedObjectContext];
+    melody4.melodyID = @"贝多芬第三交响曲";
+    melody4.category = cateYingHuang;
+    melody4.author = @"贝多芬";
+    melody4.name = @"贝多芬第三交响曲";
+    
+    if(![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
 }
 
 @end

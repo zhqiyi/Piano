@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MelodyViewController.h"
 
-@interface SearchViewController : MelodyViewController
+@interface SearchViewController : MelodyViewController <NSFetchedResultsControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @end

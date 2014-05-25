@@ -7,9 +7,11 @@
 //
 
 #import "SearchViewController.h"
+#import "AppDelegate.h"
+#import "MelodyTableViewCell.h"
 
 @interface SearchViewController ()
-
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation SearchViewController
@@ -27,17 +29,26 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    //self.view.tintColor = [UIColor purpleColor];
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    self.melodyArray = [[self fetchedResultsController] fetchedObjects];
+    self.searchResults = [NSMutableArray arrayWithCapacity:[self.melodyArray count]];
+    self.title = @"搜索曲库";
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //self.navigationController.navigationBar.hidden = NO;
+    [self.searchBar becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,8 +67,66 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - UITableView data source and delegate methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Dequeue a cell from self's table view.
+	MelodyTableViewCell *cell = (MelodyTableViewCell*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.isInSearch = YES;
+    [cell updateContent:cell.melody];
+    return (UITableViewCell*)cell;
+}
 
 
+#pragma mark - Fetched results controller
+
+/*
+ Returns the fetched results controller. Creates and configures the controller if necessary.
+ */
+- (NSFetchedResultsController *)fetchedResultsController {
+    
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    // Create and configure a fetch request with the Book entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Melody" inManagedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Create the sort descriptors array.
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortArray = @[sort];
+    [fetchRequest setSortDescriptors:sortArray];
+
+    // Create and initialize the fetch results controller.
+    _fetchedResultsController = [[NSFetchedResultsController alloc]
+                                 initWithFetchRequest:fetchRequest
+                                 managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
+                                 sectionNameKeyPath:@"name"
+                                 cacheName:nil];
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+}
+
+-(void)updateMelodyState
+{
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    self.melodyArray = [[self fetchedResultsController] fetchedObjects];
+    
+    self.searchResults = [self.melodyArray mutableCopy];//save result for sort of scope.
+    [self.tableView reloadData];
+}
 
 
 @end

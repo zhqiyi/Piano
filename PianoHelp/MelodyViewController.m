@@ -7,10 +7,12 @@
 //
 
 #import "MelodyViewController.h"
-#import "APLProduct.h"
+
+extern NSString *ScopeAuthor;
+extern NSString *ScopeSongName;
 
 @interface MelodyViewController ()
-@property (nonatomic) NSMutableArray *searchResults;
+
 @end
 
 @implementation MelodyViewController
@@ -28,25 +30,26 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"英皇考级教材曲谱";
-    
-    NSArray *productArray = @[[APLProduct productWithType:ProductTypeDevice name:@"黄河大合唱"],
-                              [APLProduct productWithType:ProductTypeDevice name:@"我的太阳"],
-                              [APLProduct productWithType:ProductTypeDevice name:@"贝多纷第一交响曲"],
-                              [APLProduct productWithType:ProductTypeDevice name:@"贝多纷第二交响曲"],
-                              [APLProduct productWithType:ProductTypeDevice name:@"贝多纷第三交响曲"],
-                              [APLProduct productWithType:ProductTypeDesktop name:@"贝多纷第四交响曲"],
-                              [APLProduct productWithType:ProductTypeDesktop name:@"贝多纷第五交响曲"]];
+//    self.title = @"英皇考级教材曲谱";
+//    
+//    NSArray *productArray = @[[APLProduct productWithType:ScopeAuthor name:@"聂耳－黄河大合唱"],
+//                              [APLProduct productWithType:ScopeAuthor name:@"帕瓦罗蒂－我的太阳"],
+//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第一交响曲"],
+//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第二交响曲"],
+//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第三交响曲"],
+//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第四交响曲"],
+//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第五交响曲"]];
 
-    self.products = productArray;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
+    self.melodyArray = [[self.melodySet allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
     
-    self.searchResults = [NSMutableArray arrayWithCapacity:[self.products count]];
+    self.searchResults = [NSMutableArray arrayWithCapacity:[self.melodyArray count]];
     
     /*
      Set up the search scope buttons with titles using products' localized display names.
      */
     NSMutableArray *scopeButtonTitles = [[NSMutableArray alloc] init];
-    [scopeButtonTitles addObject:NSLocalizedString(@"全部", @"Title for the All button in the search display controller.")];
+    //[scopeButtonTitles addObject:NSLocalizedString(@"全部", @"Title for the All button in the search display controller.")];
     
     for (NSString *deviceType in [APLProduct deviceTypeNames])
     {
@@ -55,6 +58,18 @@
     }
     
     self.searchDisplayController.searchBar.scopeButtonTitles = scopeButtonTitles;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //self.navigationController.navigationBar.hidden = NO;
+    [self.searchDisplayController searchResultsTableView].rowHeight = 64;
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,107 +103,86 @@
     }
 	else
 	{
-        return [self.products count];
+        return [self.melodyArray count];
     }
 }
 
+
+#pragma mark - UITableView data source and delegate methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *kCellID = @"melodyCell";
     
     // Dequeue a cell from self's table view.
-	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kCellID];
-    
-//    if(!cell)
-//    {
-//        cell = [[UITableViewCell alloc]init];
-//    }
-    
+	MelodyTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kCellID];
 	/*
 	 If the requesting table view is the search display controller's table view, configure the cell using the search results array, otherwise use the product array.
 	 */
-	APLProduct *product;
-    
+	Melody *melody;
 	if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        product = [self.searchResults objectAtIndex:indexPath.row];
+        melody = [self.searchResults objectAtIndex:indexPath.row];
     }
 	else
 	{
-        product = [self.products objectAtIndex:indexPath.row];
+        melody = [self.melodyArray objectAtIndex:indexPath.row];
     }
     
-	cell.textLabel.text = product.name;
-	return cell;
+    cell.labNum.text = [NSString stringWithFormat:@"%03d", indexPath.row+1];
+    
+	[cell updateContent:melody];
+    cell.updateDelegate = self;
+	return (UITableViewCell*)cell;
 }
 
 
 #pragma mark - Content Filtering
 
-- (void)updateFilteredContentForProductName:(NSString *)productName type:(NSString *)typeName
+- (void)updateFilteredContentForSearchString:(NSString *)strSearch type:(NSString *)typeName
 {
-	/*
-	 Update the filtered array based on the search text and scope.
-	 */
-    if ((productName == nil) || [productName length] == 0)
+    if ((strSearch == nil) || [strSearch length] == 0)
     {
-        // If there is no search string and the scope is "All".
-        if (typeName == nil)
-        {
-            self.searchResults = [self.products mutableCopy];
-        }
-        else
-        {
-            // If there is no search string and the scope is chosen.
-            NSMutableArray *searchResults = [[NSMutableArray alloc] init];
-            for (APLProduct *product in self.products)
-            {
-                if ([product.type isEqualToString:typeName])
-                {
-                    [searchResults addObject:product];
-                }
-            }
-            self.searchResults = searchResults;
-        }
+        self.searchResults = [self.melodyArray mutableCopy];
         return;
     }
     
-    
-    [self.searchResults removeAllObjects]; // First clear the filtered array.
-	/*
-	 Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
-	 */
-    for (APLProduct *product in self.products)
+    [self.searchResults removeAllObjects];
+
+    for (Melody *melody in self.melodyArray)
 	{
-		if ((typeName == nil) || [product.type isEqualToString:typeName])
-		{
-            NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
-            NSRange productNameRange = NSMakeRange(0, product.name.length);
-            NSRange foundRange = [product.name rangeOfString:productName options:searchOptions range:productNameRange];
-            if (foundRange.length > 0)
-			{
-				[self.searchResults addObject:product];
-            }
-		}
+        NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
+        NSRange range, foundRange;
+        if([typeName isEqualToString:ScopeSongName])
+        {
+            range = NSMakeRange(0, melody.name.length);
+            foundRange = [melody.name rangeOfString:strSearch options:searchOptions range:range];
+        }
+        else if([typeName isEqualToString:ScopeAuthor])
+        {
+            range = NSMakeRange(0, melody.author.length);
+            foundRange = [melody.author rangeOfString:strSearch options:searchOptions range:range];
+        }
+        if (foundRange.length > 0)
+        {
+            [self.searchResults addObject:melody];
+        }
 	}
 }
 
 
 #pragma mark - UISearchDisplayController Delegate Methods
 
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    [self updateMelodyState];
+}
+
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSString *scope;
-    
     NSInteger selectedScopeButtonIndex = [self.searchDisplayController.searchBar selectedScopeButtonIndex];
-    if (selectedScopeButtonIndex > 0)
-    {
-        scope = [[APLProduct deviceTypeNames] objectAtIndex:(selectedScopeButtonIndex - 1)];
-    }
-    
-    [self updateFilteredContentForProductName:searchString type:scope];
-    
+    NSString *scope = [[APLProduct deviceTypeNames] objectAtIndex:(selectedScopeButtonIndex)];
+    [self updateFilteredContentForSearchString:searchString type:scope];
     // Return YES to cause the search result table view to be reloaded.
     return YES;
 }
@@ -197,50 +191,21 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
     NSString *searchString = [self.searchDisplayController.searchBar text];
-    NSString *scope;
-    
-    if (searchOption > 0)
-    {
-        scope = [[APLProduct deviceTypeNames] objectAtIndex:(searchOption - 1)];
-    }
-    
-    [self updateFilteredContentForProductName:searchString type:scope];
-    
+    NSString *scope = [[APLProduct deviceTypeNames] objectAtIndex:(searchOption)];
+    [self updateFilteredContentForSearchString:searchString type:scope];
     // Return YES to cause the search result table view to be reloaded.
     return YES;
 }
 
+#pragma mark - MelodyTableViewCellDelegate
 
-//#pragma mark - UITableView data source and delegate methods
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//	/*
-//	 If the requesting table view is the search display controller's table view, return the count of
-//     the filtered list, otherwise return the count of the main list.
-//	 */
-//	return 5;
-//}
-//
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	static NSString *kCellID = @"CellIdentifier";
-//    
-//    // Dequeue a cell from self's table view.
-//	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID];
-//    
-//	/*
-//	 If the requesting table view is the search display controller's table view, configure the cell using the search results array, otherwise use the product array.
-//	 */
-//    
-//	if (tableView == self.searchDisplayController.searchResultsTableView)
-//	{
-//        
-//    }
-//    
-//	return cell;
-//}
-
+-(void)updateMelodyState
+{
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
+    self.melodyArray = [[self.melodySet allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
+    
+    self.searchResults = [self.melodyArray mutableCopy];//save result for sort of scope.
+    [self.tableView reloadData];
+}
 
 @end

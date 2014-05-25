@@ -47,9 +47,8 @@
  */
 
 
-extern NSString *ProductTypeDevice;
-extern NSString *ProductTypeDesktop;
-extern NSString *ProductTypePortable;
+extern NSString *ScopeAuthor;
+extern NSString *ScopeSongName;
 
 
 @interface APLProduct : NSObject <NSCoding>
