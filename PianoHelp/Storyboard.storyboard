@@ -301,7 +301,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRM-9e-huU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="-1342"/>
+            <point key="canvasLocation" x="1589" y="-742"/>
         </scene>
         <!--Melody View Controller-->
         <scene sceneID="ycf-zh-roz">
@@ -458,7 +458,7 @@
                 </searchDisplayController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fql-ta-1cR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2800" y="-1342"/>
+            <point key="canvasLocation" x="2848" y="-742"/>
         </scene>
         <!--Melody Detail View Controller-->
         <scene sceneID="Qqa-H3-aYb">
@@ -469,7 +469,7 @@
                         <viewControllerLayoutGuide type="bottom" id="LQs-o9-Q8c"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mYp-ZP-CdH">
-                        <rect key="frame" x="0.0" y="44" width="1024" height="649"/>
+                        <rect key="frame" x="0.0" y="44" width="1024" height="724"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="ditu.png" translatesAutoresizingMaskIntoConstraints="NO" id="2ai-ve-m34">
@@ -507,7 +507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VR8-U9-owF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3985" y="-1342"/>
+            <point key="canvasLocation" x="4002" y="-742"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="Gc9-06-jb0">
@@ -665,7 +665,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2800" y="-304"/>
+            <point key="canvasLocation" x="4002" y="325"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S4V-Iy-S7b">
@@ -776,7 +776,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="gkD-fm-egc" kind="push" id="PCS-7A-xHi"/>
+                                            <segue destination="Odp-jn-4fx" kind="modal" modalPresentationStyle="currentContext" modalTransitionStyle="coverVertical" id="Ygu-rr-iLi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -798,7 +798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lo-sc-yys" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="1336"/>
+            <point key="canvasLocation" x="1589" y="1240"/>
         </scene>
         <!--Qin Fang View Controller-->
         <scene sceneID="eet-AZ-WlR">
@@ -812,22 +812,181 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="693"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="琴房" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nx-HT-Gcy">
-                                <rect key="frame" x="491" y="319" width="42" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfA-ea-6aG" userLabel="toolBarView">
+                                <rect key="frame" x="0.0" y="618" width="1024" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swA-mN-ic9">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1024" id="INZ-p8-V9P"/>
+                                            <constraint firstAttribute="height" constant="75" id="eYR-ca-iZU"/>
+                                        </constraints>
+                                        <items>
+                                            <barButtonItem width="78" style="plain" systemItem="fixedSpace" id="vtp-lf-cNq"/>
+                                            <barButtonItem style="plain" id="sRw-Ry-m8u">
+                                                <button key="customView" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ypx-KV-UX7">
+                                                    <rect key="frame" x="90" y="16" width="180" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <state key="normal" title="识谱模式" backgroundImage="sangemoshi_bg.png">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btnModel_click:" destination="GlU-pE-uVv" eventType="touchUpInside" id="4MC-ch-pCC"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="yal-HF-vDt"/>
+                                            <barButtonItem style="plain" id="8aj-Hz-h8L">
+                                                <button key="customView" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7ho-6K-yJF">
+                                                    <rect key="frame" x="422" y="16" width="180" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <state key="normal" title="弹奏模式" backgroundImage="sangemoshi_bg.png">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btnModel_click:" destination="GlU-pE-uVv" eventType="touchUpInside" id="K7O-rw-eTj"/>
+                                                        <action selector="buttonToolbar_click:" destination="CJV-x4-ZHP" eventType="touchUpInside" id="zvT-jj-uaY"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="pgd-SJ-0mL"/>
+                                            <barButtonItem style="plain" id="wAG-hZ-lKR">
+                                                <button key="customView" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Npm-Kx-Yqk">
+                                                    <rect key="frame" x="754" y="16" width="180" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <state key="normal" title="挑战模式" backgroundImage="sangemoshi_bg.png">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btnModel_click:" destination="GlU-pE-uVv" eventType="touchUpInside" id="bIa-5J-lEO"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem width="78" style="plain" systemItem="fixedSpace" id="Poh-cp-ho7"/>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="1MU-Xv-XWW"/>
+                                    <constraint firstItem="swA-mN-ic9" firstAttribute="top" secondItem="LfA-ea-6aG" secondAttribute="top" id="JUc-AI-ZR4"/>
+                                    <constraint firstItem="swA-mN-ic9" firstAttribute="leading" secondItem="LfA-ea-6aG" secondAttribute="leading" id="cJf-RV-UiQ"/>
+                                    <constraint firstAttribute="width" constant="1024" id="yl7-i6-41i"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fCz-sd-cy7">
+                                <rect key="frame" x="42" y="66" width="940" height="534"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="534" id="MxV-nJ-ks8"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="gNM-mQ-KRf" style="IBUITableViewCellStyleDefault" id="eov-7l-9gr">
+                                        <rect key="frame" x="0.0" y="22" width="940" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eov-7l-9gr" id="NZL-9h-Xm2">
+                                            <rect key="frame" x="0.0" y="0.0" width="940" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gNM-mQ-KRf">
+                                                    <rect key="frame" x="10" y="0.0" width="920" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GlU-pE-uVv" id="ICf-Ik-Gdb"/>
+                                    <outlet property="delegate" destination="GlU-pE-uVv" id="7iw-mW-RAb"/>
+                                </connections>
+                            </tableView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="sanmoshiyuanjuxingbiankuang.png" translatesAutoresizingMaskIntoConstraints="NO" id="G7E-4F-j9n">
+                                <rect key="frame" x="40" y="62" width="944" height="542"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Awa-8H-E4c">
+                                <rect key="frame" x="64" y="26" width="154" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="全部" backgroundImage="quanbuyeqian.png">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="quanbuyeqian1.png">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnScope_click:" destination="GlU-pE-uVv" eventType="touchUpInside" id="2rR-Pn-5HT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wT5-Oq-Fbf" userLabel="Button - 任务">
+                                <rect key="frame" x="218" y="26" width="154" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="任务" backgroundImage="quanbuyeqian.png">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="任务" backgroundImage="quanbuyeqian1.png">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnScope_click:" destination="GlU-pE-uVv" eventType="touchUpInside" id="IHu-I0-IDP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfG-bz-xbP" userLabel="Button - 喜爱">
+                                <rect key="frame" x="372" y="26" width="154" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="喜爱" backgroundImage="quanbuyeqian.png">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="喜爱" backgroundImage="quanbuyeqian1.png">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnScope_click:" destination="GlU-pE-uVv" eventType="touchUpInside" id="8nb-e6-57K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="88E-ay-lgf" firstAttribute="top" secondItem="LfA-ea-6aG" secondAttribute="bottom" id="DaN-wt-UXq"/>
+                            <constraint firstAttribute="trailing" secondItem="fCz-sd-cy7" secondAttribute="trailing" constant="42" id="Yd6-mK-RJN"/>
+                            <constraint firstItem="fCz-sd-cy7" firstAttribute="top" secondItem="DWi-8K-LW3" secondAttribute="top" constant="66" id="eCi-nh-9Ap"/>
+                            <constraint firstItem="fCz-sd-cy7" firstAttribute="leading" secondItem="DWi-8K-LW3" secondAttribute="leading" constant="42" id="hku-xC-Xeq"/>
+                            <constraint firstItem="LfA-ea-6aG" firstAttribute="leading" secondItem="DWi-8K-LW3" secondAttribute="leading" id="xg6-1d-bbp"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="btnPlayModel" destination="7ho-6K-yJF" id="pwZ-YR-h3q"/>
+                        <outlet property="btnTask" destination="wT5-Oq-Fbf" id="Clu-FQ-78t"/>
+                        <outlet property="toolBar" destination="swA-mN-ic9" id="WOE-1R-h26"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyE-TW-Inu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2849" y="1336"/>
+            <point key="canvasLocation" x="1589" y="2088"/>
         </scene>
         <!--Shop View Controller-->
         <scene sceneID="kNB-qH-Wwa">
@@ -856,7 +1015,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afA-63-ycN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5134" y="1324"/>
+            <point key="canvasLocation" x="1589" y="3964"/>
         </scene>
         <!--Shop View Controller-->
         <scene sceneID="I9L-20-2xh">
@@ -885,7 +1044,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Mh-ZT-q9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3993" y="1324"/>
+            <point key="canvasLocation" x="1589" y="3012"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="obd-9N-kG8">
@@ -909,7 +1068,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TJK-ER-H3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1646" y="-304"/>
+            <point key="canvasLocation" x="2848" y="325"/>
         </scene>
     </scenes>
     <resources>
@@ -924,8 +1083,12 @@
         <image name="puku1.png" width="95" height="132"/>
         <image name="qinfang.png" width="95" height="131"/>
         <image name="qinfang1.png" width="95" height="131"/>
+        <image name="quanbuyeqian.png" width="308" height="71"/>
+        <image name="quanbuyeqian1.png" width="308" height="71"/>
         <image name="renwu.png" width="80" height="81"/>
         <image name="renwu1.png" width="80" height="81"/>
+        <image name="sangemoshi_bg.png" width="154" height="60"/>
+        <image name="sanmoshiyuanjuxingbiankuang.png" width="1859" height="1072"/>
         <image name="shangcehng.png" width="95" height="132"/>
         <image name="shangcheng1.png" width="95" height="132"/>
         <image name="tanzou1.png" width="56" height="50"/>
@@ -947,7 +1110,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2mR-bz-3dG"/>
-        <segue reference="PCS-7A-xHi"/>
+        <segue reference="MOC-Ke-sGC"/>
     </inferredMetricsTieBreakers>
 </document>
