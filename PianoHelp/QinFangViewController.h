@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QinFangViewController : UIViewController
+@interface QinFangViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIButton *btnTask;
+@property (weak, nonatomic) IBOutlet UIButton *btnPlayModel;
+
+
+- (IBAction)btnModel_click:(id)sender;
+- (IBAction)btnScope_click:(id)sender;
 
 @end
