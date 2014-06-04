@@ -40,7 +40,7 @@ extern NSString *ScopeSongName;
 //                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第四交响曲"],
 //                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第五交响曲"]];
 
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
     self.melodyArray = [[self.melodySet allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
     
     self.searchResults = [NSMutableArray arrayWithCapacity:[self.melodyArray count]];
@@ -63,6 +63,7 @@ extern NSString *ScopeSongName;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -129,11 +130,16 @@ extern NSString *ScopeSongName;
         melody = [self.melodyArray objectAtIndex:indexPath.row];
     }
     
-    cell.labNum.text = [NSString stringWithFormat:@"%03d", indexPath.row+1];
+    cell.labNum.text = [NSString stringWithFormat:@"%03ld", (long)indexPath.row+1];
     
 	[cell updateContent:melody];
     cell.updateDelegate = self;
 	return (UITableViewCell*)cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

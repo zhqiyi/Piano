@@ -34,14 +34,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if(self.levelIndent == 0)
-    {
-        self.navigationController.navigationBar.hidden = YES;
-    }
-    else if(self.levelIndent == 1)
-    {
-        self.navigationController.navigationBar.hidden = NO;
-    }
     
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -54,6 +46,19 @@
         abort();
     }
 //    NSArray *arrayResult = self.fetchedResultsController.fetchedObjects;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(self.levelIndent == 0)
+    {
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+    }
+    else if(self.levelIndent == 1)
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -112,7 +117,7 @@
     if(self.levelIndent == 0)
     {
         MelodyCategory *selectedItem = (MelodyCategory *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [self.parentViewController performSegueWithIdentifier:@"pushMelodyLevel" sender:selectedItem];
+        [self.parentViewController performSegueWithIdentifier:@"pushMelodyLevelSegue" sender:selectedItem];
     }
     else if (self.levelIndent == 1)
     {
@@ -136,6 +141,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Category" inManagedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext];
     [fetchRequest setEntity:entity];
+    [fetchRequest setFetchBatchSize:30];
     
     // Create the sort descriptors array.
     NSSortDescriptor *authorDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];

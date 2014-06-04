@@ -65,7 +65,7 @@
     if (self.melody.favorite == nil)
     {
         MelodyFavorite *favo = (MelodyFavorite*)[NSEntityDescription insertNewObjectForEntityForName:@"MelodyFavorite" inManagedObjectContext:moc];
-        [favo addMelodyObject:self.melody];
+        favo.melody = self.melody;
         favo.sort = [NSNumber numberWithInt:1];
     }
     else
@@ -106,7 +106,7 @@
     if (self.melody.favorite == nil)
     {
         MelodyFavorite *favo = (MelodyFavorite*)[NSEntityDescription insertNewObjectForEntityForName:@"MelodyFavorite" inManagedObjectContext:moc];
-        [favo addMelodyObject:self.melody];
+        favo.melody = self.melody;
         favo.sort = [NSNumber numberWithInt:2];
     }
     else

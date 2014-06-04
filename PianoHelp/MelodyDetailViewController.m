@@ -7,9 +7,13 @@
 //
 
 #import "MelodyDetailViewController.h"
+#import "SectionPopViewController.h"
 
 @interface MelodyDetailViewController ()
-
+{
+    
+}
+@property (nonatomic,weak) UIButton *btnCurrent;
 @end
 
 @implementation MelodyDetailViewController
@@ -32,7 +36,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     if(IS_RUNNING_IOS7)
     {
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -48,7 +52,6 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +60,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -65,7 +68,70 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"popoverSectionSegue"])
+    {
+        SectionPopViewController *vc = [segue destinationViewController];
+        vc.parentVC = self;
+        self.popVC = ((UIStoryboardPopoverSegue*)segue).popoverController;
+    }
 }
-*/
 
+
+- (IBAction)btnBack_click:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)setCurrentButtonState:(id)sender
+{
+    [self.btnCurrent setSelected:NO];
+    UIButton *btn = (UIButton*)sender;
+    [btn setSelected:YES];
+    self.btnCurrent = btn;
+}
+
+- (IBAction)btnSection_click:(id)sender
+{
+    [self setCurrentButtonState:sender];
+}
+
+- (IBAction)btnHand_click:(id)sender
+{
+    [self setCurrentButtonState:sender];
+}
+
+- (IBAction)btnPeiLianYin_click:(id)sender
+{
+    [self setCurrentButtonState:sender];}
+
+- (IBAction)btnHint_click:(id)sender
+{
+    [self setCurrentButtonState:sender];
+}
+
+- (IBAction)btnTryListen_click:(id)sender
+{
+    [self setCurrentButtonState:sender];
+}
+
+- (IBAction)btnRePlay_click:(id)sender {
+}
+
+- (IBAction)btnPlay_click:(id)sender {
+}
+
+- (IBAction)btnSudu_click:(id)sender {
+}
+
+- (IBAction)xiaoJieSlider_valueChanged:(id)sender
+{
+    UISlider *slider = (UISlider*)sender;
+    [self.btnXiaoJieTiaoZhuan setTitle:[NSString stringWithFormat:@"% 1.1f", slider.value] forState:UIControlStateNormal];
+}
+
+- (IBAction)suduSlider_valueChanged:(id)sender
+{
+    UISlider *slider = (UISlider*)sender;
+    [self.btnSuDu setTitle:[NSString stringWithFormat:@"% 1.1f", slider.value] forState:UIControlStateNormal];
+}
 @end

@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "MelodyFavorite.h"
 #import "MelodyCategory.h"
 #import "Melody.h"
+#import "Score.h"
 
 @implementation AppDelegate
 
@@ -23,7 +25,15 @@
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
     
-    //[self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+//    [self initCategoryAndMelody];
+    self.window.backgroundColor = [UIColor lightGrayColor];
     return YES;
 }
 
@@ -198,6 +208,15 @@
     melody4.category = cateYingHuang;
     melody4.author = @"贝多芬";
     melody4.name = @"贝多芬第三交响曲";
+    
+    MelodyFavorite *favo = (MelodyFavorite*)[NSEntityDescription insertNewObjectForEntityForName:@"MelodyFavorite" inManagedObjectContext:self.managedObjectContext];
+    favo.melody = melody1;
+    favo.sort = @1;
+    
+    Score *score = (Score*)[NSEntityDescription insertNewObjectForEntityForName:@"Score" inManagedObjectContext:self.managedObjectContext];
+    score.melody = melody1;
+    score.rank = @1;
+    score.score = @99;
     
     if(![self.managedObjectContext save:&error])
     {

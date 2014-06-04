@@ -2,7 +2,7 @@
 //  MelodyFavorite.h
 //  PianoHelp
 //
-//  Created by Jobs on 14-5-12.
+//  Created by Jobs on 14-5-27.
 //  Copyright (c) 2014年 FlintInfo. All rights reserved.
 //
 
@@ -15,14 +15,6 @@
 
 @property (nonatomic, retain) NSString * melodyID;
 @property (nonatomic, retain) NSNumber * sort;
-@property (nonatomic, retain) NSSet *melody;
-@end
-
-@interface MelodyFavorite (CoreDataGeneratedAccessors)
-
-- (void)addMelodyObject:(Melody *)value;
-- (void)removeMelodyObject:(Melody *)value;
-- (void)addMelody:(NSSet *)values;
-- (void)removeMelody:(NSSet *)values;
+@property (nonatomic, retain) Melody *melody;
 
 @end

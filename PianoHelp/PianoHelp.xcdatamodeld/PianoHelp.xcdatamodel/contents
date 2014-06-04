@@ -32,7 +32,7 @@
     <entity name="MelodyFavorite" representedClassName="MelodyFavorite" syncable="YES">
         <attribute name="melodyID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sort" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="1" syncable="YES"/>
-        <relationship name="melody" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Melody" inverseName="favorite" inverseEntity="Melody" syncable="YES"/>
+        <relationship name="melody" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Melody" inverseName="favorite" inverseEntity="Melody" syncable="YES"/>
     </entity>
     <entity name="Score" representedClassName="Score" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -48,9 +48,9 @@
         <relationship name="melody" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Melody" inverseName="score" inverseEntity="Melody" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="-2738" positionY="-2259" width="128" height="28"/>
+        <element name="Category" positionX="-2738" positionY="-2259" width="128" height="195"/>
         <element name="Melody" positionX="-2493" positionY="-2214" width="128" height="268"/>
-        <element name="MelodyFavorite" positionX="-2745" positionY="-1890" width="128" height="88"/>
+        <element name="MelodyFavorite" positionX="-2745" positionY="-1890" width="128" height="90"/>
         <element name="Score" positionX="-2232" positionY="-2043" width="128" height="208"/>
     </elements>
 </model>

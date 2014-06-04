@@ -40,7 +40,8 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    self.melodyArray = [[self fetchedResultsController] fetchedObjects];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
+    self.melodyArray = [[[self fetchedResultsController] fetchedObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
     self.searchResults = [NSMutableArray arrayWithCapacity:[self.melodyArray count]];
     self.title = @"搜索曲库";
 }
@@ -131,7 +132,8 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    self.melodyArray = [[self fetchedResultsController] fetchedObjects];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
+    self.melodyArray = [[[self fetchedResultsController] fetchedObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
     
     self.searchResults = [self.melodyArray mutableCopy];//save result for sort of scope.
     [self.tableView reloadData];

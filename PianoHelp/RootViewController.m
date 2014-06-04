@@ -57,7 +57,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if(!IS_RUNNING_IOS7)
     {
@@ -79,13 +79,12 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if([[segue identifier] isEqualToString:@"pushMelodyLevel"])
+    if([[segue identifier] isEqualToString:@"pushMelodyLevelSegue"])
     {
         MelodyCategoryViewController *vc = [segue destinationViewController];
         vc.levelIndent = 1;
         vc.title = ((MelodyCategory*)sender).name;
         vc.parentCategory = sender;
-        ///vc.navigationController.navigationBar.hidden = NO;
     }
 }
 
