@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController0;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController1;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController2;
-@property (nonatomic, strong) NSMutableArray *melodyArray;
+//@property (nonatomic, strong) NSMutableArray *melodyArray;
 @end
 
 @implementation QinFangViewController
@@ -87,9 +87,15 @@
 
 #pragma mark - UITableView data source and delegate methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if(self.btnScope.tag == 0)
+        return [[self.fetchedResultsController0 sections] count];
+    if(self.btnScope.tag == 1)
+        return [[self.fetchedResultsController1 sections] count];
+    if(self.btnScope.tag == 2)
+        return [[self.fetchedResultsController2 sections] count];
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,7 +104,32 @@
 	 If the requesting table view is the search display controller's table view, return the count of
      the filtered list, otherwise return the count of the main list.
 	 */
-    return [self.melodyArray count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = nil;
+    if(self.btnScope.tag == 0)
+    {
+        NSArray *sections = [self.fetchedResultsController0 sections];
+        if([sections count]>0)
+            sectionInfo = [sections objectAtIndex:section];
+        else
+            return 0;
+    }
+    else if(self.btnScope.tag == 1)
+    {
+        NSArray *sections = [self.fetchedResultsController1 sections];
+        if([sections count]>0)
+            sectionInfo = [sections objectAtIndex:section];
+        else
+            return 0;
+    }
+    else if(self.btnScope.tag == 2)
+    {
+        NSArray *sections = [self.fetchedResultsController2 sections];
+        if([sections count]>0)
+            sectionInfo = [sections objectAtIndex:section];
+        else
+            return 0;
+    }
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,7 +138,19 @@
     static NSString *CellIdentifier = @"FavoriteTableCell";
 	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    MelodyFavorite *melodyFavo = [self.melodyArray objectAtIndex:indexPath.row];
+    MelodyFavorite *melodyFavo = nil;
+    if(self.btnScope.tag == 0)
+    {
+        melodyFavo = [self.fetchedResultsController0 objectAtIndexPath:indexPath];
+    }
+    else if(self.btnScope.tag == 1)
+    {
+        melodyFavo = [self.fetchedResultsController1 objectAtIndexPath:indexPath];
+    }
+    else if(self.btnScope.tag == 2)
+    {
+        melodyFavo = [self.fetchedResultsController2 objectAtIndexPath:indexPath];
+    }
     [((FavoriteTableViewCell*)cell) updateContent:melodyFavo];
     return cell;
 }
@@ -123,10 +166,27 @@
     {
         
         // Delete the managed object.
-        id mo = [self.fetchedResultsController0 objectAtIndexPath:indexPath];
-        NSManagedObjectContext *context = [self.fetchedResultsController0 managedObjectContext];
-        [context deleteObject:mo];
-        [self.melodyArray removeObject:mo];
+        id mo = nil;
+        NSManagedObjectContext *context = nil;
+        if(self.btnScope.tag == 0)
+        {
+            mo = [self.fetchedResultsController0 objectAtIndexPath:indexPath];
+             context = [self.fetchedResultsController0 managedObjectContext];
+            [context deleteObject:mo];
+        }
+        else if(self.btnScope.tag == 1)
+        {
+            mo = [self.fetchedResultsController1 objectAtIndexPath:indexPath];
+            context = [self.fetchedResultsController1 managedObjectContext];
+            [context deleteObject:mo];
+        }
+        else if(self.btnScope.tag == 2)
+        {
+            mo = [self.fetchedResultsController2 objectAtIndexPath:indexPath];
+            context = [self.fetchedResultsController2 managedObjectContext];
+            [context deleteObject:mo];
+        }
+
         NSError *error;
         if (![context save:&error])
         {
@@ -169,7 +229,7 @@
                                  initWithFetchRequest:fetchRequest
                                  managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
                                  sectionNameKeyPath:@"sort"
-                                 cacheName:nil];
+                                 cacheName:@"0"];
     _fetchedResultsController0.delegate = self;
     
     return _fetchedResultsController0;
@@ -203,7 +263,7 @@
                                   initWithFetchRequest:fetchRequest
                                   managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
                                   sectionNameKeyPath:@"sort"
-                                  cacheName:nil];
+                                  cacheName:@"1"];
     _fetchedResultsController1.delegate = self;
     
     return _fetchedResultsController1;
@@ -237,7 +297,7 @@
                                   initWithFetchRequest:fetchRequest
                                   managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
                                   sectionNameKeyPath:@"sort"
-                                  cacheName:nil];
+                                  cacheName:@"2"];
     _fetchedResultsController2.delegate = self;
     
     return _fetchedResultsController2;
@@ -254,7 +314,6 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    static NSString *CellIdentifier = @"FavoriteTableCell";
     UITableView *tableView = self.tableView;
     
     switch(type)
@@ -271,10 +330,7 @@
         }
         case NSFetchedResultsChangeUpdate:
         {
-//            MelodyFavorite *melodyFavo = [self.fetchedResultsController0 objectAtIndexPath:indexPath];
-            MelodyFavorite *melodyFavo = [self.melodyArray objectAtIndex:indexPath.row];
-            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-            [((FavoriteTableViewCell*)cell) updateContent:melodyFavo];
+            [self.tableView cellForRowAtIndexPath:indexPath];
             break;
         }
         case NSFetchedResultsChangeMove:
@@ -363,7 +419,6 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-        self.melodyArray = [[[self fetchedResultsController0] fetchedObjects] mutableCopy];
         [self.tableView reloadData];
     }
     else if(self.btnScope.tag == 1)
@@ -379,8 +434,7 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-        self.melodyArray = [[[self fetchedResultsController1] fetchedObjects] mutableCopy];
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     }
     else if(self.btnScope.tag == 2)
     {
@@ -395,7 +449,6 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-        self.melodyArray = [[[self fetchedResultsController2] fetchedObjects] mutableCopy];
         [self.tableView reloadData];
     }
 }
