@@ -11,6 +11,7 @@
 #import "MelodyCategory.h"
 #import "MelodyCategoryCollectioViewCell.h"
 #import "MelodyViewController.h"
+#import "GridLayout.h"
 
 @interface MelodyCategoryViewController ()
 
@@ -45,20 +46,25 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    if(self.levelIndent == 1)
+    {
+        [self.collectionView setCollectionViewLayout:[[GridLayout alloc] init]];
+    }
 //    NSArray *arrayResult = self.fetchedResultsController.fetchedObjects;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(self.levelIndent == 0)
-    {
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-    }
-    else if(self.levelIndent == 1)
-    {
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
-    }
+    self.labTitle.text = self.title;
+//    if(self.levelIndent == 0)
+//    {
+//        [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    }
+//    else if(self.levelIndent == 1)
+//    {
+//        [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -90,6 +96,12 @@
 
 
 #pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+     NSArray *sections = [self.fetchedResultsController sections];
+    return [sections count];
+}
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
@@ -125,6 +137,11 @@
         [self performSegueWithIdentifier:@"pushMelody" sender:nil];
     }
 }
+
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
+//{
+//    return nil;
+//}
 
 #pragma mark - Fetched results controller
 
@@ -164,11 +181,15 @@
     _fetchedResultsController = [[NSFetchedResultsController alloc]
                                  initWithFetchRequest:fetchRequest
                                  managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
-                                 sectionNameKeyPath:@"name"
+                                 sectionNameKeyPath:nil
                                  cacheName:nil];
     _fetchedResultsController.delegate = self;
     
     return _fetchedResultsController;
 }
 
+- (IBAction)btnBack_onclick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

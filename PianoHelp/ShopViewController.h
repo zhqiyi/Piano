@@ -10,4 +10,5 @@
 
 @interface ShopViewController : UIViewController
 
+- (IBAction)btnTest_onclick:(id)sender;
 @end

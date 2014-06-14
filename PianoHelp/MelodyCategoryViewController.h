@@ -16,4 +16,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSInteger levelIndent;
 @property (nonatomic, strong) MelodyCategory *parentCategory;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (weak, nonatomic) IBOutlet UILabel *labTitle;
+
+- (IBAction)btnBack_onclick:(id)sender;
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "MelodyViewController.h"
+#import "MelodyDetailViewController.h"
+#import "AppDelegate.h"
 
 extern NSString *ScopeAuthor;
 extern NSString *ScopeSongName;
@@ -30,15 +32,7 @@ extern NSString *ScopeSongName;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.title = @"英皇考级教材曲谱";
-//    
-//    NSArray *productArray = @[[APLProduct productWithType:ScopeAuthor name:@"聂耳－黄河大合唱"],
-//                              [APLProduct productWithType:ScopeAuthor name:@"帕瓦罗蒂－我的太阳"],
-//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第一交响曲"],
-//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第二交响曲"],
-//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第三交响曲"],
-//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第四交响曲"],
-//                              [APLProduct productWithType:ScopeSongName name:@"贝多纷第五交响曲"]];
+    self.labTitle.text = self.title;
 
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(localizedCompare:)];
     self.melodyArray = [[self.melodySet allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
@@ -63,13 +57,12 @@ extern NSString *ScopeSongName;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //self.navigationController.navigationBar.hidden = NO;
     [self.searchDisplayController searchResultsTableView].rowHeight = 64;
 }
 
@@ -79,7 +72,7 @@ extern NSString *ScopeSongName;
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -87,8 +80,16 @@ extern NSString *ScopeSongName;
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"melodyDetailSegue"])
+    {
+        MelodyDetailViewController *vc = segue.destinationViewController;
+        vc.iPlayMode = 1;
+        //add test by zyw
+        NSString *filename = [((AppDelegate*)[[UIApplication sharedApplication] delegate]) filePathForName:((MelodyButton*)sender).fileName];
+        vc.fileName = filename;
+    }
 }
-*/
+
 
 #pragma mark - UITableView data source and delegate methods
 
@@ -214,4 +215,8 @@ extern NSString *ScopeSongName;
     [self.tableView reloadData];
 }
 
+- (IBAction)btnBack_onclick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

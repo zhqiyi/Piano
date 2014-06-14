@@ -7,6 +7,7 @@
 //
 
 #import "ShopViewController.h"
+#import "AppDelegate.h"
 
 @interface ShopViewController ()
 
@@ -46,4 +47,8 @@
 }
 */
 
+- (IBAction)btnTest_onclick:(id)sender
+{
+    [((AppDelegate*)[UIApplication sharedApplication].delegate) loadDemoMidiToSQL];
+}
 @end

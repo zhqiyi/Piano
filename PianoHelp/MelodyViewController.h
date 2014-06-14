@@ -14,8 +14,12 @@
 
 @interface MelodyViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MelodyTableViewCellDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (weak, nonatomic) IBOutlet UILabel *labTitle;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSSet *melodySet;
 @property (nonatomic) NSArray *melodyArray; // The master content.
 @property (nonatomic) NSMutableArray *searchResults;
+
+- (IBAction)btnBack_onclick:(id)sender;
 @end

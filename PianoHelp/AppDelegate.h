@@ -19,4 +19,6 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)initCategoryAndMelody;
+-(NSString*)filePathForName:(NSString*)fileName;
+-(void)loadDemoMidiToSQL;
 @end

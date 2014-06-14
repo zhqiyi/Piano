@@ -92,7 +92,7 @@
 
 - (IBAction)btnDel_click:(id)sender
 {
-    if(self.txtCurrentInput.text.length >1)
+    if(self.txtCurrentInput.text.length >0)
         self.txtCurrentInput.text = [self.txtCurrentInput.text substringToIndex:self.txtCurrentInput.text.length-1];
 }
 @end

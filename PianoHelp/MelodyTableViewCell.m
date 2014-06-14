@@ -17,6 +17,7 @@
 {
     self.melody = (Melody*)obj;
     self.labTitle.text = self.melody.name;
+    self.btnView.fileName = self.melody.filePath;
     if(self.melody.favorite)
     {
         if([self.melody.favorite.sort intValue] == 1)

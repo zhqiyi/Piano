@@ -81,6 +81,9 @@
     {
         MelodyDetailViewController *vc = segue.destinationViewController;
         vc.iPlayMode = self.btnModel.tag;
+        //add test by zyw
+        NSString *filename = [((AppDelegate*)[[UIApplication sharedApplication] delegate]) filePathForName:((MelodyButton*)sender).fileName];
+        vc.fileName = filename;
     }
 }
 
@@ -90,11 +93,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(self.btnScope.tag == 0)
-        return [[self.fetchedResultsController0 sections] count];
+    {
+        NSUInteger iCount = [[self.fetchedResultsController0 sections] count];
+        return iCount;
+    }
     if(self.btnScope.tag == 1)
-        return [[self.fetchedResultsController1 sections] count];
+    {
+        NSUInteger iCount = [[self.fetchedResultsController1 sections] count];
+        return iCount;
+    }
     if(self.btnScope.tag == 2)
-        return [[self.fetchedResultsController2 sections] count];
+    {
+        NSUInteger iCount = [[self.fetchedResultsController2 sections] count];
+        return iCount;
+    }
     return 0;
 }
 
@@ -129,7 +141,8 @@
         else
             return 0;
     }
-    return [sectionInfo numberOfObjects];
+    NSUInteger iResult = [sectionInfo numberOfObjects];
+    return iResult;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,25 +179,39 @@
     {
         
         // Delete the managed object.
-        id mo = nil;
+        MelodyFavorite *mo = nil;
         NSManagedObjectContext *context = nil;
         if(self.btnScope.tag == 0)
         {
             mo = [self.fetchedResultsController0 objectAtIndexPath:indexPath];
-             context = [self.fetchedResultsController0 managedObjectContext];
+            context = [self.fetchedResultsController0 managedObjectContext];
             [context deleteObject:mo];
         }
         else if(self.btnScope.tag == 1)
         {
             mo = [self.fetchedResultsController1 objectAtIndexPath:indexPath];
             context = [self.fetchedResultsController1 managedObjectContext];
-            [context deleteObject:mo];
+            if([mo.sort integerValue] == 3)
+            {
+                mo.sort = @1;
+            }
+            else
+            {
+                [context deleteObject:mo];
+            }
         }
         else if(self.btnScope.tag == 2)
         {
             mo = [self.fetchedResultsController2 objectAtIndexPath:indexPath];
             context = [self.fetchedResultsController2 managedObjectContext];
-            [context deleteObject:mo];
+            if([mo.sort integerValue] == 3)
+            {
+                mo.sort = @2;
+            }
+            else
+            {
+                [context deleteObject:mo];
+            }
         }
 
         NSError *error;
@@ -199,7 +226,6 @@
             abort();
         }
     }
-
 }
 
 #pragma mark - Fetched results controller
@@ -229,7 +255,7 @@
                                  initWithFetchRequest:fetchRequest
                                  managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
                                  sectionNameKeyPath:@"sort"
-                                 cacheName:@"0"];
+                                 cacheName:nil];
     _fetchedResultsController0.delegate = self;
     
     return _fetchedResultsController0;
@@ -254,7 +280,7 @@
     
     if(self.btnScope.tag != 0)
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sort = 1 or sort = 3"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sort = 2 or sort = 3"];
         [fetchRequest setPredicate:predicate];
     }
     
@@ -263,7 +289,7 @@
                                   initWithFetchRequest:fetchRequest
                                   managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
                                   sectionNameKeyPath:@"sort"
-                                  cacheName:@"1"];
+                                  cacheName:nil];
     _fetchedResultsController1.delegate = self;
     
     return _fetchedResultsController1;
@@ -288,7 +314,7 @@
     
     if(self.btnScope.tag != 0)
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sort = 2 or sort = 3"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sort = 1 or sort = 3"];
         [fetchRequest setPredicate:predicate];
     }
     
@@ -297,7 +323,7 @@
                                   initWithFetchRequest:fetchRequest
                                   managedObjectContext:((AppDelegate*)[UIApplication sharedApplication].delegate).managedObjectContext
                                   sectionNameKeyPath:@"sort"
-                                  cacheName:@"2"];
+                                  cacheName:nil];
     _fetchedResultsController2.delegate = self;
     
     return _fetchedResultsController2;
@@ -419,6 +445,9 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        self.fetchedResultsController0.delegate = self;
+        self.fetchedResultsController1.delegate = nil;
+        self.fetchedResultsController2.delegate = nil;
         [self.tableView reloadData];
     }
     else if(self.btnScope.tag == 1)
@@ -434,7 +463,10 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-        //[self.tableView reloadData];
+        self.fetchedResultsController0.delegate = nil;
+        self.fetchedResultsController1.delegate = self;
+        self.fetchedResultsController2.delegate = nil;
+        [self.tableView reloadData];
     }
     else if(self.btnScope.tag == 2)
     {
@@ -449,6 +481,9 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        self.fetchedResultsController0.delegate = nil;
+        self.fetchedResultsController1.delegate = nil;
+        self.fetchedResultsController2.delegate = self;
         [self.tableView reloadData];
     }
 }

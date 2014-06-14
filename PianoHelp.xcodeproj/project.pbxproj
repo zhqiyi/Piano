@@ -27,6 +27,10 @@
 		8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8907102919219F3A00BB9E2F /* Storyboard.storyboard */; };
 		8907102D1921A03900BB9E2F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8907102C1921A03900BB9E2F /* RootViewController.m */; };
 		89257490192E40450049EF14 /* MelodyCategoryCollectioViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */; };
+		892DBBC019468E8E00621003 /* ShelfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBBF19468E8E00621003 /* ShelfView.m */; };
+		892DBBC519468F6C00621003 /* GridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBC419468F6C00621003 /* GridLayout.m */; };
+		892DBBC81946944B00621003 /* ConferenceLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBC71946944B00621003 /* ConferenceLayoutAttributes.m */; };
+		892DBBCB194699E100621003 /* IoriCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 892DBBCA194699E100621003 /* IoriCollectionViewController.m */; };
 		8936CF64192440F0001E5DCC /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8936CF63192440F0001E5DCC /* SearchViewController.m */; };
 		893CEFB6193A355A0097681C /* fanhui.png in Resources */ = {isa = PBXBuildFile; fileRef = 893CEFB5193A355A0097681C /* fanhui.png */; };
 		893CEFD8193A37630097681C /* baocunluyin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 893CEFB7193A37630097681C /* baocunluyin1.png */; };
@@ -106,6 +110,30 @@
 		89429BF41566D8A70003A7D4 /* yinguan.png in Resources */ = {isa = PBXBuildFile; fileRef = 89429BC01566D8A70003A7D4 /* yinguan.png */; };
 		89429BF51566D8A70003A7D4 /* zhanting.png in Resources */ = {isa = PBXBuildFile; fileRef = 89429BC11566D8A70003A7D4 /* zhanting.png */; };
 		89429BF61566D8A70003A7D4 /* zhanting1.png in Resources */ = {isa = PBXBuildFile; fileRef = 89429BC21566D8A70003A7D4 /* zhanting1.png */; };
+		8964EBAF1945359E00DBCED9 /* libStaveFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8964EBAC1945357100DBCED9 /* libStaveFramework.a */; };
+		8964EBC2194536EC00DBCED9 /* pedal-end.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB3194536EC00DBCED9 /* pedal-end.png */; };
+		8964EBC3194536EC00DBCED9 /* pedal-start.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB4194536EC00DBCED9 /* pedal-start.png */; };
+		8964EBC4194536EC00DBCED9 /* perfect.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB5194536EC00DBCED9 /* perfect.png */; };
+		8964EBC5194536EC00DBCED9 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB6194536EC00DBCED9 /* right.png */; };
+		8964EBC6194536EC00DBCED9 /* wrong.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB7194536EC00DBCED9 /* wrong.png */; };
+		8964EBC7194536EC00DBCED9 /* bass.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB8194536EC00DBCED9 /* bass.png */; };
+		8964EBC8194536EC00DBCED9 /* eight.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBB9194536EC00DBCED9 /* eight.png */; };
+		8964EBC9194536EC00DBCED9 /* four.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBBA194536EC00DBCED9 /* four.png */; };
+		8964EBCA194536EC00DBCED9 /* nine.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBBB194536EC00DBCED9 /* nine.png */; };
+		8964EBCB194536EC00DBCED9 /* six.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBBC194536EC00DBCED9 /* six.png */; };
+		8964EBCC194536EC00DBCED9 /* three.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBBD194536EC00DBCED9 /* three.png */; };
+		8964EBCD194536EC00DBCED9 /* treble.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBBE194536EC00DBCED9 /* treble.png */; };
+		8964EBCE194536EC00DBCED9 /* twelve.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBBF194536EC00DBCED9 /* twelve.png */; };
+		8964EBCF194536EC00DBCED9 /* two.png in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBC0194536EC00DBCED9 /* two.png */; };
+		8964EBD0194536EC00DBCED9 /* gls.dls in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBC1194536EC00DBCED9 /* gls.dls */; };
+		8964EBE3194539CC00DBCED9 /* 0000.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBD2194539CC00DBCED9 /* 0000.mid */; };
+		8964EBE6194539CC00DBCED9 /* 00111111.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBD5194539CC00DBCED9 /* 00111111.mid */; };
+		8964EBE7194539CC00DBCED9 /* 00111111he.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBD6194539CC00DBCED9 /* 00111111he.mid */; };
+		8964EBED194539CC00DBCED9 /* aqrsy.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBDC194539CC00DBCED9 /* aqrsy.mid */; };
+		8964EBEE194539CC00DBCED9 /* Croatian Rhapsody.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBDD194539CC00DBCED9 /* Croatian Rhapsody.mid */; };
+		8964EBF1194539CC00DBCED9 /* Easy_Songs__Jingle_Bells.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBE0194539CC00DBCED9 /* Easy_Songs__Jingle_Bells.mid */; };
+		8964EBF2194539CC00DBCED9 /* Easy_Songs__Silent_Night.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBE1194539CC00DBCED9 /* Easy_Songs__Silent_Night.mid */; };
+		8964EBF3194539CC00DBCED9 /* mnmjd.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8964EBE2194539CC00DBCED9 /* mnmjd.mid */; };
 		8977437219358B200005EF89 /* sangemoshi_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8977437019358B200005EF89 /* sangemoshi_bg.png */; };
 		8977437319358B200005EF89 /* sangemoshi_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8977437119358B200005EF89 /* sangemoshi_bg@2x.png */; };
 		8977437619358B420005EF89 /* MelodyFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8977437519358B420005EF89 /* MelodyFavorite.m */; };
@@ -115,6 +143,26 @@
 		8987A55D19258FB900DEE6AE /* QinFangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A55C19258FB900DEE6AE /* QinFangViewController.m */; };
 		8987A5621925B12600DEE6AE /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A5611925B12600DEE6AE /* ShowViewController.m */; };
 		8987A5651925B54600DEE6AE /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8987A5641925B54600DEE6AE /* BaseViewController.m */; };
+		8994D13C194BC4330016F806 /* 01.波尔卡.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D13B194BC4330016F806 /* 01.波尔卡.mid */; };
+		8994D13F194BCEDA0016F806 /* MelodyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8994D13E194BCEDA0016F806 /* MelodyButton.m */; };
+		8994D152194BCEDA0016F806 /* 02.849-03.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D140194BCEDA0016F806 /* 02.849-03.mid */; };
+		8994D153194BCEDA0016F806 /* 03.淘气包.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D141194BCEDA0016F806 /* 03.淘气包.mid */; };
+		8994D154194BCEDA0016F806 /* 04.听妈妈讲那过去的故事.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D142194BCEDA0016F806 /* 04.听妈妈讲那过去的故事.mid */; };
+		8994D155194BCEDA0016F806 /* 05.森林波尔卡.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D143194BCEDA0016F806 /* 05.森林波尔卡.mid */; };
+		8994D156194BCEDA0016F806 /* 06.拜尔-100.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D144194BCEDA0016F806 /* 06.拜尔-100.mid */; };
+		8994D157194BCEDA0016F806 /* 07.带我回弗吉尼故乡.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D145194BCEDA0016F806 /* 07.带我回弗吉尼故乡.mid */; };
+		8994D158194BCEDA0016F806 /* 08.儿童舞.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D146194BCEDA0016F806 /* 08.儿童舞.mid */; };
+		8994D159194BCEDA0016F806 /* 09.塔兰泰拉舞曲.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D147194BCEDA0016F806 /* 09.塔兰泰拉舞曲.mid */; };
+		8994D15A194BCEDA0016F806 /* 10.诙谐曲.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D148194BCEDA0016F806 /* 10.诙谐曲.mid */; };
+		8994D15B194BCEDA0016F806 /* 11.星光圆舞曲.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D149194BCEDA0016F806 /* 11.星光圆舞曲.mid */; };
+		8994D15C194BCEDA0016F806 /* 12.幼儿拜尔-104课.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D14A194BCEDA0016F806 /* 12.幼儿拜尔-104课.mid */; };
+		8994D15D194BCEDA0016F806 /* 13.599-054.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D14B194BCEDA0016F806 /* 13.599-054.mid */; };
+		8994D15E194BCEDA0016F806 /* 14.布列舞曲.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D14C194BCEDA0016F806 /* 14.布列舞曲.mid */; };
+		8994D15F194BCEDA0016F806 /* 15.599-058.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D14D194BCEDA0016F806 /* 15.599-058.mid */; };
+		8994D160194BCEDA0016F806 /* 16.卡门.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D14E194BCEDA0016F806 /* 16.卡门.mid */; };
+		8994D161194BCEDA0016F806 /* 17.秋日私语.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D14F194BCEDA0016F806 /* 17.秋日私语.mid */; };
+		8994D162194BCEDA0016F806 /* 18.水边的阿第丽娜.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D150194BCEDA0016F806 /* 18.水边的阿第丽娜.mid */; };
+		8994D163194BCEDA0016F806 /* 19.献给爱丽丝.mid in Resources */ = {isa = PBXBuildFile; fileRef = 8994D151194BCEDA0016F806 /* 19.献给爱丽丝.mid */; };
 		8998E2E419381B4200A7CF12 /* zuiai2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8998E2E319381B4200A7CF12 /* zuiai2.png */; };
 		8998E2E719381B5400A7CF12 /* tanzou2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8998E2E519381B5400A7CF12 /* tanzou2.png */; };
 		8998E2E819381B5400A7CF12 /* zuiai1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8998E2E619381B5400A7CF12 /* zuiai1.png */; };
@@ -141,6 +189,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 89070FF019219EC000BB9E2F;
 			remoteInfo = PianoHelp;
+		};
+		8964EBAB1945357100DBCED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8964EBA61945357100DBCED9 /* StaveFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 190E6DDC1907E27200AD8F6B;
+			remoteInfo = StaveFramework;
+		};
+		8964EBAD1945357100DBCED9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8964EBA61945357100DBCED9 /* StaveFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 190E6DEC1907E27200AD8F6B;
+			remoteInfo = StaveFrameworkTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -172,6 +234,14 @@
 		8907102C1921A03900BB9E2F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		8925748E192E40450049EF14 /* MelodyCategoryCollectioViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyCategoryCollectioViewCell.h; sourceTree = "<group>"; };
 		8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyCategoryCollectioViewCell.m; sourceTree = "<group>"; };
+		892DBBBE19468E8E00621003 /* ShelfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfView.h; sourceTree = "<group>"; };
+		892DBBBF19468E8E00621003 /* ShelfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfView.m; sourceTree = "<group>"; };
+		892DBBC319468F6C00621003 /* GridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridLayout.h; sourceTree = "<group>"; };
+		892DBBC419468F6C00621003 /* GridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridLayout.m; sourceTree = "<group>"; };
+		892DBBC61946944B00621003 /* ConferenceLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceLayoutAttributes.h; sourceTree = "<group>"; };
+		892DBBC71946944B00621003 /* ConferenceLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceLayoutAttributes.m; sourceTree = "<group>"; };
+		892DBBC9194699E100621003 /* IoriCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriCollectionViewController.h; sourceTree = "<group>"; };
+		892DBBCA194699E100621003 /* IoriCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriCollectionViewController.m; sourceTree = "<group>"; };
 		8936CF62192440F0001E5DCC /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		8936CF63192440F0001E5DCC /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		893CEFB5193A355A0097681C /* fanhui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fanhui.png; sourceTree = "<group>"; };
@@ -252,6 +322,30 @@
 		89429BC01566D8A70003A7D4 /* yinguan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yinguan.png; sourceTree = "<group>"; };
 		89429BC11566D8A70003A7D4 /* zhanting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhanting.png; sourceTree = "<group>"; };
 		89429BC21566D8A70003A7D4 /* zhanting1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhanting1.png; sourceTree = "<group>"; };
+		8964EBA61945357100DBCED9 /* StaveFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StaveFramework.xcodeproj; path = StaveFramework/StaveFramework.xcodeproj; sourceTree = "<group>"; };
+		8964EBB3194536EC00DBCED9 /* pedal-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pedal-end.png"; path = "../StaveFramework/StaveFramework/pedal-end.png"; sourceTree = "<group>"; };
+		8964EBB4194536EC00DBCED9 /* pedal-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pedal-start.png"; path = "../StaveFramework/StaveFramework/pedal-start.png"; sourceTree = "<group>"; };
+		8964EBB5194536EC00DBCED9 /* perfect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = perfect.png; path = ../StaveFramework/StaveFramework/perfect.png; sourceTree = "<group>"; };
+		8964EBB6194536EC00DBCED9 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = right.png; path = ../StaveFramework/StaveFramework/right.png; sourceTree = "<group>"; };
+		8964EBB7194536EC00DBCED9 /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wrong.png; path = ../StaveFramework/StaveFramework/wrong.png; sourceTree = "<group>"; };
+		8964EBB8194536EC00DBCED9 /* bass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bass.png; path = ../StaveFramework/StaveFramework/bass.png; sourceTree = "<group>"; };
+		8964EBB9194536EC00DBCED9 /* eight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eight.png; path = ../StaveFramework/StaveFramework/eight.png; sourceTree = "<group>"; };
+		8964EBBA194536EC00DBCED9 /* four.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = four.png; path = ../StaveFramework/StaveFramework/four.png; sourceTree = "<group>"; };
+		8964EBBB194536EC00DBCED9 /* nine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nine.png; path = ../StaveFramework/StaveFramework/nine.png; sourceTree = "<group>"; };
+		8964EBBC194536EC00DBCED9 /* six.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = six.png; path = ../StaveFramework/StaveFramework/six.png; sourceTree = "<group>"; };
+		8964EBBD194536EC00DBCED9 /* three.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = three.png; path = ../StaveFramework/StaveFramework/three.png; sourceTree = "<group>"; };
+		8964EBBE194536EC00DBCED9 /* treble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = treble.png; path = ../StaveFramework/StaveFramework/treble.png; sourceTree = "<group>"; };
+		8964EBBF194536EC00DBCED9 /* twelve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = twelve.png; path = ../StaveFramework/StaveFramework/twelve.png; sourceTree = "<group>"; };
+		8964EBC0194536EC00DBCED9 /* two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = two.png; path = ../StaveFramework/StaveFramework/two.png; sourceTree = "<group>"; };
+		8964EBC1194536EC00DBCED9 /* gls.dls */ = {isa = PBXFileReference; lastKnownFileType = file; name = gls.dls; path = ../StaveFramework/StaveFramework/gls.dls; sourceTree = "<group>"; };
+		8964EBD2194539CC00DBCED9 /* 0000.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 0000.mid; sourceTree = "<group>"; };
+		8964EBD5194539CC00DBCED9 /* 00111111.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 00111111.mid; sourceTree = "<group>"; };
+		8964EBD6194539CC00DBCED9 /* 00111111he.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = 00111111he.mid; sourceTree = "<group>"; };
+		8964EBDC194539CC00DBCED9 /* aqrsy.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = aqrsy.mid; sourceTree = "<group>"; };
+		8964EBDD194539CC00DBCED9 /* Croatian Rhapsody.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "Croatian Rhapsody.mid"; sourceTree = "<group>"; };
+		8964EBE0194539CC00DBCED9 /* Easy_Songs__Jingle_Bells.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Easy_Songs__Jingle_Bells.mid; sourceTree = "<group>"; };
+		8964EBE1194539CC00DBCED9 /* Easy_Songs__Silent_Night.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Easy_Songs__Silent_Night.mid; sourceTree = "<group>"; };
+		8964EBE2194539CC00DBCED9 /* mnmjd.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = mnmjd.mid; sourceTree = "<group>"; };
 		8977437019358B200005EF89 /* sangemoshi_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sangemoshi_bg.png; sourceTree = "<group>"; };
 		8977437119358B200005EF89 /* sangemoshi_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sangemoshi_bg@2x.png"; sourceTree = "<group>"; };
 		8977437419358B420005EF89 /* MelodyFavorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyFavorite.h; sourceTree = "<group>"; };
@@ -268,6 +362,27 @@
 		8987A5611925B12600DEE6AE /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		8987A5631925B54600DEE6AE /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		8987A5641925B54600DEE6AE /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		8994D13B194BC4330016F806 /* 01.波尔卡.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "01.波尔卡.mid"; sourceTree = "<group>"; };
+		8994D13D194BCEDA0016F806 /* MelodyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyButton.h; sourceTree = "<group>"; };
+		8994D13E194BCEDA0016F806 /* MelodyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyButton.m; sourceTree = "<group>"; };
+		8994D140194BCEDA0016F806 /* 02.849-03.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "02.849-03.mid"; sourceTree = "<group>"; };
+		8994D141194BCEDA0016F806 /* 03.淘气包.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "03.淘气包.mid"; sourceTree = "<group>"; };
+		8994D142194BCEDA0016F806 /* 04.听妈妈讲那过去的故事.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "04.听妈妈讲那过去的故事.mid"; sourceTree = "<group>"; };
+		8994D143194BCEDA0016F806 /* 05.森林波尔卡.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "05.森林波尔卡.mid"; sourceTree = "<group>"; };
+		8994D144194BCEDA0016F806 /* 06.拜尔-100.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "06.拜尔-100.mid"; sourceTree = "<group>"; };
+		8994D145194BCEDA0016F806 /* 07.带我回弗吉尼故乡.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "07.带我回弗吉尼故乡.mid"; sourceTree = "<group>"; };
+		8994D146194BCEDA0016F806 /* 08.儿童舞.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "08.儿童舞.mid"; sourceTree = "<group>"; };
+		8994D147194BCEDA0016F806 /* 09.塔兰泰拉舞曲.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "09.塔兰泰拉舞曲.mid"; sourceTree = "<group>"; };
+		8994D148194BCEDA0016F806 /* 10.诙谐曲.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "10.诙谐曲.mid"; sourceTree = "<group>"; };
+		8994D149194BCEDA0016F806 /* 11.星光圆舞曲.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "11.星光圆舞曲.mid"; sourceTree = "<group>"; };
+		8994D14A194BCEDA0016F806 /* 12.幼儿拜尔-104课.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "12.幼儿拜尔-104课.mid"; sourceTree = "<group>"; };
+		8994D14B194BCEDA0016F806 /* 13.599-054.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "13.599-054.mid"; sourceTree = "<group>"; };
+		8994D14C194BCEDA0016F806 /* 14.布列舞曲.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "14.布列舞曲.mid"; sourceTree = "<group>"; };
+		8994D14D194BCEDA0016F806 /* 15.599-058.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "15.599-058.mid"; sourceTree = "<group>"; };
+		8994D14E194BCEDA0016F806 /* 16.卡门.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "16.卡门.mid"; sourceTree = "<group>"; };
+		8994D14F194BCEDA0016F806 /* 17.秋日私语.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "17.秋日私语.mid"; sourceTree = "<group>"; };
+		8994D150194BCEDA0016F806 /* 18.水边的阿第丽娜.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "18.水边的阿第丽娜.mid"; sourceTree = "<group>"; };
+		8994D151194BCEDA0016F806 /* 19.献给爱丽丝.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "19.献给爱丽丝.mid"; sourceTree = "<group>"; };
 		8998E2E319381B4200A7CF12 /* zuiai2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zuiai2.png; sourceTree = "<group>"; };
 		8998E2E519381B5400A7CF12 /* tanzou2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tanzou2.png; sourceTree = "<group>"; };
 		8998E2E619381B5400A7CF12 /* zuiai1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zuiai1.png; sourceTree = "<group>"; };
@@ -299,6 +414,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8964EBAF1945359E00DBCED9 /* libStaveFramework.a in Frameworks */,
 				89070FF719219EC000BB9E2F /* CoreGraphics.framework in Frameworks */,
 				89070FFB19219EC000BB9E2F /* CoreData.framework in Frameworks */,
 				89070FF919219EC000BB9E2F /* UIKit.framework in Frameworks */,
@@ -323,6 +439,7 @@
 		89070FE819219EBF00BB9E2F = {
 			isa = PBXGroup;
 			children = (
+				8964EBA61945357100DBCED9 /* StaveFramework.xcodeproj */,
 				89070FFC19219EC000BB9E2F /* PianoHelp */,
 				8907101919219EC000BB9E2F /* PianoHelpTests */,
 				89070FF319219EC000BB9E2F /* Frameworks */,
@@ -355,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				89A15D831921B82C00647F7B /* SQLModel */,
-				89A15D801921B78400647F7B /* images */,
 				89BE8D72192ADAAF00686AC7 /* TableCell */,
 				8925748D192E3DB80049EF14 /* CollectionView */,
 				8907100519219EC000BB9E2F /* AppDelegate.h */,
@@ -382,9 +498,17 @@
 				89F5B9B9193D5DB8006D40F9 /* MelodyDetailViewController */,
 				89D61FD01927965400355EF0 /* APLProduct.h */,
 				89D61FD11927965400355EF0 /* APLProduct.m */,
+				892DBBBE19468E8E00621003 /* ShelfView.h */,
+				892DBBBF19468E8E00621003 /* ShelfView.m */,
+				892DBBC319468F6C00621003 /* GridLayout.h */,
+				892DBBC419468F6C00621003 /* GridLayout.m */,
+				892DBBC61946944B00621003 /* ConferenceLayoutAttributes.h */,
+				892DBBC71946944B00621003 /* ConferenceLayoutAttributes.m */,
+				892DBBC9194699E100621003 /* IoriCollectionViewController.h */,
+				892DBBCA194699E100621003 /* IoriCollectionViewController.m */,
 				8907100B19219EC000BB9E2F /* Images.xcassets */,
-				8907100819219EC000BB9E2F /* PianoHelp.xcdatamodeld */,
 				89070FFD19219EC000BB9E2F /* Supporting Files */,
+				8964EBB0194535B200DBCED9 /* Resources */,
 			);
 			path = PianoHelp;
 			sourceTree = "<group>";
@@ -425,6 +549,81 @@
 				8925748F192E40450049EF14 /* MelodyCategoryCollectioViewCell.m */,
 			);
 			name = CollectionView;
+			sourceTree = "<group>";
+		};
+		8964EBA71945357100DBCED9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8964EBAC1945357100DBCED9 /* libStaveFramework.a */,
+				8964EBAE1945357100DBCED9 /* StaveFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8964EBB0194535B200DBCED9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8964EBD1194539CC00DBCED9 /* songs */,
+				8964EBB2194536D400DBCED9 /* StaveFramework-RefrenceResources */,
+				89A15D801921B78400647F7B /* images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8964EBB2194536D400DBCED9 /* StaveFramework-RefrenceResources */ = {
+			isa = PBXGroup;
+			children = (
+				8964EBB3194536EC00DBCED9 /* pedal-end.png */,
+				8964EBB4194536EC00DBCED9 /* pedal-start.png */,
+				8964EBB5194536EC00DBCED9 /* perfect.png */,
+				8964EBB6194536EC00DBCED9 /* right.png */,
+				8964EBB7194536EC00DBCED9 /* wrong.png */,
+				8964EBB8194536EC00DBCED9 /* bass.png */,
+				8964EBB9194536EC00DBCED9 /* eight.png */,
+				8964EBBA194536EC00DBCED9 /* four.png */,
+				8964EBBB194536EC00DBCED9 /* nine.png */,
+				8964EBBC194536EC00DBCED9 /* six.png */,
+				8964EBBD194536EC00DBCED9 /* three.png */,
+				8964EBBE194536EC00DBCED9 /* treble.png */,
+				8964EBBF194536EC00DBCED9 /* twelve.png */,
+				8964EBC0194536EC00DBCED9 /* two.png */,
+				8964EBC1194536EC00DBCED9 /* gls.dls */,
+			);
+			name = "StaveFramework-RefrenceResources";
+			sourceTree = "<group>";
+		};
+		8964EBD1194539CC00DBCED9 /* songs */ = {
+			isa = PBXGroup;
+			children = (
+				8994D13B194BC4330016F806 /* 01.波尔卡.mid */,
+				8994D140194BCEDA0016F806 /* 02.849-03.mid */,
+				8994D141194BCEDA0016F806 /* 03.淘气包.mid */,
+				8994D142194BCEDA0016F806 /* 04.听妈妈讲那过去的故事.mid */,
+				8994D143194BCEDA0016F806 /* 05.森林波尔卡.mid */,
+				8994D144194BCEDA0016F806 /* 06.拜尔-100.mid */,
+				8994D145194BCEDA0016F806 /* 07.带我回弗吉尼故乡.mid */,
+				8994D146194BCEDA0016F806 /* 08.儿童舞.mid */,
+				8994D147194BCEDA0016F806 /* 09.塔兰泰拉舞曲.mid */,
+				8994D148194BCEDA0016F806 /* 10.诙谐曲.mid */,
+				8994D149194BCEDA0016F806 /* 11.星光圆舞曲.mid */,
+				8994D14A194BCEDA0016F806 /* 12.幼儿拜尔-104课.mid */,
+				8994D14B194BCEDA0016F806 /* 13.599-054.mid */,
+				8994D14C194BCEDA0016F806 /* 14.布列舞曲.mid */,
+				8994D14D194BCEDA0016F806 /* 15.599-058.mid */,
+				8994D14E194BCEDA0016F806 /* 16.卡门.mid */,
+				8994D14F194BCEDA0016F806 /* 17.秋日私语.mid */,
+				8994D150194BCEDA0016F806 /* 18.水边的阿第丽娜.mid */,
+				8994D151194BCEDA0016F806 /* 19.献给爱丽丝.mid */,
+				8964EBD2194539CC00DBCED9 /* 0000.mid */,
+				8964EBD5194539CC00DBCED9 /* 00111111.mid */,
+				8964EBD6194539CC00DBCED9 /* 00111111he.mid */,
+				8964EBDC194539CC00DBCED9 /* aqrsy.mid */,
+				8964EBDD194539CC00DBCED9 /* Croatian Rhapsody.mid */,
+				8964EBE0194539CC00DBCED9 /* Easy_Songs__Jingle_Bells.mid */,
+				8964EBE1194539CC00DBCED9 /* Easy_Songs__Silent_Night.mid */,
+				8964EBE2194539CC00DBCED9 /* mnmjd.mid */,
+			);
+			path = songs;
 			sourceTree = "<group>";
 		};
 		89A15D801921B78400647F7B /* images */ = {
@@ -527,6 +726,7 @@
 		89A15D831921B82C00647F7B /* SQLModel */ = {
 			isa = PBXGroup;
 			children = (
+				8907100819219EC000BB9E2F /* PianoHelp.xcdatamodeld */,
 				8977437419358B420005EF89 /* MelodyFavorite.h */,
 				8977437519358B420005EF89 /* MelodyFavorite.m */,
 				8903B8AA192C48BB00B0C139 /* Melody.h */,
@@ -548,6 +748,8 @@
 				89BE8D74192ADAD100686AC7 /* MelodyTableViewCell.m */,
 				89FD865A193966F30021216A /* FavoriteTableViewCell.h */,
 				89FD865B193966F30021216A /* FavoriteTableViewCell.m */,
+				8994D13D194BCEDA0016F806 /* MelodyButton.h */,
+				8994D13E194BCEDA0016F806 /* MelodyButton.m */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -623,6 +825,12 @@
 			mainGroup = 89070FE819219EBF00BB9E2F;
 			productRefGroup = 89070FF219219EC000BB9E2F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8964EBA71945357100DBCED9 /* Products */;
+					ProjectRef = 8964EBA61945357100DBCED9 /* StaveFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				89070FF019219EC000BB9E2F /* PianoHelp */,
@@ -630,6 +838,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8964EBAC1945357100DBCED9 /* libStaveFramework.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libStaveFramework.a;
+			remoteRef = 8964EBAB1945357100DBCED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8964EBAE1945357100DBCED9 /* StaveFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StaveFrameworkTests.xctest;
+			remoteRef = 8964EBAD1945357100DBCED9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		89070FEF19219EC000BB9E2F /* Resources */ = {
@@ -641,41 +866,62 @@
 				893CEFE1193A37630097681C /* fenxiang2.png in Resources */,
 				8977437219358B200005EF89 /* sangemoshi_bg.png in Resources */,
 				89429BC31566D8A70003A7D4 /* bangdingxuliehao.png in Resources */,
+				8994D159194BCEDA0016F806 /* 09.塔兰泰拉舞曲.mid in Resources */,
 				893CEFDA193A37630097681C /* chongzou.png in Resources */,
 				893CEFE3193A37630097681C /* huigu2.png in Resources */,
 				893CEFF0193A37630097681C /* shiting2.png in Resources */,
 				89429BD11566D8A70003A7D4 /* Icon-72.png in Resources */,
 				89429BC61566D8A70003A7D4 /* chakan1.png in Resources */,
+				8964EBE7194539CC00DBCED9 /* 00111111he.mid in Resources */,
 				89429BDA1566D8A70003A7D4 /* qinfang1.png in Resources */,
 				89429BDC1566D8A70003A7D4 /* quanbuyeqian1.png in Resources */,
 				89429BE11566D8A70003A7D4 /* shangcehng.png in Resources */,
+				8994D15F194BCEDA0016F806 /* 15.599-058.mid in Resources */,
 				893CEFF6193A37630097681C /* zuoyoushou1.png in Resources */,
 				89429BC71566D8A70003A7D4 /* confirmKuang.png in Resources */,
 				8998E2E419381B4200A7CF12 /* zuiai2.png in Resources */,
+				8964EBCD194536EC00DBCED9 /* treble.png in Resources */,
 				893CEFEC193A37630097681C /* peilianyin2.png in Resources */,
 				8907100119219EC000BB9E2F /* InfoPlist.strings in Resources */,
 				89429BC91566D8A70003A7D4 /* ditu.png in Resources */,
 				89429BD51566D8A70003A7D4 /* loading xiao.png in Resources */,
 				893CEFF8193A37630097681C /* zuoyoushoubiankuang.png in Resources */,
 				8977437319358B200005EF89 /* sangemoshi_bg@2x.png in Resources */,
+				8994D152194BCEDA0016F806 /* 02.849-03.mid in Resources */,
 				89429BE51566D8A70003A7D4 /* tanzou.png in Resources */,
 				893CEFB6193A355A0097681C /* fanhui.png in Resources */,
+				8964EBF1194539CC00DBCED9 /* Easy_Songs__Jingle_Bells.mid in Resources */,
 				893CEFEF193A37630097681C /* shiting1.png in Resources */,
 				893CEFDE193A37630097681C /* fenduan2.png in Resources */,
 				893CEFF5193A37630097681C /* zuoyoushou2.png in Resources */,
+				8964EBCB194536EC00DBCED9 /* six.png in Resources */,
+				8964EBED194539CC00DBCED9 /* aqrsy.mid in Resources */,
+				8964EBF3194539CC00DBCED9 /* mnmjd.mid in Resources */,
+				8994D155194BCEDA0016F806 /* 05.森林波尔卡.mid in Resources */,
 				899AE08E193B69EB003742F3 /* xiaojietiaozhuan.png in Resources */,
 				89DB78E8156722B200332CB6 /* toobar_bg.png in Resources */,
 				89429BDD1566D8A70003A7D4 /* renwu.png in Resources */,
 				893CEFE8193A37630097681C /* kongjian2.png in Resources */,
+				8994D15D194BCEDA0016F806 /* 13.599-054.mid in Resources */,
 				89429BDB1566D8A70003A7D4 /* quanbuyeqian.png in Resources */,
 				89429BEB1566D8A70003A7D4 /* weigouwu.png in Resources */,
+				8964EBC6194536EC00DBCED9 /* wrong.png in Resources */,
 				89429BF01566D8A70003A7D4 /* xiaoxi1.png in Resources */,
 				893CEFDF193A37630097681C /* fenduanshuzipaineirong.png in Resources */,
 				89429BC81566D8A70003A7D4 /* daohangtiao.png in Resources */,
+				8964EBC9194536EC00DBCED9 /* four.png in Resources */,
+				8964EBE3194539CC00DBCED9 /* 0000.mid in Resources */,
+				8964EBE6194539CC00DBCED9 /* 00111111.mid in Resources */,
+				8994D160194BCEDA0016F806 /* 16.卡门.mid in Resources */,
+				8964EBC8194536EC00DBCED9 /* eight.png in Resources */,
+				8994D157194BCEDA0016F806 /* 07.带我回弗吉尼故乡.mid in Resources */,
+				8994D161194BCEDA0016F806 /* 17.秋日私语.mid in Resources */,
 				89429BF31566D8A70003A7D4 /* yigouwu1.png in Resources */,
+				8964EBC7194536EC00DBCED9 /* bass.png in Resources */,
 				89429BD71566D8A70003A7D4 /* puku.png in Resources */,
 				893CEFD9193A37630097681C /* baocunluyin2.png in Resources */,
 				89429BE31566D8A70003A7D4 /* shifanqupu.png in Resources */,
+				8994D153194BCEDA0016F806 /* 03.淘气包.mid in Resources */,
 				89429BEA1566D8A70003A7D4 /* weigoumaitubiao.png in Resources */,
 				89429BF61566D8A70003A7D4 /* zhanting1.png in Resources */,
 				8998E2EB19381EAF00A7CF12 /* sangemoshiqumulan.png in Resources */,
@@ -684,12 +930,19 @@
 				893CEFE7193A37630097681C /* kongjian1.png in Resources */,
 				89429BCD1566D8A70003A7D4 /* gengduo1.png in Resources */,
 				8998E2EE193829A900A7CF12 /* wangguan.png in Resources */,
+				8964EBD0194536EC00DBCED9 /* gls.dls in Resources */,
+				8964EBC2194536EC00DBCED9 /* pedal-end.png in Resources */,
 				8998E2E719381B5400A7CF12 /* tanzou2.png in Resources */,
+				8964EBC5194536EC00DBCED9 /* right.png in Resources */,
 				89429BE91566D8A70003A7D4 /* tuichudangqianzhanghu.png in Resources */,
+				8994D13C194BC4330016F806 /* 01.波尔卡.mid in Resources */,
+				8994D158194BCEDA0016F806 /* 08.儿童舞.mid in Resources */,
 				89429BD21566D8A70003A7D4 /* jiaocaiqupu.png in Resources */,
+				8994D162194BCEDA0016F806 /* 18.水边的阿第丽娜.mid in Resources */,
 				893CEFF2193A37630097681C /* tishi1.png in Resources */,
 				8907100C19219EC000BB9E2F /* Images.xcassets in Resources */,
 				893CEFF4193A37630097681C /* zanting.png in Resources */,
+				8994D163194BCEDA0016F806 /* 19.献给爱丽丝.mid in Resources */,
 				893CEFDB193A37630097681C /* cuofu,jiesuanzhong.png in Resources */,
 				89429BC41566D8A70003A7D4 /* bangdingxulihao.png in Resources */,
 				893CEFEA193A37630097681C /* peilianyin.png in Resources */,
@@ -700,15 +953,20 @@
 				893CEFEE193A37630097681C /* quxiao.png in Resources */,
 				89429BF21566D8A70003A7D4 /* yigouwu.png in Resources */,
 				89429BDE1566D8A70003A7D4 /* renwu1.png in Resources */,
+				8994D154194BCEDA0016F806 /* 04.听妈妈讲那过去的故事.mid in Resources */,
 				89429BCE1566D8A70003A7D4 /* huadongshanchu1.png in Resources */,
 				89E814AD193AD6AB003CD7B9 /* peilianyinerjikuang.png in Resources */,
 				89429BD61566D8A70003A7D4 /* loading.png in Resources */,
 				89429BE81566D8A70003A7D4 /* tuichudangqianzhanghao1.png in Resources */,
 				8907102A19219F3A00BB9E2F /* Storyboard.storyboard in Resources */,
 				89429BD31566D8A70003A7D4 /* jiaocaishuben.png in Resources */,
+				8964EBC4194536EC00DBCED9 /* perfect.png in Resources */,
+				8964EBCF194536EC00DBCED9 /* two.png in Resources */,
 				893CEFE2193A37630097681C /* huigu1.png in Resources */,
+				8964EBC3194536EC00DBCED9 /* pedal-start.png in Resources */,
 				89429BE41566D8A70003A7D4 /* sousuotiao.png in Resources */,
 				893CEFDD193A37630097681C /* fenduan1.png in Resources */,
+				8994D15B194BCEDA0016F806 /* 11.星光圆舞曲.mid in Resources */,
 				89429BF41566D8A70003A7D4 /* yinguan.png in Resources */,
 				893CEFEB193A37630097681C /* peilianyin1.png in Resources */,
 				89429BCF1566D8A70003A7D4 /* huadongshanchu2.png in Resources */,
@@ -717,16 +975,25 @@
 				8998E2EC19381EAF00A7CF12 /* shujia.png in Resources */,
 				899AE090193B6A82003742F3 /* yuansu.png in Resources */,
 				893CEFD8193A37630097681C /* baocunluyin1.png in Resources */,
+				8964EBCA194536EC00DBCED9 /* nine.png in Resources */,
 				89429BE21566D8A70003A7D4 /* shangcheng1.png in Resources */,
+				8964EBCC194536EC00DBCED9 /* three.png in Resources */,
+				8994D15E194BCEDA0016F806 /* 14.布列舞曲.mid in Resources */,
+				8964EBCE194536EC00DBCED9 /* twelve.png in Resources */,
 				893CEFDC193A37630097681C /* duifu,zongjiezhong.png in Resources */,
 				893CEFED193A37630097681C /* queren.png in Resources */,
 				89429BCC1566D8A70003A7D4 /* gengduo.png in Resources */,
 				893CEFF3193A37630097681C /* tishi2.png in Resources */,
+				8994D15C194BCEDA0016F806 /* 12.幼儿拜尔-104课.mid in Resources */,
+				8964EBEE194539CC00DBCED9 /* Croatian Rhapsody.mid in Resources */,
+				8994D15A194BCEDA0016F806 /* 10.诙谐曲.mid in Resources */,
 				893CEFE0193A37630097681C /* fenxiang1.png in Resources */,
 				89429BED1566D8A70003A7D4 /* wenbenxinxikuang.png in Resources */,
+				8994D156194BCEDA0016F806 /* 06.拜尔-100.mid in Resources */,
 				89429BE71566D8A70003A7D4 /* tongguan.png in Resources */,
 				89429BEC1566D8A70003A7D4 /* weigouwu1.png in Resources */,
 				893CEFF7193A37630097681C /* zuoyoushou123.png in Resources */,
+				8964EBF2194539CC00DBCED9 /* Easy_Songs__Silent_Night.mid in Resources */,
 				893CEFE4193A37630097681C /* jiucuo1.png in Resources */,
 				89429BE61566D8A70003A7D4 /* tanzou1.png in Resources */,
 			);
@@ -750,8 +1017,11 @@
 				89F5B9BC193D5DFA006D40F9 /* SectionPopViewController.m in Sources */,
 				89BE8D78192AE16900686AC7 /* BaseTableViewCell.m in Sources */,
 				8907100719219EC000BB9E2F /* AppDelegate.m in Sources */,
+				892DBBC81946944B00621003 /* ConferenceLayoutAttributes.m in Sources */,
+				892DBBC519468F6C00621003 /* GridLayout.m in Sources */,
 				8987A5651925B54600DEE6AE /* BaseViewController.m in Sources */,
 				89BE8D75192ADAD100686AC7 /* MelodyTableViewCell.m in Sources */,
+				8994D13F194BCEDA0016F806 /* MelodyButton.m in Sources */,
 				8987A55419258DEA00DEE6AE /* MelodyViewController.m in Sources */,
 				8903B8AC192C48BB00B0C139 /* Melody.m in Sources */,
 				8987A5621925B12600DEE6AE /* ShowViewController.m in Sources */,
@@ -764,9 +1034,11 @@
 				89A15D921921BEBF00647F7B /* Score.m in Sources */,
 				8936CF64192440F0001E5DCC /* SearchViewController.m in Sources */,
 				8907102D1921A03900BB9E2F /* RootViewController.m in Sources */,
+				892DBBC019468E8E00621003 /* ShelfView.m in Sources */,
 				89F6C0D9193222ED00823EF5 /* MelodyDetailViewController.m in Sources */,
 				8987A55719258E2200DEE6AE /* MelodyCategoryViewController.m in Sources */,
 				8977437619358B420005EF89 /* MelodyFavorite.m in Sources */,
+				892DBBCB194699E100621003 /* IoriCollectionViewController.m in Sources */,
 				8987A55D19258FB900DEE6AE /* QinFangViewController.m in Sources */,
 				8907100319219EC000BB9E2F /* main.m in Sources */,
 			);
@@ -890,13 +1162,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 林 Lin (R8TVBQFHB2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianoHelp/PianoHelp-Prefix.pch";
 				INFOPLIST_FILE = "PianoHelp/PianoHelp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -906,12 +1179,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianoHelp/PianoHelp-Prefix.pch";
 				INFOPLIST_FILE = "PianoHelp/PianoHelp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "81C5797C-4FB6-4439-B1FD-26E102B8C8E7";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

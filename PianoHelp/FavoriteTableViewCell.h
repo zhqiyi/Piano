@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewCell.h"
+#import "MelodyButton.h"
 
 @interface FavoriteTableViewCell : BaseTableViewCell
 
@@ -15,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labAuthor;
 @property (weak, nonatomic) IBOutlet UILabel *labScore;
 @property (weak, nonatomic) IBOutlet UIButton *btnRank;
+@property (weak, nonatomic) IBOutlet MelodyButton *btnPlay;
 
 @end

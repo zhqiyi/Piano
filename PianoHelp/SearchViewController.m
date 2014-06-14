@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "AppDelegate.h"
 #import "MelodyTableViewCell.h"
+#import "MelodyDetailViewController.h"
 
 @interface SearchViewController ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -67,7 +68,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -75,8 +76,16 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:@"searchPushMelodyDetailSegue"])
+    {
+        MelodyDetailViewController *vc = segue.destinationViewController;
+        vc.iPlayMode = 1;
+        //add test by zyw
+        NSString *filename = [((AppDelegate*)[[UIApplication sharedApplication] delegate]) filePathForName:((MelodyButton*)sender).fileName];
+        vc.fileName = filename;
+    }
 }
-*/
+
 #pragma mark - UITableView data source and delegate methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

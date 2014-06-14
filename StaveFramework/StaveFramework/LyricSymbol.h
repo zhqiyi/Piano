@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2007-2012 Madhav Vaidyanathan
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ */
+
+#import <Foundation/Foundation.h>
+
+/** @class LyricSymbol
+ *  A lyric contains the lyric to display, the start time the lyric occurs at,
+ *  the the x-coordinate where it will be displayed.
+ */
+@interface LyricSymbol : NSObject {
+    int starttime;   /** The start time, in pulses */
+    NSString* text;  /** The lyric text */
+    int x;           /** The x (horizontal) position within the staff */
+}
+
+-(id)init;
+-(int)startTime;
+-(void)setStarttime:(int)value;
+-(NSString*)text;
+-(void)setText:(NSString*)value;
+-(int)x;
+-(void)setX:(int)value;
+-(int)minWidth;
+-(NSString*)description;
+
+@end
+

@@ -39,6 +39,7 @@
     MelodyFavorite *favo = (MelodyFavorite*)obj;
     self.labTitle.text = favo.melody.name;
     self.labAuthor.text = favo.melody.author;
+    self.btnPlay.fileName = favo.melody.filePath;
     if(favo.melody.score)
         self.labScore.text = [favo.melody.score.score stringValue];
     if(favo.melody.score.rank)

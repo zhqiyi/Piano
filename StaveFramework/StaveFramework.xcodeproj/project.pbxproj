@@ -1,0 +1,887 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		190E6DE01907E27200AD8F6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6DDF1907E27200AD8F6B /* Foundation.framework */; };
+		190E6DEE1907E27200AD8F6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6DED1907E27200AD8F6B /* XCTest.framework */; };
+		190E6DEF1907E27200AD8F6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6DDF1907E27200AD8F6B /* Foundation.framework */; };
+		190E6DF41907E27200AD8F6B /* libStaveFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6DDC1907E27200AD8F6B /* libStaveFramework.a */; };
+		190E6DFA1907E27200AD8F6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 190E6DF81907E27200AD8F6B /* InfoPlist.strings */; };
+		190E6DFC1907E27200AD8F6B /* StaveFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6DFB1907E27200AD8F6B /* StaveFrameworkTests.m */; };
+		190E6E0C1907E72A00AD8F6B /* GDCoreAudioUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E081907E72A00AD8F6B /* GDCoreAudioUtils.c */; };
+		190E6E0D1907E72A00AD8F6B /* GDSoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E0B1907E72A00AD8F6B /* GDSoundEngine.m */; };
+		190E6E4B1907E80800AD8F6B /* AccidSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E101907E80800AD8F6B /* AccidSymbol.m */; };
+		190E6E4C1907E80800AD8F6B /* Array.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E121907E80800AD8F6B /* Array.m */; };
+		190E6E4D1907E80800AD8F6B /* BarSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E141907E80800AD8F6B /* BarSymbol.m */; };
+		190E6E4E1907E80800AD8F6B /* BeatSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E161907E80800AD8F6B /* BeatSignature.m */; };
+		190E6E4F1907E80800AD8F6B /* BlankSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E181907E80800AD8F6B /* BlankSymbol.m */; };
+		190E6E501907E80800AD8F6B /* ChordSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E1A1907E80800AD8F6B /* ChordSymbol.m */; };
+		190E6E511907E80800AD8F6B /* ClefMeasures.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E1C1907E80800AD8F6B /* ClefMeasures.m */; };
+		190E6E521907E80800AD8F6B /* ClefSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E1E1907E80800AD8F6B /* ClefSymbol.m */; };
+		190E6E531907E80800AD8F6B /* ControlData.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E201907E80800AD8F6B /* ControlData.m */; };
+		190E6E541907E80800AD8F6B /* KeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E221907E80800AD8F6B /* KeySignature.m */; };
+		190E6E551907E80800AD8F6B /* LyricSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E241907E80800AD8F6B /* LyricSymbol.m */; };
+		190E6E561907E80800AD8F6B /* MidiEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E261907E80800AD8F6B /* MidiEvent.m */; };
+		190E6E571907E80800AD8F6B /* MidiFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E281907E80800AD8F6B /* MidiFile.m */; };
+		190E6E581907E80800AD8F6B /* MidiFileException.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E2A1907E80800AD8F6B /* MidiFileException.m */; };
+		190E6E591907E80800AD8F6B /* MidiFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E2C1907E80800AD8F6B /* MidiFileReader.m */; };
+		190E6E5A1907E80800AD8F6B /* MidiNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E2E1907E80800AD8F6B /* MidiNote.m */; };
+		190E6E5B1907E80800AD8F6B /* MidiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E311907E80800AD8F6B /* MidiPlayer.m */; };
+		190E6E5C1907E80800AD8F6B /* MidiTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E331907E80800AD8F6B /* MidiTrack.m */; };
+		190E6E5D1907E80800AD8F6B /* Piano.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E361907E80800AD8F6B /* Piano.m */; };
+		190E6E5E1907E80800AD8F6B /* PianoDataJudged.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E381907E80800AD8F6B /* PianoDataJudged.m */; };
+		190E6E5F1907E80800AD8F6B /* RestSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E3A1907E80800AD8F6B /* RestSymbol.m */; };
+		190E6E601907E80800AD8F6B /* SheetMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E3C1907E80800AD8F6B /* SheetMusic.m */; };
+		190E6E611907E80800AD8F6B /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E3E1907E80800AD8F6B /* Staff.m */; };
+		190E6E621907E80800AD8F6B /* Stem.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E401907E80800AD8F6B /* Stem.m */; };
+		190E6E631907E80800AD8F6B /* SymbolWidths.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E421907E80800AD8F6B /* SymbolWidths.m */; };
+		190E6E641907E80800AD8F6B /* TimeSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E441907E80800AD8F6B /* TimeSignature.m */; };
+		190E6E651907E80800AD8F6B /* TimeSigSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E461907E80800AD8F6B /* TimeSigSymbol.m */; };
+		190E6E661907E80800AD8F6B /* ToneSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E481907E80800AD8F6B /* ToneSignature.m */; };
+		190E6E671907E80800AD8F6B /* WhiteNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E4A1907E80800AD8F6B /* WhiteNote.m */; };
+		190E6E711907E84900AD8F6B /* bass.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E681907E84900AD8F6B /* bass.png */; };
+		190E6E721907E84900AD8F6B /* eight.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E691907E84900AD8F6B /* eight.png */; };
+		190E6E731907E84900AD8F6B /* four.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E6A1907E84900AD8F6B /* four.png */; };
+		190E6E741907E84900AD8F6B /* nine.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E6B1907E84900AD8F6B /* nine.png */; };
+		190E6E751907E84900AD8F6B /* six.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E6C1907E84900AD8F6B /* six.png */; };
+		190E6E761907E84900AD8F6B /* three.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E6D1907E84900AD8F6B /* three.png */; };
+		190E6E771907E84900AD8F6B /* treble.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E6E1907E84900AD8F6B /* treble.png */; };
+		190E6E781907E84900AD8F6B /* twelve.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E6F1907E84900AD8F6B /* twelve.png */; };
+		190E6E791907E84900AD8F6B /* two.png in Resources */ = {isa = PBXBuildFile; fileRef = 190E6E701907E84900AD8F6B /* two.png */; };
+		190E6E7B1907E8B900AD8F6B /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6E7A1907E8B900AD8F6B /* CoreMIDI.framework */; };
+		190E6E7D1907E8CA00AD8F6B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6E7C1907E8CA00AD8F6B /* AudioToolbox.framework */; };
+		190E6E7F1907E8DB00AD8F6B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6E7E1907E8DB00AD8F6B /* CoreMedia.framework */; };
+		190E6E811907E8F000AD8F6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6E801907E8F000AD8F6B /* CoreGraphics.framework */; };
+		190E6E831907E8FE00AD8F6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190E6E821907E8FE00AD8F6B /* UIKit.framework */; };
+		190E6E861907E9C400AD8F6B /* SerialGATT.m in Sources */ = {isa = PBXBuildFile; fileRef = 190E6E851907E9C400AD8F6B /* SerialGATT.m */; };
+		190E6E8719080B1C00AD8F6B /* MidiFile.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E271907E80800AD8F6B /* MidiFile.h */; };
+		190E6E8819080B1C00AD8F6B /* MidiPlayer.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E301907E80800AD8F6B /* MidiPlayer.h */; };
+		190E6E8919080B1C00AD8F6B /* SheetMusic.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E3B1907E80800AD8F6B /* SheetMusic.h */; };
+		190E6E8A1908170A00AD8F6B /* MidiOptions.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E2F1907E80800AD8F6B /* MidiOptions.h */; };
+		190E6E92190817E400AD8F6B /* Array.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E111907E80800AD8F6B /* Array.h */; };
+		190E6E93190817F100AD8F6B /* SerialGATT.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E841907E9C400AD8F6B /* SerialGATT.h */; };
+		190E6EB5190945FC00AD8F6B /* AccidSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E0F1907E80800AD8F6B /* AccidSymbol.h */; };
+		190E6EB6190945FC00AD8F6B /* BarSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E131907E80800AD8F6B /* BarSymbol.h */; };
+		190E6EB7190945FC00AD8F6B /* BeatSignature.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E151907E80800AD8F6B /* BeatSignature.h */; };
+		190E6EB8190945FC00AD8F6B /* ChordSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E191907E80800AD8F6B /* ChordSymbol.h */; };
+		190E6EB9190945FC00AD8F6B /* ClefMeasures.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E1B1907E80800AD8F6B /* ClefMeasures.h */; };
+		190E6EBA190945FC00AD8F6B /* ClefSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E1D1907E80800AD8F6B /* ClefSymbol.h */; };
+		190E6EBB190945FC00AD8F6B /* ControlData.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E1F1907E80800AD8F6B /* ControlData.h */; };
+		190E6EBC190945FC00AD8F6B /* KeySignature.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E211907E80800AD8F6B /* KeySignature.h */; };
+		190E6EBD190945FC00AD8F6B /* LyricSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E231907E80800AD8F6B /* LyricSymbol.h */; };
+		190E6EBE190945FC00AD8F6B /* MidiEvent.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E251907E80800AD8F6B /* MidiEvent.h */; };
+		190E6EBF190945FC00AD8F6B /* MidiFileException.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E291907E80800AD8F6B /* MidiFileException.h */; };
+		190E6EC0190945FC00AD8F6B /* MidiFileReader.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E2B1907E80800AD8F6B /* MidiFileReader.h */; };
+		190E6EC1190945FC00AD8F6B /* MidiNote.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E2D1907E80800AD8F6B /* MidiNote.h */; };
+		190E6EC2190945FC00AD8F6B /* MidiTrack.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E321907E80800AD8F6B /* MidiTrack.h */; };
+		190E6EC3190945FC00AD8F6B /* MusicSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E341907E80800AD8F6B /* MusicSymbol.h */; };
+		190E6EC4190945FC00AD8F6B /* Piano.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E351907E80800AD8F6B /* Piano.h */; };
+		190E6EC5190945FC00AD8F6B /* PianoDataJudged.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E371907E80800AD8F6B /* PianoDataJudged.h */; };
+		190E6EC6190945FC00AD8F6B /* RestSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E391907E80800AD8F6B /* RestSymbol.h */; };
+		190E6EC7190945FC00AD8F6B /* Staff.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E3D1907E80800AD8F6B /* Staff.h */; };
+		190E6EC8190945FC00AD8F6B /* Stem.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E3F1907E80800AD8F6B /* Stem.h */; };
+		190E6EC9190945FC00AD8F6B /* SymbolWidths.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E411907E80800AD8F6B /* SymbolWidths.h */; };
+		190E6ECA190945FC00AD8F6B /* TimeSignature.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E431907E80800AD8F6B /* TimeSignature.h */; };
+		190E6ECB190945FC00AD8F6B /* TimeSigSymbol.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E451907E80800AD8F6B /* TimeSigSymbol.h */; };
+		190E6ECC190945FC00AD8F6B /* ToneSignature.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E471907E80800AD8F6B /* ToneSignature.h */; };
+		190E6ECD190945FC00AD8F6B /* WhiteNote.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E491907E80800AD8F6B /* WhiteNote.h */; };
+		190E6ECE190945FC00AD8F6B /* GDCoreAudioUtils.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E091907E72A00AD8F6B /* GDCoreAudioUtils.h */; };
+		190E6ECF190945FC00AD8F6B /* GDSoundEngine.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 190E6E0A1907E72A00AD8F6B /* GDSoundEngine.h */; };
+		BA0BBD00193393AC00F27181 /* PianoCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0BBCFF193393AC00F27181 /* PianoCommon.m */; };
+		BA0BBD0319339AA100F27181 /* PianoRecognition.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0BBD0219339AA100F27181 /* PianoRecognition.m */; };
+		BA1134781931DC790039E77E /* MidiKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1134771931DC790039E77E /* MidiKeyboard.m */; };
+		BA1383C1191CEEA000610B44 /* PianoRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1383C0191CEEA000610B44 /* PianoRecorder.m */; };
+		BA1383C2191D226D00610B44 /* PianoRecorder.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA1383BF191CEEA000610B44 /* PianoRecorder.h */; };
+		BA1F2D4B1920F2B7009A9E73 /* MusicPlayers.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1F2D4A1920F2B7009A9E73 /* MusicPlayers.m */; };
+		BA1F2D4C1920F4C2009A9E73 /* MusicPlayers.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA1F2D491920F2B7009A9E73 /* MusicPlayers.h */; };
+		BA40D37A1936382300FCAE9A /* RecognitionData.m in Sources */ = {isa = PBXBuildFile; fileRef = BA40D3781936382300FCAE9A /* RecognitionData.m */; };
+		BA5BD74919224C2B00C01FCD /* MIDIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5BD74619224C2B00C01FCD /* MIDIParser.m */; };
+		BA5BD74A19224C2B00C01FCD /* TrackSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BA5BD74819224C2B00C01FCD /* TrackSetting.m */; };
+		BA5BD74B19224C3F00C01FCD /* MIDIParser.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA5BD74519224C2B00C01FCD /* MIDIParser.h */; };
+		BA5BD74C19224C3F00C01FCD /* TrackSetting.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA5BD74719224C2B00C01FCD /* TrackSetting.h */; };
+		BA6DBC82191694790050D5F7 /* SheetMusicPlay.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6DBC7F191694790050D5F7 /* SheetMusicPlay.m */; };
+		BA6DBC83191694790050D5F7 /* SheetMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6DBC81191694790050D5F7 /* SheetMusicPlayer.m */; };
+		BA6DBC84191694950050D5F7 /* SheetMusicDelegate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA6DBC7D191694790050D5F7 /* SheetMusicDelegate.h */; };
+		BA6DBC85191694950050D5F7 /* SheetMusicPlay.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA6DBC7E191694790050D5F7 /* SheetMusicPlay.h */; };
+		BA6DBC86191694950050D5F7 /* SheetMusicPlayer.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA6DBC80191694790050D5F7 /* SheetMusicPlayer.h */; };
+		BA81EFAB1939519000B477C7 /* SFCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA81EFAA1939519000B477C7 /* SFCountdownView.m */; };
+		BA81EFAC1939529700B477C7 /* MidiKeyboard.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA1134761931DC790039E77E /* MidiKeyboard.h */; };
+		BA81EFAD1939529700B477C7 /* SFCountdownView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA81EFA91939519000B477C7 /* SFCountdownView.h */; };
+		BA81EFAE1939529700B477C7 /* RecognitionlData.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA40D3791936382300FCAE9A /* RecognitionlData.h */; };
+		BA81EFAF1939529700B477C7 /* PianoRecognition.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA0BBD0119339AA100F27181 /* PianoRecognition.h */; };
+		BA81EFB01939529700B477C7 /* PianoCommon.h in Copy Files */ = {isa = PBXBuildFile; fileRef = BA0BBCFE193393AC00F27181 /* PianoCommon.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		190E6DF21907E27200AD8F6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 190E6DD41907E27200AD8F6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 190E6DDB1907E27200AD8F6B;
+			remoteInfo = StaveFramework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		190E6DDA1907E27200AD8F6B /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				BA81EFAC1939529700B477C7 /* MidiKeyboard.h in Copy Files */,
+				BA81EFAD1939529700B477C7 /* SFCountdownView.h in Copy Files */,
+				BA81EFAE1939529700B477C7 /* RecognitionlData.h in Copy Files */,
+				BA81EFAF1939529700B477C7 /* PianoRecognition.h in Copy Files */,
+				BA81EFB01939529700B477C7 /* PianoCommon.h in Copy Files */,
+				BA5BD74B19224C3F00C01FCD /* MIDIParser.h in Copy Files */,
+				BA5BD74C19224C3F00C01FCD /* TrackSetting.h in Copy Files */,
+				BA1F2D4C1920F4C2009A9E73 /* MusicPlayers.h in Copy Files */,
+				BA1383C2191D226D00610B44 /* PianoRecorder.h in Copy Files */,
+				BA6DBC84191694950050D5F7 /* SheetMusicDelegate.h in Copy Files */,
+				BA6DBC85191694950050D5F7 /* SheetMusicPlay.h in Copy Files */,
+				BA6DBC86191694950050D5F7 /* SheetMusicPlayer.h in Copy Files */,
+				190E6EB5190945FC00AD8F6B /* AccidSymbol.h in Copy Files */,
+				190E6EB6190945FC00AD8F6B /* BarSymbol.h in Copy Files */,
+				190E6EB7190945FC00AD8F6B /* BeatSignature.h in Copy Files */,
+				190E6EB8190945FC00AD8F6B /* ChordSymbol.h in Copy Files */,
+				190E6EB9190945FC00AD8F6B /* ClefMeasures.h in Copy Files */,
+				190E6EBA190945FC00AD8F6B /* ClefSymbol.h in Copy Files */,
+				190E6EBB190945FC00AD8F6B /* ControlData.h in Copy Files */,
+				190E6EBC190945FC00AD8F6B /* KeySignature.h in Copy Files */,
+				190E6EBD190945FC00AD8F6B /* LyricSymbol.h in Copy Files */,
+				190E6EBE190945FC00AD8F6B /* MidiEvent.h in Copy Files */,
+				190E6EBF190945FC00AD8F6B /* MidiFileException.h in Copy Files */,
+				190E6EC0190945FC00AD8F6B /* MidiFileReader.h in Copy Files */,
+				190E6EC1190945FC00AD8F6B /* MidiNote.h in Copy Files */,
+				190E6EC2190945FC00AD8F6B /* MidiTrack.h in Copy Files */,
+				190E6EC3190945FC00AD8F6B /* MusicSymbol.h in Copy Files */,
+				190E6EC4190945FC00AD8F6B /* Piano.h in Copy Files */,
+				190E6EC5190945FC00AD8F6B /* PianoDataJudged.h in Copy Files */,
+				190E6EC6190945FC00AD8F6B /* RestSymbol.h in Copy Files */,
+				190E6EC7190945FC00AD8F6B /* Staff.h in Copy Files */,
+				190E6EC8190945FC00AD8F6B /* Stem.h in Copy Files */,
+				190E6EC9190945FC00AD8F6B /* SymbolWidths.h in Copy Files */,
+				190E6ECA190945FC00AD8F6B /* TimeSignature.h in Copy Files */,
+				190E6ECB190945FC00AD8F6B /* TimeSigSymbol.h in Copy Files */,
+				190E6ECC190945FC00AD8F6B /* ToneSignature.h in Copy Files */,
+				190E6ECD190945FC00AD8F6B /* WhiteNote.h in Copy Files */,
+				190E6ECE190945FC00AD8F6B /* GDCoreAudioUtils.h in Copy Files */,
+				190E6ECF190945FC00AD8F6B /* GDSoundEngine.h in Copy Files */,
+				190E6E93190817F100AD8F6B /* SerialGATT.h in Copy Files */,
+				190E6E92190817E400AD8F6B /* Array.h in Copy Files */,
+				190E6E8A1908170A00AD8F6B /* MidiOptions.h in Copy Files */,
+				190E6E8719080B1C00AD8F6B /* MidiFile.h in Copy Files */,
+				190E6E8819080B1C00AD8F6B /* MidiPlayer.h in Copy Files */,
+				190E6E8919080B1C00AD8F6B /* SheetMusic.h in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		190E6DDC1907E27200AD8F6B /* libStaveFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStaveFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		190E6DDF1907E27200AD8F6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		190E6DE31907E27200AD8F6B /* StaveFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StaveFramework-Prefix.pch"; sourceTree = "<group>"; };
+		190E6DEC1907E27200AD8F6B /* StaveFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StaveFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		190E6DED1907E27200AD8F6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		190E6DF71907E27200AD8F6B /* StaveFrameworkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StaveFrameworkTests-Info.plist"; sourceTree = "<group>"; };
+		190E6DF91907E27200AD8F6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		190E6DFB1907E27200AD8F6B /* StaveFrameworkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StaveFrameworkTests.m; sourceTree = "<group>"; };
+		190E6E051907E4CA00AD8F6B /* gls.dls */ = {isa = PBXFileReference; lastKnownFileType = file; path = gls.dls; sourceTree = "<group>"; };
+		190E6E081907E72A00AD8F6B /* GDCoreAudioUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GDCoreAudioUtils.c; sourceTree = "<group>"; };
+		190E6E091907E72A00AD8F6B /* GDCoreAudioUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDCoreAudioUtils.h; sourceTree = "<group>"; };
+		190E6E0A1907E72A00AD8F6B /* GDSoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDSoundEngine.h; sourceTree = "<group>"; };
+		190E6E0B1907E72A00AD8F6B /* GDSoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDSoundEngine.m; sourceTree = "<group>"; };
+		190E6E0F1907E80800AD8F6B /* AccidSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccidSymbol.h; sourceTree = "<group>"; };
+		190E6E101907E80800AD8F6B /* AccidSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccidSymbol.m; sourceTree = "<group>"; };
+		190E6E111907E80800AD8F6B /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
+		190E6E121907E80800AD8F6B /* Array.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Array.m; sourceTree = "<group>"; };
+		190E6E131907E80800AD8F6B /* BarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarSymbol.h; sourceTree = "<group>"; };
+		190E6E141907E80800AD8F6B /* BarSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarSymbol.m; sourceTree = "<group>"; };
+		190E6E151907E80800AD8F6B /* BeatSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatSignature.h; sourceTree = "<group>"; };
+		190E6E161907E80800AD8F6B /* BeatSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatSignature.m; sourceTree = "<group>"; };
+		190E6E171907E80800AD8F6B /* BlankSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankSymbol.h; sourceTree = "<group>"; };
+		190E6E181907E80800AD8F6B /* BlankSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankSymbol.m; sourceTree = "<group>"; };
+		190E6E191907E80800AD8F6B /* ChordSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordSymbol.h; sourceTree = "<group>"; };
+		190E6E1A1907E80800AD8F6B /* ChordSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordSymbol.m; sourceTree = "<group>"; };
+		190E6E1B1907E80800AD8F6B /* ClefMeasures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefMeasures.h; sourceTree = "<group>"; };
+		190E6E1C1907E80800AD8F6B /* ClefMeasures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefMeasures.m; sourceTree = "<group>"; };
+		190E6E1D1907E80800AD8F6B /* ClefSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefSymbol.h; sourceTree = "<group>"; };
+		190E6E1E1907E80800AD8F6B /* ClefSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefSymbol.m; sourceTree = "<group>"; };
+		190E6E1F1907E80800AD8F6B /* ControlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlData.h; sourceTree = "<group>"; };
+		190E6E201907E80800AD8F6B /* ControlData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlData.m; sourceTree = "<group>"; };
+		190E6E211907E80800AD8F6B /* KeySignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySignature.h; sourceTree = "<group>"; };
+		190E6E221907E80800AD8F6B /* KeySignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignature.m; sourceTree = "<group>"; };
+		190E6E231907E80800AD8F6B /* LyricSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricSymbol.h; sourceTree = "<group>"; };
+		190E6E241907E80800AD8F6B /* LyricSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricSymbol.m; sourceTree = "<group>"; };
+		190E6E251907E80800AD8F6B /* MidiEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiEvent.h; sourceTree = "<group>"; };
+		190E6E261907E80800AD8F6B /* MidiEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiEvent.m; sourceTree = "<group>"; };
+		190E6E271907E80800AD8F6B /* MidiFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFile.h; sourceTree = "<group>"; };
+		190E6E281907E80800AD8F6B /* MidiFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiFile.m; sourceTree = "<group>"; };
+		190E6E291907E80800AD8F6B /* MidiFileException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileException.h; sourceTree = "<group>"; };
+		190E6E2A1907E80800AD8F6B /* MidiFileException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiFileException.m; sourceTree = "<group>"; };
+		190E6E2B1907E80800AD8F6B /* MidiFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiFileReader.h; sourceTree = "<group>"; };
+		190E6E2C1907E80800AD8F6B /* MidiFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiFileReader.m; sourceTree = "<group>"; };
+		190E6E2D1907E80800AD8F6B /* MidiNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiNote.h; sourceTree = "<group>"; };
+		190E6E2E1907E80800AD8F6B /* MidiNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiNote.m; sourceTree = "<group>"; };
+		190E6E2F1907E80800AD8F6B /* MidiOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiOptions.h; sourceTree = "<group>"; };
+		190E6E301907E80800AD8F6B /* MidiPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiPlayer.h; sourceTree = "<group>"; };
+		190E6E311907E80800AD8F6B /* MidiPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiPlayer.m; sourceTree = "<group>"; };
+		190E6E321907E80800AD8F6B /* MidiTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiTrack.h; sourceTree = "<group>"; };
+		190E6E331907E80800AD8F6B /* MidiTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiTrack.m; sourceTree = "<group>"; };
+		190E6E341907E80800AD8F6B /* MusicSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSymbol.h; sourceTree = "<group>"; };
+		190E6E351907E80800AD8F6B /* Piano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Piano.h; sourceTree = "<group>"; };
+		190E6E361907E80800AD8F6B /* Piano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Piano.m; sourceTree = "<group>"; };
+		190E6E371907E80800AD8F6B /* PianoDataJudged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoDataJudged.h; sourceTree = "<group>"; };
+		190E6E381907E80800AD8F6B /* PianoDataJudged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoDataJudged.m; sourceTree = "<group>"; };
+		190E6E391907E80800AD8F6B /* RestSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestSymbol.h; sourceTree = "<group>"; };
+		190E6E3A1907E80800AD8F6B /* RestSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestSymbol.m; sourceTree = "<group>"; };
+		190E6E3B1907E80800AD8F6B /* SheetMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetMusic.h; sourceTree = "<group>"; };
+		190E6E3C1907E80800AD8F6B /* SheetMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetMusic.m; sourceTree = "<group>"; };
+		190E6E3D1907E80800AD8F6B /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
+		190E6E3E1907E80800AD8F6B /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
+		190E6E3F1907E80800AD8F6B /* Stem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stem.h; sourceTree = "<group>"; };
+		190E6E401907E80800AD8F6B /* Stem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stem.m; sourceTree = "<group>"; };
+		190E6E411907E80800AD8F6B /* SymbolWidths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymbolWidths.h; sourceTree = "<group>"; };
+		190E6E421907E80800AD8F6B /* SymbolWidths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymbolWidths.m; sourceTree = "<group>"; };
+		190E6E431907E80800AD8F6B /* TimeSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignature.h; sourceTree = "<group>"; };
+		190E6E441907E80800AD8F6B /* TimeSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignature.m; sourceTree = "<group>"; };
+		190E6E451907E80800AD8F6B /* TimeSigSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSigSymbol.h; sourceTree = "<group>"; };
+		190E6E461907E80800AD8F6B /* TimeSigSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSigSymbol.m; sourceTree = "<group>"; };
+		190E6E471907E80800AD8F6B /* ToneSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToneSignature.h; sourceTree = "<group>"; };
+		190E6E481907E80800AD8F6B /* ToneSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToneSignature.m; sourceTree = "<group>"; };
+		190E6E491907E80800AD8F6B /* WhiteNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteNote.h; sourceTree = "<group>"; };
+		190E6E4A1907E80800AD8F6B /* WhiteNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteNote.m; sourceTree = "<group>"; };
+		190E6E681907E84900AD8F6B /* bass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bass.png; sourceTree = "<group>"; };
+		190E6E691907E84900AD8F6B /* eight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eight.png; sourceTree = "<group>"; };
+		190E6E6A1907E84900AD8F6B /* four.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = four.png; sourceTree = "<group>"; };
+		190E6E6B1907E84900AD8F6B /* nine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nine.png; sourceTree = "<group>"; };
+		190E6E6C1907E84900AD8F6B /* six.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = six.png; sourceTree = "<group>"; };
+		190E6E6D1907E84900AD8F6B /* three.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = three.png; sourceTree = "<group>"; };
+		190E6E6E1907E84900AD8F6B /* treble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = treble.png; sourceTree = "<group>"; };
+		190E6E6F1907E84900AD8F6B /* twelve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twelve.png; sourceTree = "<group>"; };
+		190E6E701907E84900AD8F6B /* two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = two.png; sourceTree = "<group>"; };
+		190E6E7A1907E8B900AD8F6B /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		190E6E7C1907E8CA00AD8F6B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		190E6E7E1907E8DB00AD8F6B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		190E6E801907E8F000AD8F6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		190E6E821907E8FE00AD8F6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		190E6E841907E9C400AD8F6B /* SerialGATT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialGATT.h; sourceTree = "<group>"; };
+		190E6E851907E9C400AD8F6B /* SerialGATT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialGATT.m; sourceTree = "<group>"; };
+		BA0BBCFE193393AC00F27181 /* PianoCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoCommon.h; sourceTree = "<group>"; };
+		BA0BBCFF193393AC00F27181 /* PianoCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoCommon.m; sourceTree = "<group>"; };
+		BA0BBD0119339AA100F27181 /* PianoRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoRecognition.h; sourceTree = "<group>"; };
+		BA0BBD0219339AA100F27181 /* PianoRecognition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoRecognition.m; sourceTree = "<group>"; };
+		BA1134761931DC790039E77E /* MidiKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MidiKeyboard.h; sourceTree = "<group>"; };
+		BA1134771931DC790039E77E /* MidiKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MidiKeyboard.m; sourceTree = "<group>"; };
+		BA1383BF191CEEA000610B44 /* PianoRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoRecorder.h; sourceTree = "<group>"; };
+		BA1383C0191CEEA000610B44 /* PianoRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoRecorder.m; sourceTree = "<group>"; };
+		BA1F2D491920F2B7009A9E73 /* MusicPlayers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayers.h; sourceTree = "<group>"; };
+		BA1F2D4A1920F2B7009A9E73 /* MusicPlayers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayers.m; sourceTree = "<group>"; };
+		BA40D3781936382300FCAE9A /* RecognitionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionData.m; sourceTree = "<group>"; };
+		BA40D3791936382300FCAE9A /* RecognitionlData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionlData.h; sourceTree = "<group>"; };
+		BA48D8BE193AD1CA00DC424E /* perfect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfect.png; sourceTree = "<group>"; };
+		BA48D8BF193AD1CA00DC424E /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		BA48D8C0193AD1CA00DC424E /* wrong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wrong.png; sourceTree = "<group>"; };
+		BA5BD74519224C2B00C01FCD /* MIDIParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIParser.h; sourceTree = "<group>"; };
+		BA5BD74619224C2B00C01FCD /* MIDIParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIDIParser.m; sourceTree = "<group>"; };
+		BA5BD74719224C2B00C01FCD /* TrackSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackSetting.h; sourceTree = "<group>"; };
+		BA5BD74819224C2B00C01FCD /* TrackSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackSetting.m; sourceTree = "<group>"; };
+		BA6DBC7D191694790050D5F7 /* SheetMusicDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetMusicDelegate.h; sourceTree = "<group>"; };
+		BA6DBC7E191694790050D5F7 /* SheetMusicPlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetMusicPlay.h; sourceTree = "<group>"; };
+		BA6DBC7F191694790050D5F7 /* SheetMusicPlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetMusicPlay.m; sourceTree = "<group>"; };
+		BA6DBC80191694790050D5F7 /* SheetMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetMusicPlayer.h; sourceTree = "<group>"; };
+		BA6DBC81191694790050D5F7 /* SheetMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetMusicPlayer.m; sourceTree = "<group>"; };
+		BA80E19D19408C22007A41D3 /* pedal-end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedal-end.png"; sourceTree = "<group>"; };
+		BA80E19E19408C22007A41D3 /* pedal-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedal-start.png"; sourceTree = "<group>"; };
+		BA81EFA91939519000B477C7 /* SFCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCountdownView.h; sourceTree = "<group>"; };
+		BA81EFAA1939519000B477C7 /* SFCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCountdownView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		190E6DD91907E27200AD8F6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				190E6E831907E8FE00AD8F6B /* UIKit.framework in Frameworks */,
+				190E6E811907E8F000AD8F6B /* CoreGraphics.framework in Frameworks */,
+				190E6E7F1907E8DB00AD8F6B /* CoreMedia.framework in Frameworks */,
+				190E6E7D1907E8CA00AD8F6B /* AudioToolbox.framework in Frameworks */,
+				190E6E7B1907E8B900AD8F6B /* CoreMIDI.framework in Frameworks */,
+				190E6DE01907E27200AD8F6B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		190E6DE91907E27200AD8F6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				190E6DEE1907E27200AD8F6B /* XCTest.framework in Frameworks */,
+				190E6DF41907E27200AD8F6B /* libStaveFramework.a in Frameworks */,
+				190E6DEF1907E27200AD8F6B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		190E6DD31907E27200AD8F6B = {
+			isa = PBXGroup;
+			children = (
+				190E6DE11907E27200AD8F6B /* StaveFramework */,
+				190E6DF51907E27200AD8F6B /* StaveFrameworkTests */,
+				190E6DDE1907E27200AD8F6B /* Frameworks */,
+				190E6DDD1907E27200AD8F6B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		190E6DDD1907E27200AD8F6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				190E6DDC1907E27200AD8F6B /* libStaveFramework.a */,
+				190E6DEC1907E27200AD8F6B /* StaveFrameworkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		190E6DDE1907E27200AD8F6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				190E6E821907E8FE00AD8F6B /* UIKit.framework */,
+				190E6E801907E8F000AD8F6B /* CoreGraphics.framework */,
+				190E6E7E1907E8DB00AD8F6B /* CoreMedia.framework */,
+				190E6E7C1907E8CA00AD8F6B /* AudioToolbox.framework */,
+				190E6E7A1907E8B900AD8F6B /* CoreMIDI.framework */,
+				190E6DDF1907E27200AD8F6B /* Foundation.framework */,
+				190E6DED1907E27200AD8F6B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		190E6DE11907E27200AD8F6B /* StaveFramework */ = {
+			isa = PBXGroup;
+			children = (
+				BA1134751931DC590039E77E /* MidiLine */,
+				190E6E0E1907E77000AD8F6B /* MidiFile */,
+				190E6E071907E6A800AD8F6B /* MidiPlayer */,
+				190E6E061907E5B500AD8F6B /* BlueTooth */,
+				8964EBB11945368200DBCED9 /* Resources */,
+				190E6DE21907E27200AD8F6B /* Supporting Files */,
+			);
+			path = StaveFramework;
+			sourceTree = "<group>";
+		};
+		190E6DE21907E27200AD8F6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				190E6DE31907E27200AD8F6B /* StaveFramework-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		190E6DF51907E27200AD8F6B /* StaveFrameworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				190E6DFB1907E27200AD8F6B /* StaveFrameworkTests.m */,
+				190E6DF61907E27200AD8F6B /* Supporting Files */,
+			);
+			path = StaveFrameworkTests;
+			sourceTree = "<group>";
+		};
+		190E6DF61907E27200AD8F6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				190E6DF71907E27200AD8F6B /* StaveFrameworkTests-Info.plist */,
+				190E6DF81907E27200AD8F6B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		190E6E061907E5B500AD8F6B /* BlueTooth */ = {
+			isa = PBXGroup;
+			children = (
+				190E6E841907E9C400AD8F6B /* SerialGATT.h */,
+				190E6E851907E9C400AD8F6B /* SerialGATT.m */,
+			);
+			name = BlueTooth;
+			sourceTree = "<group>";
+		};
+		190E6E071907E6A800AD8F6B /* MidiPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				BA5BD74519224C2B00C01FCD /* MIDIParser.h */,
+				BA5BD74619224C2B00C01FCD /* MIDIParser.m */,
+				BA5BD74719224C2B00C01FCD /* TrackSetting.h */,
+				BA5BD74819224C2B00C01FCD /* TrackSetting.m */,
+				190E6E081907E72A00AD8F6B /* GDCoreAudioUtils.c */,
+				190E6E091907E72A00AD8F6B /* GDCoreAudioUtils.h */,
+				190E6E0A1907E72A00AD8F6B /* GDSoundEngine.h */,
+				190E6E0B1907E72A00AD8F6B /* GDSoundEngine.m */,
+			);
+			name = MidiPlayer;
+			sourceTree = "<group>";
+		};
+		190E6E0E1907E77000AD8F6B /* MidiFile */ = {
+			isa = PBXGroup;
+			children = (
+				BA81EFA91939519000B477C7 /* SFCountdownView.h */,
+				BA81EFAA1939519000B477C7 /* SFCountdownView.m */,
+				BA40D3781936382300FCAE9A /* RecognitionData.m */,
+				BA40D3791936382300FCAE9A /* RecognitionlData.h */,
+				BA0BBD0119339AA100F27181 /* PianoRecognition.h */,
+				BA0BBD0219339AA100F27181 /* PianoRecognition.m */,
+				BA6DBC7D191694790050D5F7 /* SheetMusicDelegate.h */,
+				BA6DBC7E191694790050D5F7 /* SheetMusicPlay.h */,
+				BA6DBC7F191694790050D5F7 /* SheetMusicPlay.m */,
+				BA6DBC80191694790050D5F7 /* SheetMusicPlayer.h */,
+				BA6DBC81191694790050D5F7 /* SheetMusicPlayer.m */,
+				190E6E0F1907E80800AD8F6B /* AccidSymbol.h */,
+				190E6E101907E80800AD8F6B /* AccidSymbol.m */,
+				190E6E111907E80800AD8F6B /* Array.h */,
+				190E6E121907E80800AD8F6B /* Array.m */,
+				190E6E131907E80800AD8F6B /* BarSymbol.h */,
+				190E6E141907E80800AD8F6B /* BarSymbol.m */,
+				190E6E151907E80800AD8F6B /* BeatSignature.h */,
+				190E6E161907E80800AD8F6B /* BeatSignature.m */,
+				190E6E171907E80800AD8F6B /* BlankSymbol.h */,
+				190E6E181907E80800AD8F6B /* BlankSymbol.m */,
+				190E6E191907E80800AD8F6B /* ChordSymbol.h */,
+				190E6E1A1907E80800AD8F6B /* ChordSymbol.m */,
+				190E6E1B1907E80800AD8F6B /* ClefMeasures.h */,
+				190E6E1C1907E80800AD8F6B /* ClefMeasures.m */,
+				190E6E1D1907E80800AD8F6B /* ClefSymbol.h */,
+				190E6E1E1907E80800AD8F6B /* ClefSymbol.m */,
+				190E6E1F1907E80800AD8F6B /* ControlData.h */,
+				190E6E201907E80800AD8F6B /* ControlData.m */,
+				190E6E211907E80800AD8F6B /* KeySignature.h */,
+				190E6E221907E80800AD8F6B /* KeySignature.m */,
+				190E6E231907E80800AD8F6B /* LyricSymbol.h */,
+				190E6E241907E80800AD8F6B /* LyricSymbol.m */,
+				190E6E251907E80800AD8F6B /* MidiEvent.h */,
+				190E6E261907E80800AD8F6B /* MidiEvent.m */,
+				190E6E271907E80800AD8F6B /* MidiFile.h */,
+				190E6E281907E80800AD8F6B /* MidiFile.m */,
+				190E6E291907E80800AD8F6B /* MidiFileException.h */,
+				190E6E2A1907E80800AD8F6B /* MidiFileException.m */,
+				190E6E2B1907E80800AD8F6B /* MidiFileReader.h */,
+				190E6E2C1907E80800AD8F6B /* MidiFileReader.m */,
+				190E6E2D1907E80800AD8F6B /* MidiNote.h */,
+				190E6E2E1907E80800AD8F6B /* MidiNote.m */,
+				190E6E2F1907E80800AD8F6B /* MidiOptions.h */,
+				190E6E301907E80800AD8F6B /* MidiPlayer.h */,
+				190E6E311907E80800AD8F6B /* MidiPlayer.m */,
+				190E6E321907E80800AD8F6B /* MidiTrack.h */,
+				190E6E331907E80800AD8F6B /* MidiTrack.m */,
+				190E6E341907E80800AD8F6B /* MusicSymbol.h */,
+				190E6E351907E80800AD8F6B /* Piano.h */,
+				190E6E361907E80800AD8F6B /* Piano.m */,
+				190E6E371907E80800AD8F6B /* PianoDataJudged.h */,
+				190E6E381907E80800AD8F6B /* PianoDataJudged.m */,
+				190E6E391907E80800AD8F6B /* RestSymbol.h */,
+				190E6E3A1907E80800AD8F6B /* RestSymbol.m */,
+				190E6E3B1907E80800AD8F6B /* SheetMusic.h */,
+				190E6E3C1907E80800AD8F6B /* SheetMusic.m */,
+				190E6E3D1907E80800AD8F6B /* Staff.h */,
+				190E6E3E1907E80800AD8F6B /* Staff.m */,
+				190E6E3F1907E80800AD8F6B /* Stem.h */,
+				190E6E401907E80800AD8F6B /* Stem.m */,
+				190E6E411907E80800AD8F6B /* SymbolWidths.h */,
+				190E6E421907E80800AD8F6B /* SymbolWidths.m */,
+				190E6E431907E80800AD8F6B /* TimeSignature.h */,
+				190E6E441907E80800AD8F6B /* TimeSignature.m */,
+				190E6E451907E80800AD8F6B /* TimeSigSymbol.h */,
+				190E6E461907E80800AD8F6B /* TimeSigSymbol.m */,
+				190E6E471907E80800AD8F6B /* ToneSignature.h */,
+				190E6E481907E80800AD8F6B /* ToneSignature.m */,
+				190E6E491907E80800AD8F6B /* WhiteNote.h */,
+				190E6E4A1907E80800AD8F6B /* WhiteNote.m */,
+				BA1383BF191CEEA000610B44 /* PianoRecorder.h */,
+				BA1383C0191CEEA000610B44 /* PianoRecorder.m */,
+				BA1F2D491920F2B7009A9E73 /* MusicPlayers.h */,
+				BA1F2D4A1920F2B7009A9E73 /* MusicPlayers.m */,
+				BA0BBCFE193393AC00F27181 /* PianoCommon.h */,
+				BA0BBCFF193393AC00F27181 /* PianoCommon.m */,
+			);
+			name = MidiFile;
+			sourceTree = "<group>";
+		};
+		8964EBB11945368200DBCED9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BA80E19D19408C22007A41D3 /* pedal-end.png */,
+				BA80E19E19408C22007A41D3 /* pedal-start.png */,
+				BA48D8BE193AD1CA00DC424E /* perfect.png */,
+				BA48D8BF193AD1CA00DC424E /* right.png */,
+				BA48D8C0193AD1CA00DC424E /* wrong.png */,
+				190E6E681907E84900AD8F6B /* bass.png */,
+				190E6E691907E84900AD8F6B /* eight.png */,
+				190E6E6A1907E84900AD8F6B /* four.png */,
+				190E6E6B1907E84900AD8F6B /* nine.png */,
+				190E6E6C1907E84900AD8F6B /* six.png */,
+				190E6E6D1907E84900AD8F6B /* three.png */,
+				190E6E6E1907E84900AD8F6B /* treble.png */,
+				190E6E6F1907E84900AD8F6B /* twelve.png */,
+				190E6E701907E84900AD8F6B /* two.png */,
+				190E6E051907E4CA00AD8F6B /* gls.dls */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BA1134751931DC590039E77E /* MidiLine */ = {
+			isa = PBXGroup;
+			children = (
+				BA1134761931DC790039E77E /* MidiKeyboard.h */,
+				BA1134771931DC790039E77E /* MidiKeyboard.m */,
+			);
+			name = MidiLine;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		190E6DDB1907E27200AD8F6B /* StaveFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 190E6DFF1907E27200AD8F6B /* Build configuration list for PBXNativeTarget "StaveFramework" */;
+			buildPhases = (
+				190E6DD81907E27200AD8F6B /* Sources */,
+				190E6DD91907E27200AD8F6B /* Frameworks */,
+				190E6DDA1907E27200AD8F6B /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StaveFramework;
+			productName = StaveFramework;
+			productReference = 190E6DDC1907E27200AD8F6B /* libStaveFramework.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		190E6DEB1907E27200AD8F6B /* StaveFrameworkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 190E6E021907E27200AD8F6B /* Build configuration list for PBXNativeTarget "StaveFrameworkTests" */;
+			buildPhases = (
+				190E6DE81907E27200AD8F6B /* Sources */,
+				190E6DE91907E27200AD8F6B /* Frameworks */,
+				190E6DEA1907E27200AD8F6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				190E6DF31907E27200AD8F6B /* PBXTargetDependency */,
+			);
+			name = StaveFrameworkTests;
+			productName = StaveFrameworkTests;
+			productReference = 190E6DEC1907E27200AD8F6B /* StaveFrameworkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		190E6DD41907E27200AD8F6B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = yizhq;
+			};
+			buildConfigurationList = 190E6DD71907E27200AD8F6B /* Build configuration list for PBXProject "StaveFramework" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 190E6DD31907E27200AD8F6B;
+			productRefGroup = 190E6DDD1907E27200AD8F6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				190E6DDB1907E27200AD8F6B /* StaveFramework */,
+				190E6DEB1907E27200AD8F6B /* StaveFrameworkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		190E6DEA1907E27200AD8F6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				190E6E751907E84900AD8F6B /* six.png in Resources */,
+				190E6E711907E84900AD8F6B /* bass.png in Resources */,
+				190E6E781907E84900AD8F6B /* twelve.png in Resources */,
+				190E6E761907E84900AD8F6B /* three.png in Resources */,
+				190E6E771907E84900AD8F6B /* treble.png in Resources */,
+				190E6E741907E84900AD8F6B /* nine.png in Resources */,
+				190E6DFA1907E27200AD8F6B /* InfoPlist.strings in Resources */,
+				190E6E721907E84900AD8F6B /* eight.png in Resources */,
+				190E6E791907E84900AD8F6B /* two.png in Resources */,
+				190E6E731907E84900AD8F6B /* four.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		190E6DD81907E27200AD8F6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA0BBD00193393AC00F27181 /* PianoCommon.m in Sources */,
+				190E6E0C1907E72A00AD8F6B /* GDCoreAudioUtils.c in Sources */,
+				190E6E541907E80800AD8F6B /* KeySignature.m in Sources */,
+				BA1F2D4B1920F2B7009A9E73 /* MusicPlayers.m in Sources */,
+				190E6E581907E80800AD8F6B /* MidiFileException.m in Sources */,
+				190E6E5C1907E80800AD8F6B /* MidiTrack.m in Sources */,
+				190E6E4D1907E80800AD8F6B /* BarSymbol.m in Sources */,
+				190E6E511907E80800AD8F6B /* ClefMeasures.m in Sources */,
+				190E6E651907E80800AD8F6B /* TimeSigSymbol.m in Sources */,
+				190E6E631907E80800AD8F6B /* SymbolWidths.m in Sources */,
+				BA6DBC83191694790050D5F7 /* SheetMusicPlayer.m in Sources */,
+				BA5BD74919224C2B00C01FCD /* MIDIParser.m in Sources */,
+				BA81EFAB1939519000B477C7 /* SFCountdownView.m in Sources */,
+				BA6DBC82191694790050D5F7 /* SheetMusicPlay.m in Sources */,
+				190E6E5D1907E80800AD8F6B /* Piano.m in Sources */,
+				190E6E521907E80800AD8F6B /* ClefSymbol.m in Sources */,
+				190E6E661907E80800AD8F6B /* ToneSignature.m in Sources */,
+				190E6E4E1907E80800AD8F6B /* BeatSignature.m in Sources */,
+				190E6E611907E80800AD8F6B /* Staff.m in Sources */,
+				190E6E5A1907E80800AD8F6B /* MidiNote.m in Sources */,
+				190E6E4C1907E80800AD8F6B /* Array.m in Sources */,
+				190E6E571907E80800AD8F6B /* MidiFile.m in Sources */,
+				190E6E4B1907E80800AD8F6B /* AccidSymbol.m in Sources */,
+				190E6E551907E80800AD8F6B /* LyricSymbol.m in Sources */,
+				190E6E5E1907E80800AD8F6B /* PianoDataJudged.m in Sources */,
+				190E6E4F1907E80800AD8F6B /* BlankSymbol.m in Sources */,
+				190E6E501907E80800AD8F6B /* ChordSymbol.m in Sources */,
+				190E6E5B1907E80800AD8F6B /* MidiPlayer.m in Sources */,
+				190E6E5F1907E80800AD8F6B /* RestSymbol.m in Sources */,
+				190E6E0D1907E72A00AD8F6B /* GDSoundEngine.m in Sources */,
+				BA5BD74A19224C2B00C01FCD /* TrackSetting.m in Sources */,
+				190E6E621907E80800AD8F6B /* Stem.m in Sources */,
+				BA40D37A1936382300FCAE9A /* RecognitionData.m in Sources */,
+				190E6E591907E80800AD8F6B /* MidiFileReader.m in Sources */,
+				BA1383C1191CEEA000610B44 /* PianoRecorder.m in Sources */,
+				190E6E561907E80800AD8F6B /* MidiEvent.m in Sources */,
+				190E6E531907E80800AD8F6B /* ControlData.m in Sources */,
+				BA1134781931DC790039E77E /* MidiKeyboard.m in Sources */,
+				190E6E671907E80800AD8F6B /* WhiteNote.m in Sources */,
+				190E6E641907E80800AD8F6B /* TimeSignature.m in Sources */,
+				190E6E861907E9C400AD8F6B /* SerialGATT.m in Sources */,
+				190E6E601907E80800AD8F6B /* SheetMusic.m in Sources */,
+				BA0BBD0319339AA100F27181 /* PianoRecognition.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		190E6DE81907E27200AD8F6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				190E6DFC1907E27200AD8F6B /* StaveFrameworkTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		190E6DF31907E27200AD8F6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 190E6DDB1907E27200AD8F6B /* StaveFramework */;
+			targetProxy = 190E6DF21907E27200AD8F6B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		190E6DF81907E27200AD8F6B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				190E6DF91907E27200AD8F6B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		190E6DFD1907E27200AD8F6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		190E6DFE1907E27200AD8F6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		190E6E001907E27200AD8F6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/StaveFramework.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StaveFramework/StaveFramework-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+			};
+			name = Debug;
+		};
+		190E6E011907E27200AD8F6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/StaveFramework.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StaveFramework/StaveFramework-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+			};
+			name = Release;
+		};
+		190E6E031907E27200AD8F6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StaveFramework/StaveFramework-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "StaveFrameworkTests/StaveFrameworkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		190E6E041907E27200AD8F6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StaveFramework/StaveFramework-Prefix.pch";
+				INFOPLIST_FILE = "StaveFrameworkTests/StaveFrameworkTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		190E6DD71907E27200AD8F6B /* Build configuration list for PBXProject "StaveFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				190E6DFD1907E27200AD8F6B /* Debug */,
+				190E6DFE1907E27200AD8F6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		190E6DFF1907E27200AD8F6B /* Build configuration list for PBXNativeTarget "StaveFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				190E6E001907E27200AD8F6B /* Debug */,
+				190E6E011907E27200AD8F6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		190E6E021907E27200AD8F6B /* Build configuration list for PBXNativeTarget "StaveFrameworkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				190E6E031907E27200AD8F6B /* Debug */,
+				190E6E041907E27200AD8F6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 190E6DD41907E27200AD8F6B /* Project object */;
+}

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewCell.h"
+#import "MelodyButton.h"
 
 @protocol MelodyTableViewCellDelegate <NSObject>
 
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFavorite;
 @property (weak, nonatomic) IBOutlet UIButton *btnTask;
 @property (weak, nonatomic) IBOutlet UIButton *btnBuy;
-@property (weak, nonatomic) IBOutlet UIButton *btnView;
+@property (weak, nonatomic) IBOutlet MelodyButton *btnView;
 @property (weak, nonatomic) IBOutlet UILabel *labBuy;
 
 @property (strong, nonatomic) Melody *melody;
