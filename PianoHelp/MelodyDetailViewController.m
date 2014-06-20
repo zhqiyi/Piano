@@ -11,7 +11,7 @@
 
 @interface MelodyDetailViewController ()
 {
-    
+    BOOL isHitAnimating;
 }
 @property (nonatomic,weak) UIButton *btnCurrent;
 @property (strong, nonatomic) SFCountdownView *sfCountdownView;
@@ -32,7 +32,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     if (self.fileName == nil) return;
     
     midifile = [[MidiFile alloc] initWithFile:self.fileName];
@@ -50,6 +49,7 @@
     self.sfCountdownView.countdownColor = [UIColor blackColor];
     self.sfCountdownView.countdownFrom = 3;
     [self.sfCountdownView updateAppearance];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -79,7 +79,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -95,19 +94,24 @@
     }
 }
 
+#pragma mark - IBAction
 
 - (IBAction)btnBack_click:(id)sender
 {
     [player stop];
+    if([self.fixSearchDisplayDelegate respondsToSelector:@selector(fixSearchBarPosition)])
+    {
+        //[self.fixSearchDisplayDelegate fixSearchBarPosition];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)setCurrentButtonState:(id)sender
 {
-    [self.btnCurrent setSelected:NO];
-    UIButton *btn = (UIButton*)sender;
-    [btn setSelected:YES];
-    self.btnCurrent = btn;
+//    [self.btnCurrent setSelected:NO];
+//    UIButton *btn = (UIButton*)sender;
+//    [btn setSelected:YES];
+//    self.btnCurrent = btn;
 }
 
 - (IBAction)btnSection_click:(id)sender
@@ -127,6 +131,28 @@
 - (IBAction)btnHint_click:(id)sender
 {
     [self setCurrentButtonState:sender];
+    if(isHitAnimating) return;
+    isHitAnimating = YES;
+    if(piano.hidden)
+    {
+        piano.hidden = NO;
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            scrollView.frame = CGRectMake(0, 130, 1024, scrollView.frame.size.height-55);
+            sheetmsic1.frame = CGRectMake(0, 130, sheetmsic1.frame.size.width, sheetmsic1.frame.size.height);
+        } completion:^(BOOL finished) {
+            isHitAnimating = NO;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            scrollView.frame = CGRectMake(0, 75, 1024, scrollView.frame.size.height+55);
+            sheetmsic1.frame = CGRectMake(0, 75, sheetmsic1.frame.size.width, sheetmsic1.frame.size.height);
+        } completion:^(BOOL finished) {
+            piano.hidden = YES;
+            isHitAnimating = NO;
+        }];
+    }
 }
 
 - (IBAction)btnTryListen_click:(id)sender
@@ -169,6 +195,8 @@
     [player changeSpeed:slider.value];
 }
 
+#pragma mark - private method
+
 - (void) loadSheetMusick
 {
     CGRect screensize = [[UIScreen mainScreen] applicationFrame];
@@ -191,11 +219,11 @@
     piano.frame = CGRectMake(0, 75, 1024, 120);
     [self.view addSubview:piano];
     
-    
     float height = sheetmusic.frame.size.height;
-    CGRect frame = CGRectMake(0, 200, 1024, 498);
+    CGRect frame = CGRectMake(0, 130, 1024, 768-75-130);
     scrollView= [[UIScrollView alloc] initWithFrame: frame];
     scrollView.contentSize= CGSizeMake(1024, height+280);
+    scrollView.backgroundColor = [UIColor whiteColor];
     
     
     [scrollView addSubview:sheetmusic];
@@ -207,6 +235,18 @@
     sheetmsic1.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:sheetmsic1];
     [self.view addSubview:scrollView];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapGesture.delegate = self;
+    //[sheetmusic addGestureRecognizer:tapGesture];
+    
+    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapGesture.delegate = self;
+    [sheetmsic1 addGestureRecognizer:tapGesture];
+    
+    tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapGesture.delegate = self;
+    [scrollView addGestureRecognizer:tapGesture];
     
     if (player != nil)
     {
@@ -220,6 +260,53 @@
     [piano setShade:[UIColor blueColor] andShade2:[UIColor redColor]];
     [piano setMidiFile:midifile withOptions:&options];
     [player setPiano:piano];
+}
+
+-(void)hiddenMenuAndToolBar
+{
+    if(self.menuBar.hidden)
+    {
+        self.menuBar.hidden = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.menuBar.frame = CGRectMake(0, 0, 1024, 75);
+            self.toolBar.frame = CGRectMake(0, 693, 1024, 75);
+            scrollView.frame = CGRectMake(0,
+                                          scrollView.frame.origin.y+75 ,
+                                          scrollView.frame.size.width,
+                                          scrollView.frame.size.height-75*2 );
+            sheetmsic1.frame = CGRectMake(0,
+                                          sheetmsic1.frame.origin.y+75,
+                                          sheetmsic1.frame.size.width,
+                                          sheetmsic1.frame.size.height);
+            piano.frame = CGRectMake(0,
+                                     piano.frame.origin.y + 75,
+                                     piano.frame.size.width,
+                                     piano.frame.size.height);
+        } completion:^(BOOL finished) {
+            ;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.menuBar.frame = CGRectMake(0, -75, 1024, 75);
+            self.toolBar.frame = CGRectMake(0, 693+75, 1024, 75);
+            scrollView.frame = CGRectMake(0,
+                                          scrollView.frame.origin.y-75,
+                                          scrollView.frame.size.width,
+                                          scrollView.frame.size.height+75*2);
+            sheetmsic1.frame = CGRectMake(0,
+                                          sheetmsic1.frame.origin.y-75,
+                                          sheetmsic1.frame.size.width,
+                                          sheetmsic1.frame.size.height);
+            piano.frame = CGRectMake(0,
+                                     piano.frame.origin.y - 75,
+                                     piano.frame.size.width,
+                                     piano.frame.size.height);
+        } completion:^(BOOL finished) {
+            self.menuBar.hidden = YES;
+        }];
+    }
 }
 
 
@@ -245,6 +332,17 @@
     
     type = 2;//add by zyw test
     [player playByType:type];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (IBAction)handleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        // handling code
+        [self hiddenMenuAndToolBar];
+    }
 }
 
 @end

@@ -47,8 +47,35 @@
 }
 */
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *kCellID = @"UITableViewCell";
+    
+    // Dequeue a cell from self's table view.
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID];
+	/*
+	 If the requesting table view is the search display controller's table view, configure the cell using the search results array, otherwise use the product array.
+	 */
+	return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 - (IBAction)btnTest_onclick:(id)sender
 {
     [((AppDelegate*)[UIApplication sharedApplication].delegate) loadDemoMidiToSQL];
+}
+
+- (IBAction)btnBack_onclick:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end

@@ -1,18 +1,18 @@
 //
-//  BaseViewController.m
+//  LoginViewController.m
 //  PianoHelp
 //
-//  Created by Jobs on 14-5-15.
-//  Copyright (c) 2014年 FlintInfo. All rights reserved.
+//  Created by Jobs on 6/17/14.
+//  Copyright (c) 2014 FlintInfo. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "LoginViewController.h"
 
-@interface BaseViewController ()
+@interface LoginViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation LoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,27 +46,12 @@
 }
 */
 
-- (BOOL)shouldAutorotate
+- (IBAction)btnLogin_onclick:(id)sender
 {
-    return YES;
-}
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscape;
-}
-// Returns interface orientation masks.
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationLandscapeLeft/* | UIInterfaceOrientationLandscapeRight*/;
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleDefault;
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha=0;
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+    }];
 }
 @end

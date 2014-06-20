@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "MelodyViewController.h"
 #import "StaveFramework/MidiFile.h"
 #import "StaveFramework/MidiPlayer.h"
 #import "StaveFramework/Piano.h"
@@ -15,7 +15,8 @@
 #import "StaveFramework/SheetMusicPlay.h"
 #import "StaveFramework/SFCountdownView.h"
 
-@interface MelodyDetailViewController : BaseViewController <SFCountdownViewDelegate, MidiPlayerDelegate>
+
+@interface MelodyDetailViewController : BaseViewController <SFCountdownViewDelegate, MidiPlayerDelegate, UIGestureRecognizerDelegate>
 {
     MidiFile *midifile;         /** The midifile that was read */
     SheetMusic *sheetmusic;     /** The sheet music to display */
@@ -36,6 +37,11 @@
 @property (weak, nonatomic) IBOutlet UISlider *sliderSpeed;
 
 @property (strong, nonatomic) NSString *fileName;
+@property (weak, nonatomic) id<FixSearchDisplayDelegate> fixSearchDisplayDelegate;
+
+@property (weak, nonatomic) IBOutlet UIView *menuBar;
+@property (weak, nonatomic) IBOutlet UIView *toolBar;
+
 
 - (IBAction)btnBack_click:(id)sender;
 - (IBAction)btnSection_click:(id)sender;
@@ -49,5 +55,7 @@
 
 - (IBAction)xiaoJieSlider_valueChanged:(id)sender;
 - (IBAction)suduSlider_valueChanged:(id)sender;
+
+- (IBAction)handleTap:(UITapGestureRecognizer *)sender;
 
 @end

@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "MelodyCategoryViewController.h"
 #import "MelodyCategory.h"
+#import "LoginViewController.h"
 
 @interface RootViewController ()
 
@@ -38,10 +39,10 @@
     self.title = @"首页";
     UIImage *image = [UIImage imageNamed:@"daohangtiao.png"];
     self.topToolbar.backgroundColor = [UIColor colorWithPatternImage:image];
-//    
-//    MelodyCategoryViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MelodyCategoryViewController"];
-//    [self addChildViewController:vc];
-//    [self.contentView addSubview:vc.view];
+    
+    LoginViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
     //if(!IS_RUNNING_IOS7)
     {
         for (UIView *subView in self.topToolbar.subviews)
@@ -113,10 +114,11 @@
     }
     else if(sender == self.btnShop)
     {
-        self.melodyContainerView.hidden = YES;
-        self.qinFangContainerView.hidden = YES;
-        self.shopContainerView.hidden = NO;
-        self.showContainerView.hidden = YES;
+        
+//        self.melodyContainerView.hidden = YES;
+//        self.qinFangContainerView.hidden = YES;
+//        self.shopContainerView.hidden = NO;
+//        self.showContainerView.hidden = YES;
     }
     else if(sender == self.btnShow)
     {

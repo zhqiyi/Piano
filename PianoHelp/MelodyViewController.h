@@ -12,7 +12,13 @@
 #import "MelodyTableViewCell.h"
 #import "Melody.h"
 
-@interface MelodyViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MelodyTableViewCellDelegate>
+@protocol FixSearchDisplayDelegate <NSObject>
+
+-(void)fixSearchBarPosition;
+
+@end
+
+@interface MelodyViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, MelodyTableViewCellDelegate, FixSearchDisplayDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (weak, nonatomic) IBOutlet UILabel *labTitle;

@@ -51,27 +51,36 @@ extern NSString *ScopeSongName;
         [scopeButtonTitles addObject:displayName];
     }
     
+    [self.searchDisplayController searchResultsTableView].rowHeight = 64;
     self.searchDisplayController.searchBar.scopeButtonTitles = scopeButtonTitles;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.searchDisplayController searchResultsTableView].rowHeight = 64;
+    [self fixSearchBarPosition];
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self fixSearchBarPosition];}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Navigation
 
@@ -83,6 +92,7 @@ extern NSString *ScopeSongName;
     if([[segue identifier] isEqualToString:@"melodyDetailSegue"])
     {
         MelodyDetailViewController *vc = segue.destinationViewController;
+        vc.fixSearchDisplayDelegate = self;
         vc.iPlayMode = 1;
         //add test by zyw
         NSString *filename = [((AppDelegate*)[[UIApplication sharedApplication] delegate]) filePathForName:((MelodyButton*)sender).fileName];
@@ -180,10 +190,59 @@ extern NSString *ScopeSongName;
 
 #pragma mark - UISearchDisplayController Delegate Methods
 
-- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+// when we start/end showing the search UI
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller;
+{
+    
+}
+
+- (void) searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller;
+{
+    
+}
+
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    
+}
+
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller;
 {
     [self updateMelodyState];
 }
+
+// called when the table is created destroyed, shown or hidden. configure as necessary.
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView
+{
+    
+}
+
+// called when table is shown/hidden
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView
+{
+    
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView
+{
+    [self fixSearchBarPosition];
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView
+{
+    
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
+{
+    
+}
+
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
@@ -202,6 +261,31 @@ extern NSString *ScopeSongName;
     [self updateFilteredContentForSearchString:searchString type:scope];
     // Return YES to cause the search result table view to be reloaded.
     return YES;
+}
+
+#pragma mark - FixSearchDisplayDelegate
+
+-(void)fixSearchBarPosition
+{
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+    {
+        //UISearchDisplayControllerContainerView
+        CGRect frame = [self.searchDisplayController.searchResultsTableView.superview superview].frame;
+        if(CGRectEqualToRect(frame, CGRectZero))
+            return;
+        [self.searchDisplayController.searchResultsTableView.superview superview].frame = CGRectMake(0, 75, 1024, 693);
+        self.searchDisplayController.searchBar.superview.frame = CGRectMake(0,
+                                                                            0,
+                                                                            self.searchDisplayController.searchBar.frame.size.width,
+                                                                            self.searchDisplayController.searchBar.frame.size.height);
+        UIView *dimmingView = (UIView*)[self.searchDisplayController.searchResultsTableView.superview superview].subviews[2];
+        if(dimmingView.frame.origin.y == 119)
+        dimmingView.frame = CGRectMake(dimmingView.frame.origin.x,
+                                       44,
+                                       dimmingView.frame.size.width,
+                                       dimmingView.frame.size.height); // (0 119; 1024 574)
+    }
+
 }
 
 #pragma mark - MelodyTableViewCellDelegate

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ShopViewController : UIViewController
+@interface ShopViewController : BaseViewController
 
 - (IBAction)btnTest_onclick:(id)sender;
+- (IBAction)btnBack_onclick:(id)sender;
 @end
