@@ -76,6 +76,14 @@ int sortbynote(void* note1, void* note2) {
     controlList5 = [Array new:20];
     controlList6 = [Array new:20];
     controlList7 = [Array new:20];
+    controlList8 = [Array new:20];
+    controlList9 = [Array new:10];
+    controlList10 = [Array new:10];
+    controlList11 = [Array new:10];
+    controlList12 = [Array new:10];
+    controlList13 = [Array new:10];
+    controlList14 = [Array new:10];
+    controlList15 = [Array new:10];
     /** add by sunlie end */
     instrument = 0;
     return self;
@@ -96,6 +104,14 @@ int sortbynote(void* note1, void* note2) {
     controlList5 = [Array new:20];
     controlList6 = [Array new:20];
     controlList7 = [Array new:20];
+    controlList8 = [Array new:20];
+    controlList9 = [Array new:10];
+    controlList10 = [Array new:10];
+    controlList11 = [Array new:10];
+    controlList12 = [Array new:10];
+    controlList13 = [Array new:10];
+    controlList14 = [Array new:10];
+    controlList15 = [Array new:10];
     /** add by sunlie end */
     
     for (int i= 0;i < [list count]; i++) {
@@ -145,6 +161,14 @@ int sortbynote(void* note1, void* note2) {
     [controlList5 release];
     [controlList6 release];
     [controlList7 release];
+    [controlList8 release];
+    [controlList9 release];
+    [controlList10 release];
+    [controlList11 release];
+    [controlList12 release];
+    [controlList13 release];
+    [controlList14 release];
+    [controlList15 release];
     /** add by sunlie end */
     [super dealloc];
 }
@@ -266,6 +290,93 @@ int sortbynote(void* note1, void* note2) {
     }
 }
 
+-(Array*)controlList8 {
+    return controlList8;
+}
+
+-(void)setControlList8:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList8 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList9 {
+    return controlList9;
+}
+
+-(void)setControlList9:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList9 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList10 {
+    return controlList10;
+}
+
+-(void)setControlList10:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList10 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList11 {
+    return controlList11;
+}
+
+-(void)setControlList11:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList11 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList12 {
+    return controlList12;
+}
+
+-(void)setControlList12:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList12 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList13 {
+    return controlList13;
+}
+
+-(void)setControlList13:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList13 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList14 {
+    return controlList14;
+}
+
+-(void)setControlList14:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList14 add:[cd copy]];
+    }
+}
+
+-(Array*)controlList15 {
+    return controlList15;
+}
+
+-(void)setControlList15:(Array*)cl {
+    for (int i = 0; i < [cl count]; i++) {
+        ControlData *cd = [cl get:i];
+        [controlList15 add:[cd copy]];
+    }
+}
 -(int)totalpulses {
     return totalpulses;
 }
@@ -372,6 +483,56 @@ int sortbynote(void* note1, void* note2) {
             [[track controlList7] add:[cd copy]];
         }
     }
+    
+    if ([controlList8 count] > 0) {
+        for (int i = 0; i < [controlList8 count]; i++) {
+            ControlData *cd = [controlList8 get:i];
+            [[track controlList8] add:[cd copy]];
+        }
+    }
+    if ([controlList9 count] > 0) {
+        for (int i = 0; i < [controlList9 count]; i++) {
+            ControlData *cd = [controlList9 get:i];
+            [[track controlList9] add:[cd copy]];
+        }
+    }
+    
+    if ([controlList10 count] > 0) {
+        for (int i = 0; i < [controlList10 count]; i++) {
+            ControlData *cd = [controlList10 get:i];
+            [[track controlList10] add:[cd copy]];
+        }
+    }
+    if ([controlList11 count] > 0) {
+        for (int i = 0; i < [controlList11 count]; i++) {
+            ControlData *cd = [controlList11 get:i];
+            [[track controlList11] add:[cd copy]];
+        }
+    }
+    if ([controlList12 count] > 0) {
+        for (int i = 0; i < [controlList12 count]; i++) {
+            ControlData *cd = [controlList12 get:i];
+            [[track controlList12] add:[cd copy]];
+        }
+    }
+    if ([controlList13 count] > 0) {
+        for (int i = 0; i < [controlList13 count]; i++) {
+            ControlData *cd = [controlList13 get:i];
+            [[track controlList13] add:[cd copy]];
+        }
+    }
+    if ([controlList14 count] > 0) {
+        for (int i = 0; i < [controlList14 count]; i++) {
+            ControlData *cd = [controlList14 get:i];
+            [[track controlList14] add:[cd copy]];
+        }
+    }
+    if ([controlList15 count] > 0) {
+        for (int i = 0; i < [controlList15 count]; i++) {
+            ControlData *cd = [controlList15 get:i];
+            [[track controlList15] add:[cd copy]];
+        }
+    }
     /** add by sunlie end */
     
     return track;
@@ -429,6 +590,12 @@ int sortbynote(void* note1, void* note2) {
         }
         
         beginnum = [splitednotes count];
+        
+        if ((startTime+interval)/[time measure] != startTime/[time measure]) {
+            startTime += interval;
+            [note setDuration:[note duration]-interval];
+            [note setStarttime:startTime];
+        }
         
         if (startTime/[time measure] < (endTime-interval)/[time measure]) {
             do {
@@ -782,13 +949,28 @@ int sortbynote(void* note1, void* note2) {
 
 -(void)createControlNotes:(TimeSignature *)time {
     int flag6 = 0;
+    int flag11 = -1;
+    int flag12 = -1;
+    int flag13 = -1;
     int cdcount6 = 0;
-    ControlData *cd6;
+    int cdcount11 = 0;
+    int cdcount12 = 0;
+    int cdcount13 = 0;
+    ControlData *cd6,*cd11,*cd12,*cd13;
     int i = 0;
     
     
     if (cdcount6 < [controlList6 count]) {
         cd6 = [controlList6 get:cdcount6];
+    }
+    if (cdcount11 < [controlList11 count]) {
+        cd11 = [controlList11 get:cdcount11];
+    }
+    if (cdcount12 < [controlList12 count]) {
+        cd12 = [controlList12 get:cdcount12];
+    }
+    if (cdcount13 < [controlList13 count]) {
+        cd13 = [controlList13 get:cdcount13];
     }
     
     while (i < [notes count]) {
@@ -797,7 +979,7 @@ int sortbynote(void* note1, void* note2) {
             if ([note startTime] > [cd6 starttime] && [note endTime] < [cd6 endtime] && [note duration] < [time quarter]/4 && flag6 == 0) {
                 flag6 = i;
             }
-            else if ([note startTime] > [cd6 starttime] && [note endTime] > [cd6 endtime] && flag6 > 0) {
+            else if ([note startTime] > [cd6 starttime] && [note endTime] >= [cd6 endtime] && flag6 > 0) {
                 for (int j = flag6; j < i; j++) {
                     MidiNote* mn = [notes get:j];
                     [mn setStarttime:[note startTime]];
@@ -809,6 +991,81 @@ int sortbynote(void* note1, void* note2) {
                 if (cdcount6 < [controlList6 count]) {
                     cd6 = [controlList6 get:cdcount6];
                 }
+            }
+        }
+        
+        if (cdcount11 < [controlList11 count]) {
+            MidiNote* note = [notes get:i];
+            if ([note startTime] >= [cd11 starttime] && flag11 < 0) {
+                flag11 = [note startTime];
+                [notes remove:note];
+                i--;
+            } else if ([note startTime] < [cd11 endtime] && [note endTime] >= [cd11 endtime]) {
+                [note setDuration:[note duration]+[note startTime]-flag11];
+                [note setStarttime:flag11];
+                if ([cd11 cvalue] >= 11 && [cd11 cvalue] <= 64) {
+                    [note setBoflag:1];
+                } else if ([cd11 cvalue] >= 65 && [cd11 cvalue] <= 127) {
+                    [note setBoflag:2];
+                }
+                
+                flag11 = -1;
+                
+                cdcount11++;
+                if (cdcount11 < [controlList11 count]) {
+                    cd11 = [controlList11 get:cdcount11];
+                }
+            } else if ([note startTime] > [cd11 starttime] && [note endTime] < [cd11 endtime]) {
+                [notes remove:note];
+                i--;
+            }
+        }
+        
+        if (cdcount12 < [controlList12 count]) {
+            MidiNote* note = [notes get:i];
+            if ([note startTime] >= [cd12 starttime] && flag12 < 0) {
+                flag12 = [note startTime];
+                [notes remove:note];
+                i--;
+            } else if ([note startTime] < [cd12 endtime] && [note endTime] >= [cd12 endtime]) {
+                [note setDuration:[note duration]+[note startTime]-flag12];
+                [note setStarttime:flag12];
+                if ([cd12 cvalue] >= 11 && [cd12 cvalue] <= 64) {
+                    [note setHuiFlag:1];
+                } else if ([cd12 cvalue] >= 65 && [cd12 cvalue] <= 127) {
+                    [note setHuiFlag:2];
+                }
+                
+                flag12 = -1;
+                cdcount12++;
+                if (cdcount12 < [controlList12 count]) {
+                    cd12 = [controlList12 get:cdcount12];
+                }
+            } else if ([note startTime] > [cd12 starttime] && [note endTime] < [cd12 endtime]) {
+                [notes remove:note];
+                i--;
+            }
+        }
+        
+        if (cdcount13 < [controlList13 count]) {
+            MidiNote* note = [notes get:i];
+            if ([note startTime] >= [cd13 starttime] && flag13 < 0) {
+                flag13 = [note startTime];
+            } else if ([note startTime] < [cd13 endtime] && [note endTime] >= [cd13 endtime]) {
+                MidiNote* n = [notes get:i-1];
+                [n setDuration:[note endTime]-[n startTime]];
+                [n setTrFlag:1];
+                [notes remove:note];
+                i--;
+                
+                flag13 = -1;
+                cdcount13++;
+                if (cdcount13 < [controlList13 count]) {
+                    cd13 = [controlList13 get:cdcount13];
+                }
+            } else if ([note startTime] > [cd13 starttime] && [note endTime] < [cd13 endtime]) {
+                [notes remove:note];
+                i--;
             }
         }
         

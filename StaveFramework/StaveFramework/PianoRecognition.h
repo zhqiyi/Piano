@@ -45,9 +45,9 @@
 -(void)setPulsesPerMsec:(double)p;
 
 -(int)getCurChordSymolNoteCount;
--(void)recognitionPlay:(Array*)staffs;
+-(BOOL)recognitionPlay:(Array*)staffs;
 -(void)recognitionPlayByLine;
-
+-(int)getNotesCount;
 @property (nonatomic, assign) id <MidiPlayerDelegate> endDelegate;
 @property (nonatomic, assign) id <SheetShadeDelegate> sheetShadeDelegate;
 

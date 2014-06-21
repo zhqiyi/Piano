@@ -29,6 +29,9 @@
     int shadeCurrentPulseTime;
     int shadePrevPulseTime;
     BOOL zoomFlag;
+    /** add by yizhq start */
+    MidiOptions *smOption;
+    /** add by yizhq end */
 }
 
 -(id)initWithOptions:(MidiOptions*)options andType:(int) type;

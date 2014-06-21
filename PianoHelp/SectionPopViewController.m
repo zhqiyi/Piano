@@ -13,6 +13,7 @@
 @property (nonatomic,weak) UITextField *txtCurrentInput;
 @end
 
+
 @implementation SectionPopViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -88,6 +89,11 @@
         
     }
     [self.parentVC.popVC dismissPopoverAnimated:YES];
+    
+    int from = [self.txtFrom.text intValue];
+    int to = [self.txtTo.text intValue];
+    
+    [self.shd splitMeasure:from andTo:to];
 }
 
 - (IBAction)btnDel_click:(id)sender

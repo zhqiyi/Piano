@@ -27,7 +27,7 @@
     quarter = [[file time] quarter];
     currIndex = 0;
     
-    numtracks = options->numtracks;
+    numtracks = [options->tracks count];
     if (numtracks == 1) {//单音轨
         leftAndRight = 1;//right mode
     } else {
@@ -158,15 +158,19 @@
     pulsesPerMsec = p;
 }
 
+-(int)getNotesCount {
+    return [notes count];
+}
+
 -(void)parseData {
-    int i = 0;
     long msec;
     double starttime;
+    int count = [pianoData count]/3;
     
-    while ((i+2) < [pianoData count]) {
+    for(int i = 0; i < count; i++) {
+//    while ((i+2) < [pianoData count]) {
         
-        if ([[pianoData get:i] intValue] == 0x90) {
-            if ([[pianoData get:i+2] integerValue] > 0) {
+        if ([[pianoData get:i*3] intValue] == 0x90) {
                 struct timeval now;
                 (void)gettimeofday(&now, NULL);
                 msec = (now.tv_sec - beginTime.tv_sec)*1000 +
@@ -174,12 +178,11 @@
                 starttime = msec * pulsesPerMsec;
                 MidiNote *note = [[MidiNote alloc]init];
                 [note setStarttime:starttime];
-                [note setNumber:[[pianoData get:i+1] intValue]];
+                [note setNumber:[[pianoData get:i*3+1] intValue]];
                 [notes add:note];
-            }
         }
-        i += 3;
     }
+    NSLog(@"oooooo [%d] mmmmmmmmmmmmmmmm [%d]", count, [notes count]);
 }
 
 /** 
@@ -187,14 +190,26 @@
  */
 -(BOOL) isChord:(int)len
 {
-    int i = 0;
-    while((i+1) < len) {
-      int end = [[notes get:i] starttime];
-      int start = [[notes get:i+1] starttime];
-      if ((start-end) > quarter/2) {
-          return FALSE;
-      }
-      i++;
+//    int i = 0;
+//    while((i+1) <= len) {
+//      int end = [[notes get:i] startTime];
+//      int start = [[notes get:i+1] startTime];
+//      
+//        NSLog(@"start is [%d], end is [%d] quarter[%d]", start, end, quarter);
+//      if ((start-end) > quarter) {
+//          return FALSE;
+//      }
+//      i++;
+//    }
+    
+    for(int i = 0; i < len-1; i++) {
+        int end = [[notes get:i] startTime];
+        int start = [[notes get:i+1] startTime];
+        
+        NSLog(@"start is [%d], end is [%d] quarter[%d]", start, end, quarter);
+        if ((start-end) > quarter) {
+            return FALSE;
+        }
     }
     return TRUE;
 }
@@ -208,9 +223,12 @@
     NoteData *noteData = [chord notedata];
     
     if ([notes count] <= 0) return FALSE;
-    
+    NSLog(@"===judgeResult count = [%d]", count);
     if (count == 1) {  //单音符
         nd = noteData[0];
+        
+        
+        NSLog(@"===nd number[%d]  notenum0[%d]", nd.number, [[notes get:0] number]);
         if (nd.number == [[notes get:0] number]) {
             [notes remove:[notes get:0]];
             return TRUE;
@@ -218,35 +236,51 @@
             return FALSE;
         }
     } else if (count >1) { //和旋
+        NSLog(@"is hexuang! 1");
         if ([chord notedata_len] > [notes count]) {
             return FALSE;
         }
         
+        NSLog(@"is hexuang! 2");
         if (![self isChord:[chord notedata_len]]) {
            return FALSE;
         }
 
+        NSLog(@"is hexuang! 3");
         for (int i = 0; i < [chord notedata_len]; i++) {
             nd = noteData[i];
-            if (nd.number != [[notes get:i] number]) {
+            
+            NSLog(@"===he xuang nd number[%d]  notenum [%d]", nd.number, [[notes get:i] number]);
+            if (![self judgeNote:nd.number]) {
                 return FALSE;
             }
-            [notes remove:[notes get:i]];
+//            if (nd.number != [[notes get:i] number]) {
+//                return FALSE;
+//            }
+//            [notes remove:[notes get:i]];
         }
-
+        [notes clear];
         return TRUE;
     }
     
     return FALSE;
 }
 
-/** 
+-(BOOL)judgeNote:(int)number {
+    for (int i = 0; i < [notes count]; i++) {
+        if (number == [[notes get:i] number]) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+/**
  *  取得待评判音符的数量
  */
 -(int)getCurChordSymolNoteCount
 {
-    if (index < 0 || index > [symbolDatas count]) return -1;
-    RecognitionData *data = [symbolDatas objectAtIndex:index];
+    if (currIndex < 0 || currIndex > [symbolDatas count]) return -1;
+    RecognitionData *data = [symbolDatas objectAtIndex:currIndex];
     ChordSymbol *chord = [data getChordSymbol];
     return [chord notedata_len];
 }
@@ -256,7 +290,7 @@
  */
 -(void)recognitionPlayByLine
 {
-    
+    NSLog(@"=== recognitionPlayByLine index[%d] note data[%d]", currIndex , [notes count]);
     RecognitionData *data = [symbolDatas objectAtIndex:currIndex];
     ChordSymbol *chord = [data getChordSymbol];
     if ([self judgeResult:chord withCount:[chord notedata_len]]) {
@@ -269,18 +303,18 @@
     [notes clear];
 
     //评判完成
-    if (currIndex == [symbolDatas count] && endDelegate != nil) {
-        [endDelegate endSongsResult:0 andRight:[symbolDatas count] andWrong:0];
+    if ((currIndex+1) == [symbolDatas count] && endDelegate != nil) {
+        [endDelegate endSongsResult:0 andRight:(int)[symbolDatas count] andWrong:0];
     }
 }
 
 /** 
  *  蓝牙和midi连线评判
  */
--(void)recognitionPlay:(Array*)staffs
+-(BOOL)recognitionPlay:(Array*)staffs
 {
     if (staffs == nil) {
-        return;
+        return FALSE;
     }
     
     Staff *staff = [staffs get:staffIndex];
@@ -297,10 +331,13 @@
                     [chord setJudgedResult:1];
                     [sheetShadeDelegate sheetShade:staffIndex andChordIndex:i andChordSymbol:chord];
                     chordIndex = i;
+                    
+                    
+                    return TRUE;
                 }
             } else {
                [notes clear];
-               return;
+               return FALSE;
             }
         }
         
@@ -315,6 +352,7 @@
             [self recognitionPlay:staffs];
         }
     }
+    return FALSE;
 }
 
 

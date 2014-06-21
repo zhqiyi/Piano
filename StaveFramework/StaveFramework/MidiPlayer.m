@@ -62,7 +62,7 @@
 @implementation MidiPlayer
 
 
-@synthesize peripheral;
+@synthesize peripheral, midiData;
 @synthesize sensor;
 @synthesize sheetPlay;
 @synthesize delegate;
@@ -260,6 +260,7 @@
      * highlighted notes.
      */
     BOOL isLine = [midiHandler setupMIDI];
+    isLine = TRUE; //add by test by zyw
     if(sensor != nil || isLine) {
         sensor.delegate = self;
         pianoData = [[PianoDataJudged alloc] init];
@@ -291,6 +292,7 @@
         midifile = [file retain];
     }
     
+    
     if (isLine) {
         if (recognition != nil) {
             [recognition release];
@@ -304,7 +306,7 @@
     int dd = [midifile getMeasureCount];
     int cc = [midifile getMidiFileTimes];
     
-    NSLog(@"dd is %i ff %i", dd, cc);
+//    NSLog(@"dd is %i ff %i", dd, cc);
     
     
 }
@@ -419,9 +421,13 @@
         playstate = playing;
         (void)gettimeofday(&startTime, NULL);
         
+        if (arrPacket != nil) {
+            [arrPacket removeAllObjects];
+        }
+        
         if (recognition != nil) {
-	    [recognition setBeginTime:startTime];
-	    [recognition setPulsesPerMsec:pulsesPerMsec];
+	        [recognition setBeginTime:startTime];
+	        [recognition setPulsesPerMsec:pulsesPerMsec];
         }
 
         return;
@@ -431,9 +437,25 @@
 
 - (void) sheetShade:(int) staffIndex andChordIndex:(int)chordIndex andChordSymbol:(ChordSymbol*)chord
 {
-    [sheet shadeNotesByModel1:staffIndex andChordIndex:chordIndex andChord:chord];
+    NSLog(@"====sheetShade === staff index = [%d] chord Index = [%d]", staffIndex, chordIndex);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [sheet shadeNotesByModel1:staffIndex andChordIndex:chordIndex andChord:chord];
+    });
+    
+    
 }
-
+/** add by yizhq start */
+-(void)playJumpSection:(int)startSectionNumber{
+    if (options.staveModel == 1) {
+        if (startSectionNumber < 0) {
+            return;
+        }
+        int startSec = startSectionNumber;
+        [self jumpMeasure:startSec - 1];
+    }
+}
+/** add by yizhq end */
 /** The callback for the play/pause button (a single button).
  *  If we're stopped or pause, then play the midi file.
  *  If we're currently playing, then initiate a pause.
@@ -579,7 +601,6 @@
     return;
 }
 
-
 /** Rewind the midi music back one measure.
  *  The music must be in the paused state.
  *  When we resume in playPause, we start at the currentPulseTime.
@@ -608,7 +629,7 @@
 
 - (BOOL) jumpMeasure:(int)number
 {
-    if (number <= 0) return FALSE;
+    if (number < 0) return FALSE;
     
     if (midifile == nil || sheet == nil) {
         return FALSE;
@@ -625,6 +646,7 @@
     
     prevPulseTime = currentPulseTime;
     currentPulseTime = [[midifile time] measure]*number;
+    
     
     if (currentPulseTime > [midifile totalpulses]) {
         currentPulseTime -= [[midifile time] measure];
@@ -710,14 +732,23 @@
         }
 
         /* Stop if we've reached the end of the song */
-        if (currentPulseTime > [midifile totalpulses]) {
+        /** modify by yizhq start */
+        int totalTime = 0;
+        if (options.staveModel == 1) {
+            totalTime = options.endSecTime;
+        }else{
+            totalTime = [midifile totalpulses];
+        }
+//        if (currentPulseTime > [midifile totalpulses]) {
+        if (currentPulseTime > totalTime) {
+        /** modify by yizhq end */
             [timer invalidate]; timer = nil;
             
             if (pianoData != nil) {
                 [pianoData judgedPianoPlay:-10 andPrevPulseTime:prevPulseTime andStaffs:staffs andMidifile:midifile];
             }
         
-            NSLog(@"dddddddddddddddd");
+//            NSLog(@"dddddddddddddddd");
             [sheetPlay shadeNotes:-10 withPrev:(int)currentPulseTime];
 //            [sheet shadeNotes:-10 withPrev:(int)currentPulseTime gradualScroll:NO];
             
@@ -819,7 +850,7 @@
     for(int i = 0; i < data.length; i++)
     {
         NSNumber *num = [[NSNumber alloc] initWithInt:buffers[i]];
-        NSLog(@"MidiPlayer rece num is %x", [num intValue]);
+//        NSLog(@"MidiPlayer rece num is %x", [num intValue]);
         [arrPacket addObject: num];
     }
 
@@ -848,14 +879,16 @@
 
 
 -(void)byModel1{
-    [recognition setTimesig:[midifile time]];
-    [recognition setPianoData:arrPacket];
+//    [recognition setTimesig:[midifile time]];
     
+    [recognition setPianoData:arrPacket];
     int count = [recognition getCurChordSymolNoteCount];
-    if (count == [arrPacket count]/3) {
+    int c = [recognition getNotesCount];
+    NSLog(@"====current chord symbol note count [%d] rece data count[%d] aaaa %d", count, c, [recognition getCurrIndex]);
+    if (count == c) {
         [recognition recognitionPlayByLine];
-        [arrPacket removeAllObjects];
     }
+    
 }
 
 -(void)byModel2 {
@@ -869,8 +902,11 @@
 {
     int notePlayed = [[notification.userInfo objectForKey:kNAMIDI_NoteKey] intValue];
     int velocity = [[notification.userInfo objectForKey:kNAMIDI_VelocityKey] intValue];
-    NSLog(@"MidiKeyboard Recevice data NoteNumber[%d], Velocity[%d]", notePlayed, velocity);
+    NSLog(@"=====MidiKeyboard Recevice data NoteNumber[%d], Velocity[%d]", notePlayed, velocity);
     
+    if (velocity == 0) return;
+    
+    [arrPacket removeAllObjects];
     NSNumber *num1 = [[NSNumber alloc] initWithInt:0x90];
     [arrPacket addObject: num1];
     
@@ -879,6 +915,12 @@
     
     NSNumber *num3 = [[NSNumber alloc] initWithInt:velocity];
     [arrPacket addObject: num3];
+    
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSString *data1 = [NSString stringWithFormat:@"ndata : %d | %d", notePlayed, velocity];
+//        [self.midiData setText:data1];
+//    });
     
     if (playstate == playing) {
         switch(playModel) {
@@ -914,7 +956,7 @@
     [midifile release];
     [sheet release]; 
     [piano release];
-    [sound release];sound = nil;
+    [sound release];
     [pianoData release];
     [arrPacket release];
     [midiHandler release];
@@ -922,9 +964,6 @@
     {
         [recognition release];
     }
-    /* add by yizhq start */
-    [sound release];sound = nil;
-    /* add by yizhq end */
     [tempSoundFile release];
     if (timer != nil) {
         [timer invalidate];

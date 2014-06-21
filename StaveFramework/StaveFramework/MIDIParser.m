@@ -16,14 +16,14 @@
 - (NSArray *)parseMidiSequence: (MusicSequence *)sequence {
     UInt32 trackCount;
     MusicSequenceGetTrackCount(*sequence, &trackCount);
-    NSLog(@"the sequence contains %d tracks" , (unsigned int)trackCount);
+//    NSLog(@"the sequence contains %d tracks" , (unsigned int)trackCount);
     
     NSMutableArray *trackSettings = [NSMutableArray new];
     MusicTrack track;
     for (UInt32 i = 0; i < trackCount; i ++) {
         MusicSequenceGetIndTrack(*sequence, i, &track);
         TrackSetting *trackSetting = [self settingsForTrack:track withNumber:i];
-        NSLog(@"tracksetting at index %d:\n %@", i , trackSetting);
+//        NSLog(@"tracksetting at index %d:\n %@", i , trackSetting);
         [trackSettings addObject:trackSetting];
     }
     return trackSettings;
@@ -77,7 +77,7 @@
                     break;
                     
                 default:
-                    NSLog(@"  metaeventtype = %d", midiMetaEvent->metaEventType);
+//                    NSLog(@"  metaeventtype = %d", midiMetaEvent->metaEventType);
                     
                     break;
             }
@@ -99,7 +99,7 @@
             //            NSLog(@"note = %d played on channel %d", noteMessage->note, noteMessage->channel);
         }
         else {
-            NSLog(@"\nnot parsed midi event with type %lu", eventType);
+//            NSLog(@"\nnot parsed midi event with type %lu", eventType);
         }
         MusicEventIteratorNextEvent(iterator);
         MusicEventIteratorHasNextEvent(iterator, &hasNext);

@@ -29,6 +29,9 @@
     int next;
     int addflag;
     int paflag;
+    int boflag;
+    int huiFlag;
+    int trFlag;
     /* add by sunlie end */
 }
 
@@ -50,6 +53,12 @@
 -(void)setAddflag:(int)a;
 -(int)paflag;
 -(void)setPaflag:(int)p;
+-(int)boflag;
+-(void)setBoflag:(int)b;
+-(int)huiFlag;
+-(void)setHuiFlag:(int)h;
+-(int)trFlag;
+-(void)setTrFlag:(int)t;
 /* add by sunlie end */
 -(void)noteOff:(int)endtime;
 -(id)copyWithZone:(NSZone*)zone;

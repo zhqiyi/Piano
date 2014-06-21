@@ -37,6 +37,8 @@
     int width_to_pairex;
     int cutNote;        /** init: 0   cutnote:1  */
     /** add by sunlie end */
+    
+    int yiFlag;
 }
 
 -(int)direction;
@@ -65,6 +67,10 @@
 -(void)drawVerticalLine:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote*)topstaff threeFlag:(int)threeFlag;
 -(void)drawCurvyStem:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote*)topstaff;
 -(void)drawBeamStem:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote*)topstaff;
+
+
+-(void)setYiYin:(int)value;
+
 -(void)dealloc;
 
 @end

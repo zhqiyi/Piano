@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StaveFramework/PianoCommon.h"
 @class MelodyDetailViewController;
 
 @interface SectionPopViewController : UIViewController <UITextFieldDelegate>
@@ -15,6 +16,8 @@
 }
 
 @property (weak, nonatomic) MelodyDetailViewController *parentVC;
+@property (nonatomic, assign) id <SheetMusicsDelegate> shd;
+
 
 @property (weak, nonatomic) IBOutlet UITextField *txtFrom;
 @property (weak, nonatomic) IBOutlet UITextField *txtTo;

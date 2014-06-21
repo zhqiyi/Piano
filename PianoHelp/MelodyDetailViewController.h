@@ -16,7 +16,7 @@
 #import "StaveFramework/SFCountdownView.h"
 
 
-@interface MelodyDetailViewController : BaseViewController <SFCountdownViewDelegate, MidiPlayerDelegate, UIGestureRecognizerDelegate>
+@interface MelodyDetailViewController : BaseViewController <SFCountdownViewDelegate, MidiPlayerDelegate, UIGestureRecognizerDelegate, SheetMusicsDelegate>
 {
     MidiFile *midifile;         /** The midifile that was read */
     SheetMusic *sheetmusic;     /** The sheet music to display */

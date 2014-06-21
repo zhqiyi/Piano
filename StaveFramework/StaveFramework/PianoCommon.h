@@ -21,6 +21,14 @@
 @end
 
 
+@protocol SheetMusicsDelegate
+@optional
+- (void) splitMeasure:(int) from andTo:(int)to;
+- (void) handModel:(int)value;
+- (void) SparringMute:(int)value;
+- (void) beatMute:(int)value;
+@end
+
 
 @interface PianoCommon : NSObject
 

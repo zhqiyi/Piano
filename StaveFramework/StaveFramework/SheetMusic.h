@@ -60,13 +60,22 @@ id<MusicSymbol> getSymbol(Array *symbols, int index);
     
     float width;
     float height;
+    
+    /** add by yizhq start */
+    BOOL modelFlag;
+    UIColor *SectionNormalColor;
+    UIColor *SectionHighLightColor;
+    int SectionStartTime;
+    int SectionEndTime;
+    MidiOptions *smOptions;
+    /** add by yizhq end */
 }
 
 -(id)initWithFile:(MidiFile*)file andOptions:(MidiOptions*)options;
 -(KeySignature*) getKeySignature:(Array*)tracks;
 -(Array*) createChords:(Array*)midinotes withKey:(KeySignature*)key
                andTime:(TimeSignature*)time andClefs:(ClefMeasures*) clefs andCList2:(Array *)list andCList3:(Array *)list3
-             andCList4:(Array *)list4 andCList5:(Array *)list5 andCList6:(Array *)list6 andCList7:(Array *)list7;
+             andCList4:(Array *)list4 andCList5:(Array *)list5 andCList7:(Array *)list7 andCList8:(Array *)list8 andCList9:(Array *)list9 andCList10:(Array *)list10 andCList11:(Array *)list11 andCList14:(Array *)list14;
 -(Array*) createSymbols:(Array*)chords withClefs:(ClefMeasures*)clefs
                 andTime:(TimeSignature*)time andLastTime:(int)lastStartTime andBeatarray:(Array *)barray;
 -(Array*) addBars:(Array*)chords withTime:(TimeSignature*)time
@@ -115,7 +124,13 @@ id<MusicSymbol> getSymbol(Array *symbols, int index);
 /** add by yizhq start */
 +(int) getNoteWidth;
 +(int) getNoteHeight;
-/** add by yizhq start */
+
+-(void)setColors4Section:(BOOL)flag;
+-(int)getSheetMusicCurrentModel;
+-(void)setJSModel:(int)startSectionNum withEndSectionNum:(int)endSectionNum withTimeNumerator:(int)numerrator withTimeQuarter:(int)quarter withMeasure:(int)measure;
+-(void)clearJSModel;
+/** add by yizhq end */
+
 +(NSDictionary*)fontAttributes;
 
 

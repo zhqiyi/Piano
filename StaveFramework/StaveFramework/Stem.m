@@ -32,6 +32,8 @@
 #import "Stem.h"
 #import "TimeSignature.h"
 
+#define NUMERATOR 0.5
+
 @implementation Stem
 
 /** Get the direction of the stem (Up or Down) */
@@ -98,6 +100,11 @@
     cutNote = c;
 }
 /** add by sunlie end */
+
+
+-(void)setYiYin:(int)value {
+    yiFlag = value;
+}
 
 /** Create a new stem.  The top note, bottom note, and direction are
  * needed for drawing the vertical line of the stem.  The duration is
@@ -215,7 +222,13 @@
     if (duration == Whole)
         return;
     
-    [self drawVerticalLine:context atY:ytop topStaff:topstaff threeFlag:threeFlag];
+    if (yiFlag == 1) {//装饰音
+        [self drawGraceVerticalLine:context atY:ytop topStaff:topstaff];
+        
+    } else {
+        [self drawVerticalLine:context atY:ytop topStaff:topstaff threeFlag:threeFlag];
+    }
+   
     if (duration == Quarter ||
         duration == DottedQuarter ||
         duration == Half ||
@@ -226,13 +239,30 @@
     }
     
     if (pair != nil) {
-        [self drawBeamStem:context atY:ytop topStaff:topstaff];
+        
+        if (yiFlag == 1) {//装饰音
+            [self drawGraceBeamStems:context atY:ytop topStaff:topstaff];
+        } else {
+            [self drawBeamStem:context atY:ytop topStaff:topstaff];
+        }
+        
         if (pairex != nil) {
-            [self drawBeamStemEx:context atY:ytop topStaff:topstaff];
+            
+            if (yiFlag == 1) {//装饰音
+                [self drawGraceBeamStemsEx:context atY:ytop topStaff:topstaff];
+            } else {
+                [self drawBeamStemEx:context atY:ytop topStaff:topstaff];
+            }
         }
     }
-    else
-        [self drawCurvyStem:context atY:ytop topStaff:topstaff];
+    else {
+        if (yiFlag == 1) {//装饰音
+            [self drawGraceCurvyStem:context atY:ytop topStaff:topstaff];
+        } else {
+            [self drawCurvyStem:context atY:ytop topStaff:topstaff];
+        }
+    }
+    
 }
 /** modify by sunlie end */
 
@@ -679,6 +709,209 @@
 }
 
 
+
+//add by zyw start
+
+/** Draw the vertical line of the stem.
+ * @param ytop The y location (in pixels) where the top of the staff starts.
+ * @param topstaff  The note at the top of the staff.
+ */
+- (void)drawGraceVerticalLine:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    int xstart;
+    
+    int noteWidth = NoteWidth*NUMERATOR+1;
+    int noteHeight = NoteHeight*NUMERATOR;
+    
+    if (side == LeftSide)
+        xstart = LineSpace/4 + 1;
+    else
+        xstart = LineSpace/4 + noteWidth;
+    
+
+    if (direction == StemUp) {
+        int y1 = ytop + [topstaff dist:bottom] * noteHeight/2 + noteHeight/4;
+        
+        int ystem = ytop + [topstaff dist:end] * noteHeight/2;
+        
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(xstart, y1)];
+        [path addLineToPoint:CGPointMake(xstart, ystem)];
+        
+        [path stroke];
+    }
+    else if (direction == StemDown) {
+        int y1 = ytop + [topstaff dist:top] * noteHeight/2 + noteHeight-1;
+        
+        if (side == LeftSide)
+            y1 = y1 - noteHeight/4;
+        else
+            y1 = y1 - noteHeight/2;
+        
+        int ystem = ytop + [topstaff dist:end] * noteHeight/2 + noteHeight-1;
+        
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(xstart, y1)];
+        [path addLineToPoint:CGPointMake(xstart, ystem)];
+        [path stroke];
+    }
+}
+
+
+- (void)drawGraceCurvyStem:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    int noteWidth = NoteWidth*NUMERATOR+1;
+    int noteHeight = NoteHeight*NUMERATOR;
+    
+    UIColor *color = [UIColor redColor];
+    [color setFill];
+    
+    int xstart = 0;
+    int start1 = LineSpace/4 + 1;
+    if (side == LeftSide)
+        xstart = LineSpace/4 + 1;
+    else
+        xstart = LineSpace/4 + noteWidth;
+    
+    if (direction == StemUp) {
+        int ystem = ytop + [topstaff dist:end] * noteHeight/2;
+        
+        [path moveToPoint:CGPointMake(xstart, ystem)];
+        [path addCurveToPoint:CGPointMake(xstart + LineSpace/2, ystem + noteHeight*3)
+                controlPoint1:CGPointMake(xstart, ystem + 3*LineSpace/2)
+                controlPoint2:CGPointMake(xstart + LineSpace*2, ystem + noteHeight*2)];
+        
+        
+        
+        [path moveToPoint:CGPointMake(start1-noteWidth/2, ystem + noteHeight*2)];
+        [path addLineToPoint:CGPointMake(start1 + noteWidth + LineSpace*1.5, ystem + LineSpace)];
+    }
+    
+    else if (direction == StemDown) {
+        int ystem = ytop + [topstaff dist:end]*noteHeight/2 + noteHeight;
+        
+        [path moveToPoint:CGPointMake(xstart, ystem)];
+        [path addCurveToPoint:CGPointMake(xstart + LineSpace,ystem - noteHeight*2 - LineSpace/2)
+                controlPoint1:CGPointMake(xstart, ystem - LineSpace)
+                controlPoint2:CGPointMake(xstart + LineSpace*2,ystem - noteHeight*2)];
+        
+        
+        
+        
+        [path moveToPoint:CGPointMake(start1-noteWidth, ystem - noteHeight*2)];
+        [path addLineToPoint:CGPointMake(start1 + noteWidth + LineSpace, ystem - LineSpace)];
+        
+    }
+    
+    [path stroke];
+}
+
+
+- (void)drawGraceBeamStems:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    
+    int noteWidth = NoteWidth*NUMERATOR+1;
+    int noteHeight = NoteHeight*NUMERATOR;
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path setLineWidth:noteHeight/2];
+    
+    int xstart = 0;
+    int xstart2 = 0;
+    
+    if (side == LeftSide)
+        xstart = LineSpace/4 + 1;
+    else if (side == RightSide)
+        xstart = LineSpace/4 + noteWidth;
+    
+    if ([pair side] == LeftSide)
+        xstart2 = LineSpace/4 + 1;
+    else if ([pair side] == RightSide)
+        xstart2 = LineSpace/4 + noteWidth;
+    
+    
+    if (direction == StemUp) {
+        int xend = width_to_pair + xstart2;
+        int ystart = ytop + [topstaff dist:end] * noteHeight/2;
+        int yend = ytop + [topstaff dist:[pair end]] * noteHeight/2;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+        
+        ystart += noteHeight;
+        yend += noteHeight;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+    }
+    
+    else {
+        int xend = width_to_pair + xstart2;
+        int ystart = ytop + [topstaff dist:end] * noteHeight/2 + noteHeight;
+        int yend = ytop + [topstaff dist:[pair end]] * noteHeight/2 + noteHeight;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+        
+        ystart -= noteHeight;
+        yend -= noteHeight;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+    }
+    [path stroke];
+}
+
+
+- (void)drawGraceBeamStemsEx:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    
+    int noteWidth = NoteWidth*NUMERATOR+1;
+    int noteHeight = NoteHeight*NUMERATOR;
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path setLineWidth:noteHeight/2];
+    
+    int xstart = 0;
+    int xstart2 = 0;
+    
+    if (side == LeftSide)
+        xstart = LineSpace/4 + 1;
+    else if (side == RightSide)
+        xstart = LineSpace/4 + noteWidth;
+    
+    if ([pairex side] == LeftSide)
+        xstart2 = LineSpace/4 + 1;
+    else if ([pairex side] == RightSide)
+        xstart2 = LineSpace/4 + noteWidth;
+    
+    
+    if (direction == StemUp) {
+        int xend = width_to_pairex + xstart2;
+        int ystart = ytop + [topstaff dist:end] * noteHeight/2;
+        int yend = ytop + [topstaff dist:[pairex end]] * noteHeight/2;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+        
+        ystart += noteHeight;
+        yend += noteHeight;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+    }
+    
+    else {
+        int xend = width_to_pairex + xstart2;
+        int ystart = ytop + [topstaff dist:end] * noteHeight/2 + noteHeight;
+        int yend = ytop + [topstaff dist:[pair end]] * noteHeight/2 + noteHeight;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+        
+        ystart -= noteHeight;
+        yend -= noteHeight;
+        [path moveToPoint:CGPointMake(xstart, ystart)];
+        [path addLineToPoint:CGPointMake(xend, yend)];
+    }
+    [path stroke];
+}
+
+//add by zyw end
 @end
 
 

@@ -93,6 +93,10 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
 - (id)initWithFile:(MidiFile*)file andOptions:(MidiOptions*)options {
     CGRect bounds = CGRectMake(0, 0, PageWidth, PageHeight);
     self = [super initWithFrame:bounds];
+
+    /** add by yizhq 4 jump section start */
+    smOptions = options;
+    /** add by yizhq 4 jump section end */
     
     zoom = 1.0f;
     filename = [[file filename] retain];
@@ -126,7 +130,7 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
     
     /* symbols = Array of MusicSymbol[] */
     Array *symbols = [Array new:numtracks];
-    NSLog(@"ssssssssss =[%d]", numtracks);
+    
     /* add by sunlie start */
     beatarray = [file beatarray];
     tonearray = [file tonearray];
@@ -142,7 +146,7 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
         ClefMeasures *clefs = [[ClefMeasures alloc] initWithNotes:[track notes] andTime:time andBeats:beatarray andControl:[track controlList] andTotal:[track totalpulses]];
         /* chords = Array of ChordSymbol */
         Array *chords = [self createChords:[track splitednotes] withKey:mainkey
-                                   andTime:time andClefs:clefs andCList2:[track controlList2] andCList3:[track controlList3] andCList4:[track controlList4] andCList5:[track controlList5] andCList6:[track controlList6] andCList7:[track controlList7]];
+                                   andTime:time andClefs:clefs andCList2:[track controlList2] andCList3:[track controlList3] andCList4:[track controlList4] andCList5:[track controlList5] andCList7:[track controlList7] andCList8:[track controlList8] andCList9:[track controlList9] andCList10:[track controlList10] andCList11:[track controlList11] andCList14:[track controlList14]];
         Array *sym = [self createSymbols:chords withClefs:clefs andTime:time andLastTime:lastStarttime andBeatarray:beatarray];
         [symbols add:sym];
         /** modify by sunlie end */
@@ -171,6 +175,7 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
     //add by sunlie start
     [self CreateConLineNodes:symbols andTime:time];
     [self CreateEightNodes:symbols andTime:time];
+    [self CreateVolumeNodes:symbols andTime:time];
     //add by sunlie end
     
     if (lyrics != nil) {
@@ -240,23 +245,30 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
  */
 - (Array*) createChords:(Array*)midinotes withKey:(KeySignature*)key
                 andTime:(TimeSignature*)time andClefs:(ClefMeasures*)clefs andCList2:(Array *)list andCList3:(Array *)list3
-                andCList4:(Array *)list4 andCList5:(Array *)list5 andCList6:(Array *)list6 andCList7:(Array *)list7{
+                andCList4:(Array *)list4 andCList5:(Array *)list5 andCList7:(Array *)list7 andCList8:(Array *)list8 andCList9:(Array *)list9 andCList10:(Array *)list10 andCList11:(Array *)list11 andCList14:(Array *)list14{
     
     int i = 0;
     int len = [midinotes count];
     Array* chords = [Array new:len/4];
     Array* notegroup = [Array new:12];
     /** add by sunlie start */
-    ControlData *cd2, *cd3, *cd4, *cd5, *cd7;
+    ControlData *cd2, *cd3, *cd4, *cd5, *cd7,*cd8,*cd9,*cd10,*cd14;
     int flag = 0;
     int flag4 = 0;
     int flag5 = 0;
     int flag7 = 0;
+    int flag8 = 0;
+    
     int cdcount2 = 0;
     int cdcount3 = 0;
     int cdcount4 = 0;
     int cdcount5 = 0;
     int cdcount7 = 0;
+    int cdcount8 = 0;
+    int cdcount9 = 0;
+    int cdcount10 = 0;
+    int cdcount14 = 0;
+    
     if (cdcount2 < [list count]) {
         cd2 = [list get:cdcount2];
     }
@@ -272,6 +284,19 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
     if (cdcount7 < [list7 count]) {
         cd7 = [list7 get:cdcount7];
     }
+    if (cdcount8 < [list8 count]) {
+        cd8 = [list8 get:cdcount8];
+    }
+    if (cdcount9 < [list9 count]) {
+        cd9 = [list9 get:cdcount9];
+    }
+    if (cdcount10 < [list10 count]) {
+        cd10 = [list10 get:cdcount10];
+    }
+    if (cdcount14 < [list14 count]) {
+        cd14 = [list14 get:cdcount14];
+    }
+    
     /** add by sunlie end */
     
     while (i < len) {
@@ -325,11 +350,11 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
         /* add by sunlie start */
         
         if (cdcount2 < [list count]) {
-            if (abs([chord startTime]-[cd2 starttime]) < [time quarter]/8  && flag == 0) {
+            if ([chord startTime] >= [cd2 starttime]  && flag == 0) {
                 [chord setConLine:cdcount2+1];
                 flag = 1;
             }
-            if (abs([chord startTime]-[cd2 endtime]) < [time quarter]/8 && flag == 1) {
+            if ([chord startTime] < [cd2 endtime] && [chord endTime] >= [cd2 endtime] && flag == 1) {
                 [chord setConLine:cdcount2+1];
                 cdcount2++;
                 if (cdcount2 < [list count]) {
@@ -346,26 +371,28 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
                 } else if ([cd3 cvalue] > 64) {
                     [chord setJumpedFlag:2];
                 }
-            } else if ([chord startTime] > [cd3 endtime]) {
-                cdcount3++;
-                if (cdcount3 < [list3 count]) {
-                    cd3 = [list3 get:cdcount3];
+                
+                if ([chord endTime] >= [cd3 endtime]) {
+                    cdcount3++;
+                    if (cdcount3 < [list3 count]) {
+                        cd3 = [list3 get:cdcount3];
+                    }
                 }
             }
         }
         
         if (cdcount4 < [list4 count]) {
-            if ([chord startTime] <= [cd4 starttime] && flag4 == 0) {
+            if ([chord startTime] >= [cd4 starttime] && flag4 == 0) {
                 if ([chord endTime] >= [cd4 endtime] ) {
                     if ([cd4 cvalue] <= 64) {
                         [chord setEightFlag:-200];
                     } else if ([cd4 cvalue] > 64) {
                         [chord setEightFlag:200];
                     }
-                } else if ([cd4 cvalue] <= 64 && [chord endTime] > [cd4 starttime]) {//modify by sunlie
+                } else if ([cd4 cvalue] <= 64 && [chord endTime] > [cd4 starttime] ) {
                     [chord setEightFlag:-cdcount4-2];
                     flag4 = -1;
-                } else if ([cd4 cvalue] > 64 && [chord endTime] > [cd4 starttime] ) {//modify by sunlie
+                } else if ([cd4 cvalue] > 64  && [chord endTime] > [cd4 starttime] ) {
                     [chord setEightFlag:cdcount4+2];
                     flag4 = 1;
                 }
@@ -398,14 +425,119 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
         }
         
         if (cdcount5 < [list5 count]) {
-            if (abs([chord startTime]-[cd5 starttime]) < [time quarter]/8 && flag5 == 0) {
+            if ([chord startTime] <= [cd5 starttime] && [chord endTime] > [cd5 starttime] && flag5 == 0) {
                 [chord setPedalFlag:1];
                 flag5 = 1;
-            } else if (abs([chord endTime]-[cd4 endtime]) < [time quarter]/8 && flag5 == 1) {
+            } else if ([chord startTime] < [cd5 endtime] && [chord endTime] >= [cd5 endtime] && flag5 == 1) {
+                [chord setPedalFlag:2];
                 flag5 = 0;
                 cdcount5++;
                 if (cdcount5 < [list5 count]) {
                     cd5 = [list5 get:cdcount5];
+                }
+            }
+        }
+        
+        if (cdcount7 < [list7 count]) {
+            if ([chord startTime] > [cd7 starttime] && [chord endTime] < [cd7 endtime]) {
+                if (flag7 == 0) {
+                    flag7 = [chord startTime];
+                }
+                [chord setYiFlag:1];
+            } else if ([chord startTime] > [cd7 starttime] && [chord endTime] >= [cd7 endtime]) {
+                if (flag7 > 0) {
+                    int end = 0;
+                    [chord setStartTime:flag7];
+                    NoteData *notedatas = [chord notedata];
+                    for (int cc = 0; cc < [chord notedata_len]; cc++) {
+                        if (end < [chord startTime] + notedatas[cc].dur) {
+                            end =[chord startTime] + notedatas[cc].dur;
+                        }
+                    }
+                    [chord setEndTime:end];
+                }
+                flag7 = 0;
+                cdcount7++;
+                if (cdcount7 < [list7 count]) {
+                    cd7 = [list7 get:cdcount7];
+                }
+
+            }
+        }
+        
+        if (cdcount8 < [list8 count]) {
+            if ([chord startTime] >= [cd8 starttime] && flag8 == 0 && [chord endTime] >= [cd8 endtime]) {
+                if ([cd8 cvalue] > 0) {
+                    [chord setVolumeFlag:200];
+                } else {
+                    [chord setVolumeFlag:-200];
+                }
+            } else if ([chord startTime] >= [cd8 starttime] && flag8 == 0) {
+                if ([cd8 cvalue] > 0) {
+                    [chord setVolumeFlag:cdcount8+1];
+                    flag8 = 1;
+                } else {
+                    [chord setVolumeFlag:-cdcount8-1];
+                    flag8 = 1;
+                }
+            } else if ([chord startTime] < [cd8 endtime] && [chord minEndTime] >= [cd8 endtime]) {
+                if ([cd8 cvalue] > 0) {
+                    [chord setVolumeFlag:cdcount8+1];
+                } else {
+                    [chord setVolumeFlag:-cdcount8-1];
+                }
+                cdcount8++;
+                if (cdcount8 < [list8 count]) {
+                    cd8 = [list8 get:cdcount8];
+                    flag8 = 0;
+                }
+            }
+        }
+        
+        if (cdcount9 < [list9 count]) {
+            if ([chord startTime] >= [cd9 starttime]) {
+                if ([cd9 cvalue] >= 21 && [cd9 cvalue] <= 45) {
+                    [chord setStrengthFlag:1];
+                } else if ([cd9 cvalue] >= 46 && [cd9 cvalue] <= 70) {
+                    [chord setStrengthFlag:2];
+                } else if ([cd9 cvalue] >= 71 && [cd9 cvalue] <= 95) {
+                    [chord setStrengthFlag:3];
+                } else if ([cd9 cvalue] >= 96 && [cd9 cvalue] <= 127) {
+                    [chord setStrengthFlag:4];
+                }
+                
+                cdcount9++;
+                if (cdcount9 < [list9 count]) {
+                    cd9 = [list9 get:cdcount9];
+                }
+            }
+        }
+        if (cdcount10 < [list10 count]) {
+            if ([chord startTime] >= [cd10 starttime]) {
+                if ([cd10 cvalue] >= 21 && [cd10 cvalue] <= 50) {
+                    [chord setStrengthFlag:-1];
+                } else if ([cd10 cvalue] >= 51 && [cd10 cvalue] <= 80) {
+                    [chord setStrengthFlag:-2];
+                } else if ([cd10 cvalue] >= 81 && [cd10 cvalue] <= 127) {
+                    [chord setStrengthFlag:-3];
+                }
+                
+                cdcount10++;
+                if (cdcount10 < [list10 count]) {
+                    cd10 = [list10 get:cdcount10];
+                }
+            }
+        }
+        
+        if (cdcount14 < [list14 count]) {
+            if ([chord startTime] >= [cd14 starttime] && [chord startTime] <= [cd14 endtime]) {
+                [chord setStressFlag:1];
+                
+                if ([chord endTime] >= [cd14 endtime]) {
+                    cdcount14++;
+                    if (cdcount14 < [list14 count]) {
+                        cd14 = [list14 get:cdcount14];
+                    }
                 }
             }
         }
@@ -1106,7 +1238,7 @@ static BOOL isBlank(id x) {
         /** add by yizhq end */
         Staff *staff = [[Staff alloc] initWithSymbols:staffsymbols
                                                andKey:key andOptions:options
-                                             andTrack:track andTotalTracks:totaltracks];
+                                             andTrack:track andTotalTracks:totaltracks andSheet:self];
         
         [staffsymbols release];
         [thestaffs add:staff];
@@ -1176,6 +1308,10 @@ static BOOL isBlank(id x) {
             Array *list = [trackstaffs get:track];
             if (i < [list count]) {
                 Staff *s = [list get:i];
+                
+                if (i == ([list count] -1)) {
+                    [s setIsEnd:TRUE];
+                }
                 [result add:s];
             }
         }
@@ -1202,6 +1338,55 @@ static BOOL isBlank(id x) {
     shadeColor = s;
     shade2Color = s2;
 }
+
+/** add by yizhq start */
+-(void)setColors4Section:(BOOL)flag{
+    if (flag == FALSE) {
+        for (int i = 0; i < 12; i++) {
+            NoteColors[i] = [UIColor grayColor];
+        }
+    }else{
+        for (int i = 0; i < 12; i++) {
+            NoteColors[i] = [UIColor blackColor];
+        }
+    }
+}
+/*!
+ *  <#Description#>
+ *
+ *  @return -1:err 0:normal 1:jump section
+ */
+-(int)getSheetMusicCurrentModel{
+    if (smOptions == nil) {
+        return -1;
+    }
+    return smOptions->staveModel;
+}
+
+/*!
+ *
+ *
+ *  @param startSectionNum start section's number
+ *  @param endSectionNum   end section's number
+ */
+-(void)setJSModel:(int)startSectionNum withEndSectionNum:(int)endSectionNum withTimeNumerator:(int)numerrator withTimeQuarter:(int)quarter withMeasure:(int)measure{
+    
+    int startTime = (startSectionNum - 1) * measure;
+    int endTime = endSectionNum * measure;
+    
+    smOptions->staveModel = 1;
+    smOptions->startSecTime = startTime;
+    smOptions->endSecTime = endTime;
+}
+/*!
+ *  <#Description#>
+ */
+-(void)clearJSModel{
+    smOptions->staveModel = 0;
+    smOptions->startSecTime = 0;
+    smOptions->endSecTime = 0;
+}
+/** add by yizhq start */
 
 /** Retrieve the color for a given note number */
 - (UIColor*)noteColor:(int)number {
@@ -1370,87 +1555,44 @@ static BOOL isBlank(id x) {
  * Only draw Staffs which lie inside the clip area.
  */
 - (void)drawRect:(CGRect)rect {
-    //    NSGraphicsContext *gc = [NSGraphicsContext currentContext];
-    //    [gc setShouldAntialias:YES];
+
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
+
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:rect];
     [[UIColor whiteColor] setFill];
     [path fill];
     [[UIColor blackColor] setFill];
-    
-    //    NSAffineTransform *trans;
+
     CGRect clip;
-    
-    //    if ([NSGraphicsContext currentContextDrawingToScreen]) {
-    //        trans = [NSAffineTransform transform];
-    //        [trans scaleXBy:zoom yBy:zoom];
-    //        [trans concat];
+
     CGContextScaleCTM(context, zoom, zoom);
     clip = CGRectMake((int)(rect.origin.x / zoom),
                       (int)(rect.origin.y / zoom),
                       (int)(rect.size.width / zoom),
                       (int)(rect.size.height / zoom) );
-    //    }
-    //    else {
-    //        NSSize pagesize = [self printerPageSize];
-    //        float scale = pagesize.width / (1.0 * PageWidth);
-    //        trans = [NSAffineTransform transform];
-    //        [trans scaleXBy:scale yBy:scale];
-    //        [trans concat];
-    //        clip = NSMakeRect(0,
-    //                          (int)(rect.origin.y / scale),
-    //                          (int)(rect.size.width / scale),
-    //                          (int)(rect.size.height / scale) );
-    //        [self drawTitle];
-    //    }
     
     int ypos = TitleHeight;
-    
+
     for (int i =0; i < [staffs count]; i++) {
+
         Staff *staff = [staffs get:i];
+        
         if ((ypos + [staff height] < clip.origin.y) || (ypos > clip.origin.y + clip.size.height)) {
             /* Staff is not in the clip, don't need to draw it */
         }
         else {
-            //            trans = [NSAffineTransform transform];
-            //            [trans translateXBy:0 yBy:ypos];
-            //            [trans concat];
             CGContextTranslateCTM (context, 0, ypos);
-            
-            //[staff drawRect:clip];
-            [staff drawRect:context InRect:clip];
-            
-            NSLog(@"aaaaaaaaaaa %i", shadeCurrentPulseTime);
             if (shadePrevPulseTime != -1 && shadeCurrentPulseTime !=-10) {
                 [staff shadeNotes:context withColor:shadeColor];
-                
-                
             }
-            
-            
-            //            trans = [NSAffineTransform transform];
-            //            [trans translateXBy:0 yBy:-ypos];
-            //            [trans concat];
+            [staff cleanShadeNote];
+            [staff drawRect:context InRect:clip withOptions:smOptions];
             CGContextTranslateCTM (context, 0, -ypos);
         }
         
         ypos += [staff height];
     }
-    
-    //    if ([NSGraphicsContext currentContextDrawingToScreen]) {
-    //        trans = [NSAffineTransform transform];
-    //        [trans scaleXBy:(1.0/zoom) yBy:(1.0/zoom)];
-    //        [trans concat];
     CGContextScaleCTM (context, (1.0/zoom), (1.0/zoom));
-    //    }
-    //    else {
-    //        NSSize pagesize = [self printerPageSize];
-    //        float scale = pagesize.width / (1.0 * PageWidth);
-    //        trans = [NSAffineTransform transform];
-    //        [trans scaleXBy:(1.0/scale) yBy:(1.0/scale)];
-    //        [trans concat];
-    //    }
 }
 
 
@@ -1695,33 +1837,40 @@ static BOOL isBlank(id x) {
 
 -(void)shadeNotesByModel1:(int)staffIndex andChordIndex:(int)chordIndex andChord:(ChordSymbol*)chord
 {
-    int ypos = TitleHeight;
-    int x_shade = 0;
+    //int ypos = TitleHeight;
+    int x_shade1 = 0;
     int y_shade = 0;
     
-    shadeCurrentPulseTime = [chord startTime];
+    shadeCurrentPulseTime = [chord endTime];
     shadePrevPulseTime = [chord startTime];
 
-
-    for (int i = 0; i <= index; i++) {
-        Staff *staff = [staffs get:i];
-        y_shade += [staff height];
+    NSLog(@"==== shadeNotesByModel1 start![%d] chordsymbol[%d]", staffIndex, chordIndex);
+    for (int i = 0; i <= staffIndex; i++) {
         
-        if (i == index) {
-            [staff setShadeNotesModel1:chordIndex withChordSymbol:chord andX:&x_shade];
+        Staff *staff = [staffs get:i];
+        if (i < staffIndex) {
+            y_shade += [staff height];
+        }
+
+        
+        if (i == staffIndex) {
+            [staff setShadeNotesModel1:chordIndex withChordSymbol:chord andX:&x_shade1];
         }
     }
     
-
-    x_shade = (int)(x_shade * zoom);
+    x_shade1 = (int)(x_shade1 * zoom);
     y_shade -= NoteHeight;
     y_shade = (int)(y_shade * zoom);
     
-    shadePos.x = x_shade;
+    shadePos.x = x_shade1;
     shadePos.y = y_shade;
-
-    [self scrollToShadedNotes:shadePos gradualScroll:YES];
+    
+    if (staffIndex >1) {
+        [self scrollToShadedNotes:shadePos gradualScroll:YES];
+    }
+    
     [self setNeedsDisplay];
+    
 }
 
 
@@ -1843,11 +1992,11 @@ static NSDictionary *fontAttr = NULL;
                         int index = 0;
                         int bi = 0;
                         NoteData *n = [self getConnectWidth:symbols andIndex:&index andWidth:&bi andNoteData:&nds[j] andStartIndex:k+1];
-                        NSLog(@"index is %d",index);
+//                        NSLog(@"index is %d",index);
                         if (index != 0) {
                             ChordSymbol *c = [symbols get:index];
                            
-                            NSLog(@"-------- staffno1[%@]  staff no is %@ oooooooooo %i--------", [[symbols get:k] getStaffNo], [c getStaffNo], bi);
+//                            NSLog(@"-------- staffno1[%@]  staff no is %@ oooooooooo %i--------", [[symbols get:k] getStaffNo], [c getStaffNo], bi);
                             
                             if ([[[symbols get:k] getStaffNo] isEqualToString:[c getStaffNo]]) {
 
@@ -2010,11 +2159,11 @@ static NSDictionary *fontAttr = NULL;
                         if ([[symbols get:j] isKindOfClass:[ChordSymbol class]]) {
                             ChordSymbol *cho = [symbols get:j];
                             if (!([[chord getStaffNo] isEqualToString:[cho getStaffNo]])) {
-                                [chord setEightWidth:-[self caculatorWidth:symbols andStartIndex:i+1 andEndIndex:j-1]];
+                                [chord setEightWidth:-[self caculatorWidth:symbols andStartIndex:i andEndIndex:j-1]];
                                 i = j-1;
                                 break;
                             } else if (value != 0 && [cho eightFlag] == value) {
-                                [chord setEightWidth:[self caculatorWidth:symbols andStartIndex:i+1 andEndIndex:j]];
+                                [chord setEightWidth:[self caculatorWidth:symbols andStartIndex:i andEndIndex:j]+12];
                                 value = 0;
                                 i = j;
                                 break;
@@ -2042,6 +2191,51 @@ static NSDictionary *fontAttr = NULL;
     return eightWidth;
 }
 
+-(void) CreateVolumeNodes:(Array*)allsymbols andTime:(TimeSignature *)time {
+    int i = 0;
+    int j = 0;
+    int value = 0;
+    
+    for (int k = 0; k < [allsymbols count]; k++) {
+        Array* symbols = [allsymbols get:k];
+        i = 0;
+        while (i <[symbols count] - 1) {
+            if ([[symbols get:i] isKindOfClass:[ChordSymbol class]]) {
+                ChordSymbol *chord = [symbols get:i];
+                if ([chord volumeFlag] != 0 || value != 0) {
+                    if ([chord volumeFlag] != 0 && value == 0 && [chord volumeFlag] != 200 && [chord volumeFlag] != -200) {
+                        value = [chord volumeFlag];
+                    } else if (value != 0 && [chord volumeFlag] == value) {
+                        value = 0;
+                        i++;
+                        continue;
+                    } else if (value != 0 && [chord volumeFlag] == 0) {
+                        [chord setVolumeFlag:value];
+                    }
+                    j = i+1;
+                    while (j < [symbols count]) {
+                        if ([[symbols get:j] isKindOfClass:[ChordSymbol class]]) {
+                            ChordSymbol *cho = [symbols get:j];
+                            if (!([[chord getStaffNo] isEqualToString:[cho getStaffNo]])) {
+                                [chord setVolumeWidth:[self caculatorWidth:symbols andStartIndex:i+1 andEndIndex:j-1]];
+                                i = j-1;
+                                break;
+                            } else if (value != 0 && [cho volumeFlag] == value) {
+                                [chord setVolumeWidth:[self caculatorWidth:symbols andStartIndex:i+1 andEndIndex:j]];
+                                value = 0;
+                                i = j;
+                                break;
+                            }
+                        }
+                        j++;
+                    }
+                
+                }
+            }
+            i++;
+        }
+    }
+}
 /** add by sunlie end */
 
 -(Array*)getStaffs

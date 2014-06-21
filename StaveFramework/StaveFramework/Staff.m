@@ -47,8 +47,10 @@
  */
 - (id)initWithSymbols:(Array*)musicsymbols andKey:(KeySignature*)key
      andOptions:(MidiOptions*)options
-     andTrack:(int)trknum andTotalTracks:(int)total {
+     andTrack:(int)trknum andTotalTracks:(int)total andSheet:(void *)s {
 
+    /** add by yizhq start */
+    self->sheetmusic = s;
     keysigWidth = [SheetMusic keySignatureWidth:key];
     symbols = [musicsymbols retain];
     tracknum = trknum;
@@ -63,6 +65,8 @@
     [self calculateStartEndTime];
 
     [self fullJustify];
+    
+    isEnd = FALSE;
     return self;
 }
 
@@ -114,6 +118,12 @@
     height = h;
 }
 /** add by sunlie end */
+
+-(void)setIsEnd:(BOOL)b
+{
+    isEnd = b;
+}
+
 
 /** Find the initial clef to use for this staff.  Use the clef of
  * the first ChordSymbol.
@@ -316,7 +326,26 @@
     }
 }
 
-
+/** add by yizhq start */
+/** Draw the five horizontal lines of the staff */
+- (void)drawHorizLines:(CGContextRef)context withOptions:(MidiOptions *)options{
+    int line = 1;
+    int y = ytop - 1;
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    if (options->staveModel == 1) {
+        [[UIColor grayColor] setFill];
+    }else{
+        [[UIColor blackColor] setFill];
+    }
+    for (line = 1; line <= 5; line++) {
+        [path moveToPoint:CGPointMake(LeftMargin, y)];
+        [path addLineToPoint:CGPointMake(width-1, y)];
+        y += LineWidth + LineSpace;
+    }
+    [path stroke];
+}
+/** add by yizhq end */
 /** Draw the five horizontal lines of the staff */
 - (void)drawHorizLines:(CGContextRef)context {
     int line = 1;
@@ -329,7 +358,7 @@
         y += LineWidth + LineSpace;
     }
     [path stroke];
-    [[UIColor blackColor] setStroke];
+//    [[UIColor blackColor] setStroke];
 }
 
 /** Draw the vertical lines at the far left and far right sides. */
@@ -355,46 +384,145 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(LeftMargin, ystart)];
     [path addLineToPoint:CGPointMake(LeftMargin, yend)];
+    
+    if (isEnd) {
+        [path moveToPoint:CGPointMake(width-5, ystart)];
+        [path addLineToPoint:CGPointMake(width-5, yend)];
+    }
+    
     [path moveToPoint:CGPointMake(width-1, ystart)];
     [path addLineToPoint:CGPointMake(width-1, yend)];
     [path stroke];
 }
 
+-(UIColor *)colorWithHexValue:(NSUInteger)hexValue alpha:(CGFloat)alpha
+{
+    return [UIColor colorWithRed:((hexValue >> 16) & 0x00000FF)/255.0f green:((hexValue >> 8) & 0x00000FF)/255.0f blue:(hexValue & 0x00000FF)/255.0f alpha:alpha ];
+}
+
+/** add by yizhq start */
+-(void)drawRect:(CGContextRef)context InRect:(CGRect)clip withOptions:(MidiOptions *)options{
+    
+    SheetMusic *sheet = (SheetMusic *)(self->sheetmusic);
+    if (options->staveModel == 1) {
+        CGContextSetRGBStrokeColor(context, 200/255.0, 200/255.0, 200/255.0, 1);
+        [sheet setColors4Section:FALSE];
+    }else{
+        CGContextSetRGBStrokeColor(context, 0, 0, 0, 1);
+        [sheet setColors4Section:TRUE];
+    }
+    
+    
+    [self drawHorizLines:context];
+    [self drawEndLines:context];
+    
+    if (showMeasures) {
+        [self drawMeasureNumbers:context];
+    }
+    if (lyrics != nil) {
+        [self drawLyrics:context];
+    }
+    
+    int xpos = LeftMargin + 5;
+    
+    /* Draw the left side Clef symbol */
+    CGContextTranslateCTM (context, xpos, 0.0);
+    [clefsym draw:context atY:ytop];
+    CGContextTranslateCTM (context, -xpos, 0.0);
+    
+    xpos += [clefsym width];
+    
+    /* Draw the key signature */
+    int i;
+    for (i = 0; i < [keys count]; i++) {
+        AccidSymbol *a = [keys get:i];
+        CGContextTranslateCTM (context, xpos, 0.0);
+        [a draw:context atY:ytop];
+        CGContextTranslateCTM (context, -xpos, 0.0);
+        
+        xpos += [a width];
+    }
+
+    BOOL endFlag = FALSE;
+    for (i = 0; i < [symbols count]; i++) {
+
+        id <MusicSymbol> s = [symbols get:i];
+        if (options->staveModel == 1) {
+            if (endFlag == FALSE) {
+                if (options->startSecTime != 0) {
+                    if (options->startSecTime <= [s startTime] && [s startTime] <= options->endSecTime) {
+                        CGContextSetRGBStrokeColor(context, 0/255.0, 0/255.0, 0/255.0, 1);
+                        [sheet setColors4Section:TRUE];
+                    }else{
+                        CGContextSetRGBStrokeColor(context, 200/255.0, 200/255.0, 200/255.0, 1);
+                        [sheet setColors4Section:FALSE];
+                    }
+                }else{
+                    if ([s startTime] <= options->endSecTime) {
+                        CGContextSetRGBStrokeColor(context, 0/255.0, 0/255.0, 0/255.0, 1);
+                                                [sheet setColors4Section:TRUE];
+                    }else{
+                        CGContextSetRGBStrokeColor(context, 200/255.0, 200/255.0, 200/255.0, 1);
+                                                [sheet setColors4Section:FALSE];
+                    }
+                }
+            }else{
+                //结束后第一个symbol
+                if([s startTime] >= options->startSecTime && [s startTime] < options->endSecTime){
+                    CGContextSetRGBStrokeColor(context, 0/255.0, 0/255.0, 0/255.0, 1);
+                                            [sheet setColors4Section:TRUE];
+                }else{
+                    CGContextSetRGBStrokeColor(context, 200/255.0, 200/255.0, 200/255.0, 1);
+                                            [sheet setColors4Section:FALSE];
+                }
+                endFlag = FALSE;
+            }
+
+        }else{
+            CGContextSetRGBStrokeColor(context, 0/255.0, 0/255.0, 0/255.0, 1);
+        }
+
+        if ([s isKindOfClass:[BarSymbol class]]) {
+            BarSymbol *b = (BarSymbol*)s;
+            [b setTotalTracks:totaltracks];
+            [b setStraffHeight:height];
+            [b setTrackNum:tracknum];
+            endFlag = TRUE;
+        }
+        
+        if ((xpos <= clip.origin.x + clip.size.width + 50) &&
+            (xpos + [s width] + 50 >= clip.origin.x)) {
+            CGContextTranslateCTM (context, xpos, 0.0);
+            [s draw:context atY:ytop];
+            CGContextTranslateCTM (context, -xpos, 0.0);
+        }
+
+        xpos += [s width];
+    }
+    
+    CGContextSetRGBStrokeColor(context, 0/255.0, 0/255.0, 0/255.0, 1);
+    [self drawHorizLines:context];
+    [self drawEndLines:context];
+}
+/** add by yizhq start */
+
 /** Draw this staff. Only draw the symbols inside the clip area. */
 - (void)drawRect:(CGContextRef)context InRect:(CGRect)clip {
     int xpos = LeftMargin + 5;
 
-//    NSAffineTransform *trans;
-
     /* Draw the left side Clef symbol */
-//    trans = [NSAffineTransform transform];
-//    [trans translateXBy:xpos yBy:0.0];
-//    [trans concat];
     CGContextTranslateCTM (context, xpos, 0.0);
-    
     [clefsym draw:context atY:ytop];
-//    trans = [NSAffineTransform transform];
-//    [trans translateXBy:-xpos yBy:0.0];
-//    [trans concat];
     CGContextTranslateCTM (context, -xpos, 0.0);
 
     xpos += [clefsym width];
 
-
     /* Draw the key signature */
     int i;
-
     for (i = 0; i < [keys count]; i++) {
         AccidSymbol *a = [keys get:i];
-//        trans = [NSAffineTransform transform];
-//        [trans translateXBy:xpos yBy:0.0];
-//        [trans concat];
         CGContextTranslateCTM (context, xpos, 0.0);
-        
         [a draw:context atY:ytop];
-//        trans = [NSAffineTransform transform];
-//        [trans translateXBy:-xpos yBy:0.0];
-//        [trans concat];
         CGContextTranslateCTM (context, -xpos, 0.0);
         
         xpos += [a width];
@@ -418,19 +546,9 @@
         
         if ((xpos <= clip.origin.x + clip.size.width + 50) &&
             (xpos + [s width] + 50 >= clip.origin.x)) {
-            
-//            trans = [NSAffineTransform transform];
-//            [trans translateXBy:xpos yBy:0.0];
-//            [trans concat];
             CGContextTranslateCTM (context, xpos, 0.0);
-
-            
             [s draw:context atY:ytop];
-//            trans = [NSAffineTransform transform];
-//            [trans translateXBy:-xpos yBy:0.0];
-//            [trans concat];
             CGContextTranslateCTM (context, -xpos, 0.0);
-
         }
         xpos += [s width];
     }
@@ -454,6 +572,7 @@
 
 - (void) shadeNotes:(CGContextRef)context withColor: (UIColor *)color {
     
+    NSLog(@"======== shadeNotes");
     if (shadeCurr == nil) return;
     
     CGContextTranslateCTM (context, shadeXpos, 0);
@@ -655,14 +774,15 @@
         return -1;
     }
 
+    NSLog(@"===setShadeNotesModel1 ddddd");
     shadeCurr = symbol;
     shadeXpos = keysigWidth;
 
-    for (int i = 0; i <= value; i++) {
+    for (int i = 0; i < value; i++) {
         id <MusicSymbol> s = [symbols get:i];
-        if ([s isKindOfClass:[BarSymbol class]]) {
+//        if ([s isKindOfClass:[ChordSymbol class]]) {
             shadeXpos += [s width];
-        }
+//        }
     }
     
     *x_shade = shadeXpos;

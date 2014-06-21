@@ -20,12 +20,22 @@
 #define PI 3.1415926
 /** add by yizhq end */
 
+#define NUMERATOR 0.5
+
 static UIImage* right = nil;  /** The right image */
 static UIImage* wrong = nil;    /** The wrong image */
 static UIImage* perfect = nil;    /** The perfect image */
 
 static UIImage* pedal1 = nil;    /** The pedal start image */
 static UIImage* pedal2 = nil;    /** The pedal end image */
+static UIImage* payin = nil;
+
+static UIImage* shunboyin = nil;
+static UIImage* niboyin = nil;
+static UIImage* shunhuiyin = nil;
+static UIImage* nihuiyin = nil;
+static UIImage* chanyin = nil;
+
 
 //static const char* s2c(id obj) {
 //    NSString *s = [obj description]; 
@@ -71,6 +81,15 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         minEndTime = min(minEndTime, [(MidiNote*) [midinotes get:i] endTime]);
         if ([[midinotes get:i] paflag] == 1) {
             paFlag = 1;
+        }
+        if ([[midinotes get:i] boflag] > 0) {
+            boFlag = [[midinotes get:i] boflag];
+        }
+        if ([[midinotes get:i] huiFlag] > 0) {
+            huiFlag = [[midinotes get:i] huiFlag];
+        }
+        if ([[midinotes get:i] trFlag] > 0) {
+            trFlag = [[midinotes get:i] trFlag];
         }
     }
 
@@ -156,6 +175,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     eightFlag = 0;
     pedalFlag = 0;
     eightWidth = 0;
+    stressFlag = 0;
     /* add by sunlie end */
     
     [ChordSymbol loadImages];
@@ -396,6 +416,9 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 -(void)setBelongStaffHeight:(int)s {
     belongStaffHeight = s;
 }
+-(void)setStartTime:(int)s {
+    starttime = s;
+}
 -(void)setEndTime:(int)e {
     endtime = e;
 }
@@ -407,6 +430,74 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     paFlag = p;
 }
 
+-(int)yiFlag {
+    return yiFlag;
+}
+
+-(void)setYiFlag:(int)y {
+    yiFlag = y;
+}
+
+-(void)setStemYiYin:(int)value
+{
+    if (stem1 != nil) {
+        [stem1 setYiYin:value];
+    }
+    
+    if (stem2 != nil) {
+        [stem2 setYiYin:value];
+    }
+}
+
+
+-(int)volumeFlag {
+    return volumeFlag;
+}
+-(void)setVolumeFlag:(int)v {
+    volumeFlag = v;
+}
+-(ChordSymbol *)volumeChord {
+    return volumeChord;
+}
+-(void)setVolumeChord:(ChordSymbol *)c {
+    volumeChord = c;
+}
+-(int)volumeWidth {
+    return volumeWidth;
+}
+-(void)setVolumeWidth:(int)c {
+    volumeWidth = c;
+}
+-(int)strengthFlag {
+    return strengthFlag;
+}
+-(void)setStrengthFlag:(int)s {
+    strengthFlag = s;
+}
+-(int)boFlag {
+    return boFlag;
+}
+-(void)setBoFlag:(int)b {
+    boFlag = b;
+}
+-(int)huiFlag {
+    return huiFlag;
+}
+-(void)setHuiFlag:(int)h {
+    huiFlag = h;
+}
+-(int)trFlag {
+    return trFlag;
+}
+-(void)setTrFlag:(int)t {
+    trFlag = t;
+}
+-(int)stressFlag {
+    return stressFlag;
+}
+-(void)setStressFlag:(int)s {
+    stressFlag = s;
+}
 -(void)setChordInfo {
     int i;
     
@@ -477,6 +568,11 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         [stem2 release];
         stem2 = nil;
     }
+    
+//    yiFlag = 1;//add test by zyw
+    
+    [self setStemYiYin:yiFlag];
+    
     width = [self minWidth];
     assert(width > 0);
 
@@ -531,7 +627,11 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 - (int)minWidth {
     /* The width needed for the note circles */
     int result = 2 * NoteHeight + NoteHeight * 3/4;
-
+    
+    if (yiFlag == 1) {
+        result = result * NUMERATOR;
+    }
+    
     if ([accidsymbols count] > 0) {
         AccidSymbol *first = [accidsymbols get:0];
         result += [first minWidth];
@@ -546,6 +646,10 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     SheetMusic *sheet = (SheetMusic*)sheetmusic;
     if (sheet != nil && [sheet showNoteLetters] != NoteNameNone) {
         result += 8;
+    }
+    
+    if (paFlag == 1) {
+        result += [payin size].width;
     }
     return result;
 }
@@ -576,9 +680,14 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         result += 40;
     } else if (conLine < 0) {
         result += 35;
+    } else {
+        if (boFlag != 0 || huiFlag != 0 || trFlag != 0) {
+            result += [chanyin size].height;
+        }
     }
     /** add by sunlie end */
 
+    
     /* Check if any accidental symbols extend above the staff */
     int i;
     for (i = 0; i < [accidsymbols count]; i++) {
@@ -619,6 +728,11 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     }
     /** add by sunlie end */
 
+    if (pedalFlag != 0) {
+        result += pedal1.size.height;
+    }
+    
+    
     /* Check if any accidental symbols extend below the staff */
     int i;
     for (i = 0; i < [accidsymbols count]; i++) {
@@ -733,18 +847,29 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
  * @param ytop The ylocation (in pixels) where the top of the staff starts.
  */
 - (void)draw:(CGContextRef)context atY:(int)ytop {
-
+    
     /* Align the chord to the right */
     CGContextTranslateCTM (context, (width - [self minWidth]), 0);
     
     /* Draw the accidentals */
     WhiteNote *topstaff = [WhiteNote top:clef];
     int xpos = [self drawAccid:context atY:ytop];
-
+    int w = [self drawPayin:context atY:ytop topStaff:topstaff];
+    xpos += w;
+    
     /* Draw the notes */
     CGContextTranslateCTM (context, xpos, 0);
     
-    [self drawNotes:context atY:ytop topStaff:topstaff];
+    if (yiFlag == 1) {
+        [self drawGraceNotes:context atY:ytop topStaff:topstaff];
+    } else {
+        [self drawNotes:context atY:ytop topStaff:topstaff];
+    }
+    
+    [self drawBoYin:context atY:ytop topStaff:topstaff];
+    [self drawHuiYin:context atY:ytop topStaff:topstaff];
+    [self drawChanYin:context atY:ytop topStaff:topstaff];
+    
     SheetMusic *sheet = (SheetMusic*)sheetmusic;
     if (sheet != nil && [sheet showNoteLetters] != 0) {
         [self drawNoteLetters:context atY:ytop topStaff:topstaff];
@@ -769,6 +894,20 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     if (eightWidth > 0 || eightFlag > 1 || eightFlag < -1) {
         [self drawEightNotes:context andYtop:ytop andTopStaff:topstaff];
     }
+    if (volumeFlag != 0 && volumeWidth > 0) {
+        //NSLog(@"volumeFlag %i", volumeFlag);
+        if (volumeFlag > 0) {
+            [self drawTriangle:context andLength:volumeWidth andDirect:0];
+        }else if(volumeFlag < 0){
+            [self drawTriangle:context andLength:volumeWidth andDirect:1];
+        }
+    }
+
+    if (stressFlag == 1) {
+            [self drawStress:context andYtop:ytop andTopStaff:topstaff];
+    }
+    
+    [self drawStrength:context withValue:(int)strengthFlag];
     /** add by sunlie end */
     
     [self drawPedal:context];
@@ -783,6 +922,115 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     
     CGContextTranslateCTM (context, -(width - [self minWidth]), 0);
 }
+
+/** add by yizhq start */
+
+- (void) drawStress:(CGContextRef)context andYtop:(float)ytop andTopStaff:(WhiteNote *)topStaff {
+    
+    int ypos;
+    int xpos;
+    int ynote;
+    int direct;
+    
+    xpos = LineSpace/2;
+
+    Stem *stem = nil;
+    if ([self hasTwoStems] == YES) {
+        stem = [self stem];
+        direct = [stem direction];
+    } else {
+        stem = [self stem1];
+        direct = [stem direction];
+    }
+
+    if (direct == StemDown) {
+        
+        ynote = ytop + [topStaff dist:[stem top]] * [SheetMusic getNoteHeight]/2 - 5;
+        CGContextMoveToPoint(context, xpos, ynote);
+        CGContextSetLineWidth(context, 1.5);
+        CGContextSetLineCap(context, kCGLineCapButt);
+        CGContextMoveToPoint(context, xpos, ynote);
+        CGContextAddLineToPoint(context, xpos + 6, ynote - 2.5);
+        CGContextAddLineToPoint(context, xpos, ynote - 5);
+        CGContextDrawPath(context, kCGPathStroke);
+    }else if (direct == StemUp) {
+        ynote = ytop + [topStaff dist:[stem end]] *  [SheetMusic getNoteHeight]/2 + 5;
+        CGContextMoveToPoint(context, xpos, ynote);
+        CGContextSetLineWidth(context, 1.5);
+        CGContextSetLineCap(context, kCGLineCapButt);
+        CGContextMoveToPoint(context, xpos, ynote);
+        CGContextAddLineToPoint(context, xpos + 6, ynote - 2.5);
+        CGContextAddLineToPoint(context, xpos, ynote - 5);
+        CGContextDrawPath(context, kCGPathStroke);
+    }
+}
+
+
+/*!
+ *  draw strength control data
+ *
+ *  @param context <#context description#>
+ *  @param value   <#value description#>
+ */
+-(void)drawStrength:(CGContextRef)context withValue:(int)value{
+
+    char *str;
+    CGContextSelectFont(context, "Georgia-Italic", 12.0, kCGEncodingMacRoman);
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
+    switch (value) {
+        case -3://pp
+            str = "pp";
+            break;
+        case -2://p
+            str = " p";
+            break;
+        case -1://mp
+            str = "mp";
+            break;
+        case 1://mf
+            str = "pf";
+            break;
+        case 2://f
+            str = " f";
+            break;
+        case 3://ff
+            str = "ff";
+            break;
+        case 4://sf
+            str = "sf";
+            break;
+        default:
+            return;
+    }
+    CGContextShowTextAtPoint(context, NoteWidth/2, belongStaffHeight, str, 2);
+}
+/*!
+ *  draw gradient symbol
+ *
+ *  @param context comtext
+ *  @param length  symbol's horizontal length
+ *  @param direct  the direction of change 0:left 1:right
+ */
+-(void)drawTriangle:(CGContextRef)context andLength:(int)length andDirect:(int)direct
+{
+	CGContextSetLineWidth(context, 1.0);
+	CGContextSetLineCap(context, kCGLineCapButt);
+    int x = NoteWidth/2;
+    int top = belongStaffHeight;// + [topstaff dist:[[self stem] top]] * [SheetMusic getNoteHeight]/2;
+    if (direct == 0) {
+        CGContextMoveToPoint(context, x, top);
+        CGContextAddLineToPoint(context, x + length, top - 5);
+        CGContextAddLineToPoint(context, x, top - 10);
+    }else{
+        CGContextMoveToPoint(context, x + length, top + 5);
+        CGContextAddLineToPoint(context, x, top);
+        CGContextAddLineToPoint(context, x + length, top - 5);
+    }
+    
+	CGContextStrokePath(context);
+}
+/** add by yizhq end */
 
 /** Draw the accidental symbols.  If two symbols overlap (if they
  * are less than 6 notes apart), we cannot draw the symbol directly
@@ -859,7 +1107,6 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 
             path = [UIBezierPath bezierPath];
             [path setLineWidth:1];
-            [color setStroke];
             
             [path appendPath:[UIBezierPath bezierPathWithOvalInRect:CGRectMake(-NoteWidth/2, -NoteHeight/2, NoteWidth, NoteHeight-1)]];
             
@@ -869,21 +1116,22 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
                 CGRectMake(-NoteWidth/2, -NoteHeight/2 + 1, NoteWidth, NoteHeight-2)]];
             [path appendPath:[UIBezierPath bezierPathWithOvalInRect:
                 CGRectMake(-NoteWidth/2, -NoteHeight/2 + 1, NoteWidth, NoteHeight-3)]];
-
+            [color setStroke];
             [path stroke];
         }
         else {
             path = [UIBezierPath bezierPath];
             [path setLineWidth:LineWidth];
-            [color setFill];
             [path appendPath:[UIBezierPath bezierPathWithOvalInRect:
                 CGRectMake(-NoteWidth/2, -NoteHeight/2, NoteWidth, NoteHeight-1)]];
+            [color setFill];
             [path fill];
         }
 
         path = [UIBezierPath bezierPath];
         [path setLineWidth:LineWidth];
-        [[UIColor blackColor] setStroke];
+
+
         [path appendPath:[UIBezierPath bezierPathWithOvalInRect:
             CGRectMake(-NoteWidth/2, -NoteHeight/2, NoteWidth, NoteHeight-1)]];
         [path stroke];
@@ -892,8 +1140,12 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 
         CGContextTranslateCTM (context, -(xnote + NoteWidth/2 + 1),
                                -(ynote - LineWidth + NoteHeight/2));
-        
-        
+    
+//?????
+        /* Draw horizontal lines if note is above/below the staff */
+        path = [UIBezierPath bezierPath];
+        [path setLineWidth:LineWidth];
+
         /* Draw a dot if this is a dotted duration. */
         if (note->duration == DottedHalf ||
             note->duration == DottedQuarter ||
@@ -901,8 +1153,6 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 
             UIBezierPath *path = [UIBezierPath bezierPath];
             [path setLineWidth:LineWidth];
-            [[UIColor blackColor] setFill];
-            [[UIColor blackColor] setStroke];
             [path appendPath:[UIBezierPath bezierPathWithOvalInRect:
                 CGRectMake(xnote + NoteWidth + LineSpace/3, ynote + LineSpace/3, 4, 4) ]];
             [path fill];
@@ -911,7 +1161,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         /* Draw horizontal lines if note is above/below the staff */
         path = [UIBezierPath bezierPath];
         [path setLineWidth:LineWidth];
-        [[UIColor blackColor] setStroke];
+        //[[UIColor blackColor] setStroke];
 
         WhiteNote *top = [topstaff add:1];
         int dist = [note->whitenote dist:top];
@@ -1005,6 +1255,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     Stem* firstStem = [chord0 stem];
     Stem* lastStem = [[chords get:(numChords-1)] stem];
     BOOL notesixteenFlag = NO;
+    int zsFlag=1;  //add by sunlie
     
     if (firstStem == nil || lastStem == nil) {
         return NO;
@@ -1024,94 +1275,107 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 
         return NO;
     }
-
-    if (numChords == 6) {
-        if (dur != Eighth) {
-            return NO;
+    
+    /** add by sunlie start */
+    zsFlag=1;
+    for (int k=0; k < numChords; k++) {
+        if ([[chords get:k] yiFlag] != 1) {
+            zsFlag = 0;
+            break;
         }
-        BOOL correctTime = 
-           (([time numerator] == 3 && [time denominator] == 4) ||
-            ([time numerator] == 6 && [time denominator] == 8) ||
-            ([time numerator] == 6 && [time denominator] == 4) );
-        if (!correctTime) {
-            return NO;
-        }
+    }
+    /** add by sunlie end */
 
-        if ([time numerator] == 6 && [time denominator] == 4) {
-            /* first chord must start at 1st or 4th quarter note */
-            int beat = [time quarter] * 3;
-            if (( [chord0 startTime] % beat) > [time quarter]/6) {
+    if (zsFlag == 0) {
+        if (numChords == 6) {
+            if (dur != Eighth) {
                 return NO;
             }
+            BOOL correctTime =
+            (([time numerator] == 3 && [time denominator] == 4) ||
+             ([time numerator] == 6 && [time denominator] == 8) ||
+             ([time numerator] == 6 && [time denominator] == 4) );
+            if (!correctTime) {
+                return NO;
+            }
+            
+            if ([time numerator] == 6 && [time denominator] == 4) {
+                /* first chord must start at 1st or 4th quarter note */
+                int beat = [time quarter] * 3;
+                if (( [chord0 startTime] % beat) > [time quarter]/6) {
+                    return NO;
+                }
+            }
         }
-    }
-    else if (numChords == 4) {
-        if ([time numerator] == 3 && [time denominator] == 8) {
-            return NO;
-        }
-        BOOL correctTime = 
-           ([time numerator] == 2 || [time numerator] == 4 || [time numerator] == 8);
-        if (!correctTime && dur != Sixteenth) {
-            return NO;
-        }
-
-        /* chord must start on quarter note */
-        int beat = [time quarter];
-        if (dur == Eighth) {
-            /* 8th note chord must start on 1st or 3rd quarter note */
-            beat = [time quarter] * 2;
-        }
-        else if (dur == ThirtySecond) {
-            /* 32nd note must start on an 8th beat */
-            beat = [time quarter] / 2;
-        }
-
-        if (([chord0 startTime] % beat) > [time quarter]/6) {
-            return NO;
-        }
-    }
-    else if (numChords == 3) {
-        Stem* secondStem = [[chords get:1] stem];     /** add by sunlie */
-        
-        /** modify by sunlie */
-        BOOL valid = (dur == Triplet) ||
-                      (dur == Eighth &&
-                       [time numerator] == 12 && [time denominator] == 8) ||
-                       (dur == Eighth) ||
-                       (dur == Sixteenth) ||
-                       ([firstStem duration] == Sixteenth && [secondStem duration] == Sixteenth && [lastStem duration] == Eighth) ||
-                       ([firstStem duration] == Eighth && [secondStem duration] == Sixteenth && [lastStem duration] == Sixteenth) ||
-                       ([firstStem duration] == Sixteenth && [secondStem duration] == Eighth && [lastStem duration] == Sixteenth);
-        if (!valid) {
-            return NO;
-        }
-        
-        /** add by sunlie start */
-        if (([firstStem duration] == Sixteenth && [secondStem duration] == Sixteenth && [lastStem duration] == Eighth) ||
-            ([firstStem duration] == Eighth && [secondStem duration] == Sixteenth && [lastStem duration] == Sixteenth) ||
-            ([firstStem duration] == Sixteenth && [secondStem duration] == Eighth && [lastStem duration] == Sixteenth)) {
-            notesixteenFlag = YES;
-        }
-        /** add by sunlie end */
-        
-        /* chord must start on quarter note */
-        int beat = [time quarter];
-        if ([time numerator] == 12 && [time denominator] == 8) {
-            /* In 12/8 time, chord must start on 3*8th beat */
-            beat = [time quarter]/2 * 3;
-        }
-        if (([chord0 startTime] % beat) > [time quarter]/6) {
-            return NO;
-        }
-    }
-    else if (numChords == 2) {
-        if (startQuarter) {
+        else if (numChords == 4) {
+            if ([time numerator] == 3 && [time denominator] == 8) {
+                return NO;
+            }
+            BOOL correctTime =
+            ([time numerator] == 2 || [time numerator] == 4 || [time numerator] == 8);
+            if (!correctTime && dur != Sixteenth) {
+                return NO;
+            }
+            
+            /* chord must start on quarter note */
             int beat = [time quarter];
+            if (dur == Eighth) {
+                /* 8th note chord must start on 1st or 3rd quarter note */
+                beat = [time quarter] * 2;
+            }
+            else if (dur == ThirtySecond) {
+                /* 32nd note must start on an 8th beat */
+                beat = [time quarter] / 2;
+            }
+            
             if (([chord0 startTime] % beat) > [time quarter]/6) {
                 return NO;
             }
         }
+        else if (numChords == 3) {
+            Stem* secondStem = [[chords get:1] stem];     /** add by sunlie */
+            
+            /** modify by sunlie */
+            BOOL valid = (dur == Triplet) ||
+            (dur == Eighth &&
+             [time numerator] == 12 && [time denominator] == 8) ||
+            (dur == Eighth) ||
+            (dur == Sixteenth) ||
+            ([firstStem duration] == Sixteenth && [secondStem duration] == Sixteenth && [lastStem duration] == Eighth) ||
+            ([firstStem duration] == Eighth && [secondStem duration] == Sixteenth && [lastStem duration] == Sixteenth) ||
+            ([firstStem duration] == Sixteenth && [secondStem duration] == Eighth && [lastStem duration] == Sixteenth);
+            if (!valid) {
+                return NO;
+            }
+            
+            /** add by sunlie start */
+            if (([firstStem duration] == Sixteenth && [secondStem duration] == Sixteenth && [lastStem duration] == Eighth) ||
+                ([firstStem duration] == Eighth && [secondStem duration] == Sixteenth && [lastStem duration] == Sixteenth) ||
+                ([firstStem duration] == Sixteenth && [secondStem duration] == Eighth && [lastStem duration] == Sixteenth)) {
+                notesixteenFlag = YES;
+            }
+            /** add by sunlie end */
+            
+            /* chord must start on quarter note */
+            int beat = [time quarter];
+            if ([time numerator] == 12 && [time denominator] == 8) {
+                /* In 12/8 time, chord must start on 3*8th beat */
+                beat = [time quarter]/2 * 3;
+            }
+            if (([chord0 startTime] % beat) > [time quarter]/6) {
+                return NO;
+            }
+        }
+        else if (numChords == 2) {
+            if (startQuarter) {
+                int beat = [time quarter];
+                if (([chord0 startTime] % beat) > [time quarter]/6) {
+                    return NO;
+                }
+            }
+        }
     }
+    
 
     for (int i = 0; i < numChords; i++) {
         ChordSymbol *chord = [chords get:i];
@@ -1523,13 +1787,13 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         float radius = sqrt(_connectNoteWidth*_connectNoteWidth/2);
         float x = _connectNoteWidth/2 + 0 + [SheetMusic getNoteWidth]/2;
         float y = ynote - sqrt(radius*radius/2) + 10;
-        NSLog(@"drawConnectNote1 - StemUp - x is %f y is %f radius is %f width %i",x,y,radius,_connectNoteWidth);
+        //NSLog(@"drawConnectNote1 - StemUp - x is %f y is %f radius is %f width %i",x,y,radius,_connectNoteWidth);
         CGContextBeginPath(context);
         CGContextAddArc(context, x, y, radius, 45* PI/180, 135*PI/180, 0);
         CGContextStrokePath(context);
     }
     
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+ //  CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
 }
 
 - (void) drawConnectNote2:(CGContextRef)context andYtop:(float)ytop andTopStaff:(WhiteNote *)topStaff
@@ -1548,7 +1812,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         leftDirect = [stem direction];
     }
     
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+//    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextSetLineWidth(context, 2.0);
     
     if (leftDirect == StemDown) {
@@ -1573,7 +1837,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         CGContextAddArc(context, x, y, radius, -15*PI/180, -165*PI/180, 1);
         CGContextStrokePath(context);
     }
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+//    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
 }
 
 -(void)setStaffNo:(NSString *)staffNo
@@ -1618,8 +1882,8 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     
     
     int leftDirect, rightDirect, direct, ynote, ynote1;
-    UIColor *color = [UIColor blackColor];
-    [color set];
+//    UIColor *color = [UIColor blackColor];
+//    [color set];
     UIBezierPath* aPath = [UIBezierPath bezierPath];
     aPath.lineWidth = 1;
     aPath.lineCapStyle = kCGLineCapRound;
@@ -1647,18 +1911,34 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     }
     
     if (_conLineWidth > 0 && conLine > 0) {
+        
+        WhiteNote *topstaff = [WhiteNote top: [_conLineChord clef]];
         if (direct == StemDown) {
             
             ynote = ytop + [topStaff dist:[stem top]] * [SheetMusic getNoteHeight]/2;
-            ynote1 =ytop + [topStaff dist:[[_conLineChord stem] top]] * [SheetMusic getNoteHeight]/2;
+
+            if (rightDirect == StemDown) {
+                ynote1 = ytop + [topstaff dist:[[_conLineChord stem] top]] * NoteHeight/2;
+                
+            } else if (rightDirect == StemUp) {
+                ynote1 = ytop + [topstaff dist:[[_conLineChord stem] end]] * NoteHeight/2 ;
+            }
+            
             [aPath moveToPoint:CGPointMake(NoteWidth/2, ynote-5)];
-            [aPath addQuadCurveToPoint:CGPointMake(_conLineWidth+NoteWidth/2, ynote1-5) controlPoint:CGPointMake((NoteWidth/2+_conLineWidth+NoteWidth/2)/2, ynote-40)];
+            [aPath addQuadCurveToPoint:CGPointMake(_conLineWidth+NoteWidth/2, ynote1) controlPoint:CGPointMake((NoteWidth/2+_conLineWidth+NoteWidth/2)/2, ynote-40)];
             [aPath stroke];
             
         } else if (direct == StemUp) {
             
             ynote = ytop + [topStaff dist:[stem top]] * [SheetMusic getNoteHeight]/2;
-            ynote1 =ytop + [topStaff dist:[[_conLineChord stem] top]] * [SheetMusic getNoteHeight]/2;
+            
+            if (rightDirect == StemDown) {
+                ynote1 = ytop + [topstaff dist:[[_conLineChord stem] end]] * NoteHeight/2 ;
+                
+            } else if (rightDirect == StemUp) {
+                ynote1 = ytop + [topstaff dist:[[_conLineChord stem] top]] * NoteHeight/2 ;
+            }
+            
             [aPath moveToPoint:CGPointMake(NoteWidth/2, ynote+5)];
             [aPath addQuadCurveToPoint:CGPointMake(_conLineWidth+NoteWidth/2, ynote1+5) controlPoint:CGPointMake((NoteWidth/2+_conLineWidth+NoteWidth/2)/2, ynote+40)];
             [aPath stroke];
@@ -1700,7 +1980,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     }
     
     
-    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+//    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
 }
 
 - (void) drawJumpedNote:(CGContextRef)context andYtop:(float)ytop andTopStaff:(WhiteNote *)topStaff {
@@ -1751,7 +2031,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         
         if (eightFlag > 1) { //up
 
-            [self draw8va:CGRectMake(-15, 0, 25, -10)];
+            [self draw8va:context:CGRectMake(-15, 0, 25, -10)];
 
             [self drawDottedLine:context andStart:CGPointMake(10, 10) andEnd:CGPointMake(10 + w, 10)];
             
@@ -1760,7 +2040,7 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 
         } else if (eightFlag < -1) {//down
             
-            [self draw8va:CGRectMake(-15, belongStaffHeight-20, 25, belongStaffHeight-10)];
+            [self draw8va:context:CGRectMake(-15, belongStaffHeight-20, 25, belongStaffHeight-10)];
             
             [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-10) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
             
@@ -1787,14 +2067,14 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
         int w = width;
         
         if (eightFlag == 200) {
-            [self draw8va:CGRectMake(-15, 0, 25, -10)];
+            [self draw8va:context:CGRectMake(-15, 0, 25, -10)];
             
             [self drawDottedLine:context andStart:CGPointMake(10, 10) andEnd:CGPointMake(10 + w, 10)];
             
             [self drawVerticalLine:CGPointMake(10 + w, 10) andEnd:CGPointMake(10 + w, 20)];
             
         } else if (eightFlag == -200) {
-            [self draw8va:CGRectMake(-15, belongStaffHeight-20, 25, belongStaffHeight-10)];
+            [self draw8va:context:CGRectMake(-15, belongStaffHeight-20, 25, belongStaffHeight-10)];
             
             [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-10) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
             
@@ -1818,10 +2098,12 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
 
 
 
--(void)draw8va:(CGRect)rect
+-(void)draw8va:(CGContextRef)context :(CGRect)rect
 {
-    UIFont  *font = [UIFont fontWithName: @"Georgia-Italic" size:12.0];
-    [@"8va" drawInRect:rect withFont:font];
+    CGContextSelectFont(context, "Georgia-Italic", 12.0, kCGEncodingMacRoman);
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
+    CGContextShowTextAtPoint(context, rect.origin.x, rect.origin.y + 10, "8va", 3);
 }
 
 -(void)drawVerticalLine:(CGPoint)start andEnd:(CGPoint)end
@@ -1876,6 +2158,210 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
     CGContextTranslateCTM (context, -x , -(ypos-10));
 }
 
+-(int)drawPayin:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    
+    if (paFlag == 0) return 0;
+
+    int direct, ypos;
+    Stem *stem = nil;
+    if ([self hasTwoStems] == YES) {
+        stem = [self stem];
+        direct = [stem direction];
+    } else {
+        stem = [self stem1];
+        direct = [stem direction];
+    }
+    
+    if (direct == StemUp ) {
+        ypos = ytop + [topstaff dist:[stem end]] * NoteHeight/2;
+    } else {
+        ypos = ytop + [topstaff dist:[stem top]] * NoteHeight/2;
+    }
+    
+    CGContextTranslateCTM (context, 0 , ypos);
+    CGRect imageRect = CGRectMake(0, 0, [payin size].width, [payin size].height);
+    [payin drawInRect:imageRect];
+    CGContextTranslateCTM (context, 0 , -(ypos));
+    
+    return [payin size].width;
+}
+
+
+
+-(void)drawBoYin:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    if (boFlag == 0) return;
+    
+    UIImage *image = nil;
+    switch (boFlag) {
+        case 1:
+            image = shunboyin;
+            break;
+        case 2:
+            image = niboyin;
+            break;
+        default:
+            break;
+    }
+    
+    int direct, ypos, ypos2;
+    Stem *stem = nil;
+    if ([self hasTwoStems] == YES) {
+        stem = [self stem];
+        direct = [stem direction];
+    } else {
+        stem = [self stem1];
+        direct = [stem direction];
+    }
+    
+    
+    if (direct == StemUp ) {
+        ypos2 = ytop + [topstaff dist:[stem end]] * NoteHeight/2;
+    } else {
+        ypos2 = ytop + [topstaff dist:[stem top]] * NoteHeight/2;
+    }
+    
+    if (ypos2 <= ytop) {
+        ypos = ypos2 - [image size].height - 5;
+    } else {
+        ypos = ytop - [image size].height - 5;
+    }
+    
+    CGContextTranslateCTM (context, 0 , ypos);
+    CGRect imageRect = CGRectMake(0, 0, [image size].width, [image size].height);
+    [image drawInRect:imageRect];
+    CGContextTranslateCTM (context, 0 , -ypos);
+}
+
+
+-(void)drawHuiYin:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    
+    if (huiFlag == 0) return;
+    
+    UIImage *image = nil;
+    switch (huiFlag) {
+        case 1:
+            image = shunhuiyin;
+            break;
+        case 2:
+            image = nihuiyin;
+            break;
+        default:
+            break;
+    }
+    
+    int direct, ypos, ypos2;
+    Stem *stem = nil;
+    if ([self hasTwoStems] == YES) {
+        stem = [self stem];
+        direct = [stem direction];
+    } else {
+        stem = [self stem1];
+        direct = [stem direction];
+    }
+    
+    
+    if (direct == StemUp ) {
+        ypos2 = ytop + [topstaff dist:[stem end]] * NoteHeight/2;
+    } else {
+        ypos2 = ytop + [topstaff dist:[stem top]] * NoteHeight/2;
+    }
+    
+    if (ypos2 <= ytop) {
+        ypos = ypos2 - [image size].height - 5;
+    } else {
+        ypos = ytop - [image size].height - 5;
+    }
+    
+    CGContextTranslateCTM (context, 0 , ypos);
+    CGRect imageRect = CGRectMake(0, 0, [image size].width, [image size].height);
+    [image drawInRect:imageRect];
+    CGContextTranslateCTM (context, 0 , -ypos);
+}
+
+
+-(void)drawChanYin:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+    
+    if (trFlag == 0) return;
+
+    int direct, ypos, ypos2;
+    Stem *stem = nil;
+    if ([self hasTwoStems] == YES) {
+        stem = [self stem];
+        direct = [stem direction];
+    } else {
+        stem = [self stem1];
+        direct = [stem direction];
+    }
+    
+    if (direct == StemUp ) {
+        ypos2 = ytop + [topstaff dist:[stem end]] * NoteHeight/2;
+    } else {
+        ypos2 = ytop + [topstaff dist:[stem top]] * NoteHeight/2;
+    }
+    
+    if (ypos2 <= ytop) {
+        ypos = ypos2 - [chanyin size].height - 5;
+    } else {
+        ypos = ytop - [chanyin size].height - 5;
+    }
+    
+
+    CGContextTranslateCTM (context, 0 , ypos);
+    CGRect imageRect = CGRectMake(0, 0, [chanyin size].width, [chanyin size].height);
+    [chanyin drawInRect:imageRect];
+    CGContextTranslateCTM (context, 0 , -ypos);
+    
+}
+
+
+- (void)drawGraceNotes:(CGContextRef)context atY:(int)ytop topStaff:(WhiteNote *)topstaff {
+
+    int noteindex;
+    int noteWidth = NoteWidth*NUMERATOR+1;
+    int noteHeight = NoteHeight*NUMERATOR;
+    
+    for (noteindex = 0; noteindex < notedata_len; noteindex++) {
+        NoteData *note = &notedata[noteindex];
+        
+        if (note->addflag == 1) {
+            continue;
+        }
+        /* Get the x,y position to draw the note */
+        int ynote = ytop + [topstaff dist:(note->whitenote)] * noteHeight/2;
+       
+        int xnote = LineSpace/4;
+        if (!note->leftside)
+            xnote += noteWidth;
+        
+    
+        /* Draw rotated ellipse.  You must first translate (0,0)
+         * to the center of the ellipse.
+         */
+        CGContextTranslateCTM (context, (xnote + noteWidth/2 + 1), (ynote - LineWidth + noteHeight/2));
+        CGContextRotateCTM(context, -45.0);
+        
+        UIColor *color = [UIColor blackColor];
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path setLineWidth:LineWidth];
+        [color setFill];
+        [path appendPath:[UIBezierPath bezierPathWithOvalInRect:
+                          CGRectMake(-noteWidth/2, -noteHeight/2, noteWidth, noteHeight-1)]];
+        [path fill];
+        
+        
+        path = [UIBezierPath bezierPath];
+        [path setLineWidth:LineWidth];
+        [[UIColor blackColor] setStroke];
+        [path appendPath:[UIBezierPath bezierPathWithOvalInRect:
+                          CGRectMake(-noteWidth/2, -noteHeight/2, noteWidth, noteHeight-1)]];
+        [path stroke];
+        
+        CGContextRotateCTM(context, 45.0);
+        CGContextTranslateCTM (context, -(xnote + noteWidth/2 + 1),
+                               -(ynote - LineWidth + noteHeight/2));
+        
+    }
+}
 
 
 /** Load the Right、Wrong and Perfect images into memory. */
@@ -1914,6 +2400,53 @@ static UIImage* pedal2 = nil;    /** The pedal end image */
                     pathForResource:@"pedal-end"
                     ofType:@"png"];
         pedal2 = [[UIImage alloc] initWithContentsOfFile:filename];
+    }
+    
+    if (payin == NULL) {
+        filename = [[NSBundle mainBundle]
+                    pathForResource:@"payin"
+                    ofType:@"png"];
+        payin = [[UIImage alloc] initWithContentsOfFile:filename];
+    }
+    
+
+    
+    
+    if (shunboyin == NULL) {
+        filename = [[NSBundle mainBundle]
+                    pathForResource:@"shunboyin"
+                    ofType:@"png"];
+        shunboyin = [[UIImage alloc] initWithContentsOfFile:filename];
+    }
+    
+    
+    if (niboyin == NULL) {
+        filename = [[NSBundle mainBundle]
+                    pathForResource:@"niboyin"
+                    ofType:@"png"];
+        niboyin = [[UIImage alloc] initWithContentsOfFile:filename];
+    }
+    
+    
+    if (shunhuiyin == NULL) {
+        filename = [[NSBundle mainBundle]
+                    pathForResource:@"shunhuiyin"
+                    ofType:@"png"];
+        shunhuiyin = [[UIImage alloc] initWithContentsOfFile:filename];
+    }
+    
+    if (nihuiyin == NULL) {
+        filename = [[NSBundle mainBundle]
+                    pathForResource:@"nihuiyin"
+                    ofType:@"png"];
+        nihuiyin = [[UIImage alloc] initWithContentsOfFile:filename];
+    }
+    
+    if (chanyin == NULL) {
+        filename = [[NSBundle mainBundle]
+                    pathForResource:@"chanyin"
+                    ofType:@"png"];
+        chanyin = [[UIImage alloc] initWithContentsOfFile:filename];
     }
 }
 

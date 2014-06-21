@@ -40,12 +40,11 @@
     self.countdownLabel.textAlignment = NSTextAlignmentCenter;
     
     self.countdownLabel.opaque = YES;
-    self.countdownLabel.alpha = 0.0;
+    self.countdownLabel.alpha = 1.0;
     [parent addSubview: self.countdownLabel];
     
     self.countdownLabel.frame = CGRectMake(312, 300, 400, 200);
-    
- //   [self.countdownLabel setCenter:parent.center];
+    [self.countdownLabel setCenter:parent.center];
 }
 
 
@@ -54,7 +53,7 @@
 {
     [self stop];
     self.currentCountdownValue = self.countdownFrom;
-    self.countdownLabel.alpha = 1.0;
+    
     self.countdownLabel.text = [NSString stringWithFormat:@"%d", self.countdownFrom];
     [self animate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0

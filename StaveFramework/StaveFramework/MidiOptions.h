@@ -49,7 +49,14 @@ struct _MidiOptions {
     __unsafe_unretained Array* colors;           /** The note colors to use */
     __unsafe_unretained UIColor* shadeColor;     /** The color to use for shading */
     __unsafe_unretained UIColor* shade2Color;    /** The color to use for shading the left hand piano */
-
+    /** add by yizhq start for jump section */
+    __unsafe_unretained UIColor *normalColor;
+    __unsafe_unretained UIColor *highLightColor;
+    int staveModel; //0:normol 1:jump section
+    int startSecTime;
+    int endSecTime;
+    /** add by yizhq end for jump section */
+    
     /* Sound options */
     __unsafe_unretained IntArray *mute;          /** Which tracks to mute (true = mute) */
     int  tempo;              /** The tempo, in microseconds per quarter note */
@@ -59,6 +66,7 @@ struct _MidiOptions {
     BOOL playMeasuresInLoop;      /** Play the selected measures in a loop */
     int  playMeasuresInLoopStart; /** Start measure to play in loop */
     int  playMeasuresInLoopEnd;   /** End measure to play in loop */
+
 
 };
 typedef struct _MidiOptions MidiOptions;

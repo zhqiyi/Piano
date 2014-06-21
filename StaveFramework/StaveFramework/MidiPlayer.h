@@ -101,12 +101,17 @@ enum {
 //跳转小节
 -(BOOL)jumpMeasure:(int)number;
 -(void)playByType:(int)type;
--(void)Pause;
+
+/** add by yizhq start */
+-(void)playJumpSection:(int)startSectionNumber;
+/** add by yizhq end */
 
 @property (strong, nonatomic) SheetMusicPlay *sheetPlay;
 @property (strong, nonatomic) CBPeripheral *peripheral;
 @property (strong, nonatomic) SerialGATT *sensor;
 @property (nonatomic, assign) id <MidiPlayerDelegate> delegate;
+
+@property (strong, nonatomic) UILabel *midiData;
 
 @end
 

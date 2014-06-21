@@ -303,6 +303,13 @@
 		BA80E19E19408C22007A41D3 /* pedal-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pedal-start.png"; sourceTree = "<group>"; };
 		BA81EFA91939519000B477C7 /* SFCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCountdownView.h; sourceTree = "<group>"; };
 		BA81EFAA1939519000B477C7 /* SFCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCountdownView.m; sourceTree = "<group>"; };
+		BA83409E19554D55001EAB11 /* chanyin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chanyin.png; sourceTree = "<group>"; };
+		BA83409F19554D55001EAB11 /* niboyin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = niboyin.png; sourceTree = "<group>"; };
+		BA8340A019554D55001EAB11 /* nihuiyin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nihuiyin.png; sourceTree = "<group>"; };
+		BA8340A119554D55001EAB11 /* payin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = payin.png; sourceTree = "<group>"; };
+		BA8340A219554D55001EAB11 /* pedal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pedal.png; sourceTree = "<group>"; };
+		BA8340A319554D55001EAB11 /* shunboyin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shunboyin.png; sourceTree = "<group>"; };
+		BA8340A419554D55001EAB11 /* shunhuiyin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shunhuiyin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +522,13 @@
 		8964EBB11945368200DBCED9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA83409E19554D55001EAB11 /* chanyin.png */,
+				BA83409F19554D55001EAB11 /* niboyin.png */,
+				BA8340A019554D55001EAB11 /* nihuiyin.png */,
+				BA8340A119554D55001EAB11 /* payin.png */,
+				BA8340A219554D55001EAB11 /* pedal.png */,
+				BA8340A319554D55001EAB11 /* shunboyin.png */,
+				BA8340A419554D55001EAB11 /* shunhuiyin.png */,
 				BA80E19D19408C22007A41D3 /* pedal-end.png */,
 				BA80E19E19408C22007A41D3 /* pedal-start.png */,
 				BA48D8BE193AD1CA00DC424E /* perfect.png */,

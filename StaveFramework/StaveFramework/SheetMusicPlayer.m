@@ -54,6 +54,9 @@ int TitleHeights = 14; /** The height for the title on the first page */
     
     self = [super initWithFrame:CGRectMake(0, 0, 10, 10)];
     
+    /** add by yizhq start */
+    smOption = options;
+    /** add by yizhq end */
     types = type;
     shadePrevPulseTime = -1;
     shadeCurrentPulseTime = -1;
@@ -115,8 +118,6 @@ int TitleHeights = 14; /** The height for the title on the first page */
     
 
         [self setZoom:zoom];
-
-    
 }
 
 
@@ -158,7 +159,8 @@ int TitleHeights = 14; /** The height for the title on the first page */
 
             CGContextTranslateCTM (context, 0, ypos);
             
-            [staff drawRect:context InRect:clip];
+//            [staff drawRect:context InRect:clip];
+            [staff drawRect:context InRect:clip withOptions:smOption];
             
  //           NSLog(@"aaaaaaaaaaa %i", shadeCurrentPulseTime);
             if (shadePrevPulseTime != -1 && shadeCurrentPulseTime !=-10) {
@@ -166,7 +168,7 @@ int TitleHeights = 14; /** The height for the title on the first page */
                 
             }
             
-            [staff cleanShadeNote];
+            //[staff cleanShadeNote];
             CGContextTranslateCTM (context, 0, -ypos);
         }
         

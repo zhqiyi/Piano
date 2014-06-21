@@ -68,13 +68,22 @@
     /** add by sunlie start */
     Array* beatarray;        /** The beat signature */
     Array* tonearray;        /** The tone signature */
-    Array* controlList;   /** The control data list(33) */
+    Array* controlList;   /** The control data list(33)         */
     Array* controlList2;  /** control data for connect line (9) */
-    Array* controlList3;  /** control data for connect jumped notes (14)*/
-    Array* controlList4;  /** control data for eight (15)*/
-    Array* controlList5;  /** control data for pedal (64) */
+    Array* controlList3;  /** control data for jumped notes (14) */
+    Array* controlList4;  /** control data for eight (15)         */
+    Array* controlList5;  /** control data for pedal (64)        */
     Array* controlList6;  /** control data for pa (20)*/
     Array* controlList7;  /** control data for zhuangshi (21)*/
+    Array* controlList8;  /** control data for volume (7)*/
+    Array* controlList9;  /** control data for strong (22)*/
+    Array* controlList10;  /** control data for weak (23)*/
+    Array* controlList11;  /** control data for bo (24)*/
+    Array* controlList12;  /** control data for hui (25)*/
+    Array* controlList13;  /** control data for tr (26)*/
+    Array* controlList14;  /** control data for stress (27)*/
+    Array* controlList15;  /** control data for repeat (28)*/
+    
     /** add by sunlie end */
 }
 

@@ -18,6 +18,7 @@
 #import "TimeSignature.h"
 #import "MidiFile.h"
 #import "ChordSymbol.h"
+#import "SheetMusic.h"
 
 @interface Staff : NSObject {
     Array* symbols;             /** The list of music symbols in this staff */
@@ -36,17 +37,19 @@
     int measureLength;          /** The time (in pulses) of a measure */
     /** add by yizhq start */
     IntArray *eightVeIndex;
+    void *sheetmusic;
     /** add by yizhq end */
     
     
     id <MusicSymbol> shadeCurr;
     int shadeXpos;
     BOOL isFind;
+    BOOL isEnd;
 }
 
 -(id)initWithSymbols:(Array*)symbols andKey:(KeySignature*)key 
      andOptions:(MidiOptions*)options 
-     andTrack:(int)t andTotalTracks:(int)total;
+            andTrack:(int)t andTotalTracks:(int)total andSheet:(void*)sheetmusic;
 -(int)findClef;
 -(void)calculateHeight;
 -(void)calculateWidth:(BOOL)scrollVert;
@@ -56,6 +59,7 @@
 -(void)drawHorizLines:(CGContextRef)context;
 -(void)drawEndLines:(CGContextRef)context;
 -(void)drawRect:(CGContextRef)context InRect:(CGRect)clip;
+-(void)drawRect:(CGContextRef)context InRect:(CGRect)clip withOptions:(MidiOptions *)options;
 -(void)drawMeasureNumbers:(CGContextRef)context;
 -(void)drawLyrics:(CGContextRef)context;
 -(int)width;
@@ -77,6 +81,9 @@
 - (void)shadeNotes:(CGContextRef)context withColor: (UIColor *)color;
 - (void)cleanShadeNote;
 - (int)setShadeNotesModel1:(int)value withChordSymbol:(ChordSymbol*)symbol andX:(int *)x_shade;
+
+-(void)setIsEnd:(BOOL)b;
+
 @end
 
 

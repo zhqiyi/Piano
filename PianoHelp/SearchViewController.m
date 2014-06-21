@@ -79,7 +79,7 @@
     if([[segue identifier] isEqualToString:@"searchPushMelodyDetailSegue"])
     {
         MelodyDetailViewController *vc = segue.destinationViewController;
-        vc.iPlayMode = 1;
+//        vc.iPlayMode = 1;
         //add test by zyw
         NSString *filename = [((AppDelegate*)[[UIApplication sharedApplication] delegate]) filePathForName:((MelodyButton*)sender).fileName];
         vc.fileName = filename;

@@ -707,10 +707,10 @@
             </objects>
             <point key="canvasLocation" x="4134" y="-934"/>
         </scene>
-        <!--View Controller-->
+        <!--Hand Pop View Controller-->
         <scene sceneID="jdm-Y1-tpg">
             <objects>
-                <viewController id="KYj-Mt-FsF" sceneMemberID="viewController">
+                <viewController id="KYj-Mt-FsF" customClass="HandPopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lrJ-dC-UGR"/>
                         <viewControllerLayoutGuide type="bottom" id="ABE-3D-NGu"/>
@@ -734,6 +734,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnLeft:" destination="KYj-Mt-FsF" eventType="touchUpInside" id="Fyn-vZ-w3e"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6XN-dH-h1y">
                                 <rect key="frame" x="250" y="52" width="70" height="44"/>
@@ -742,6 +745,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnRight:" destination="KYj-Mt-FsF" eventType="touchUpInside" id="9Ij-Vm-k3l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -754,10 +760,10 @@
             </objects>
             <point key="canvasLocation" x="4464" y="-926"/>
         </scene>
-        <!--View Controller-->
+        <!--Sound Pop View Controller-->
         <scene sceneID="KxS-gw-RqP">
             <objects>
-                <viewController id="OlT-iO-pfT" sceneMemberID="viewController">
+                <viewController id="OlT-iO-pfT" customClass="SoundPopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="upx-q0-Mt5"/>
                         <viewControllerLayoutGuide type="bottom" id="92O-OT-k2e"/>
@@ -779,6 +785,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnPeiLian:" destination="OlT-iO-pfT" eventType="touchUpInside" id="ZXW-ZX-M3L"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEy-aR-R5b">
                                 <rect key="frame" x="10" y="74" width="162" height="30"/>
@@ -789,6 +798,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnJiePai:" destination="OlT-iO-pfT" eventType="touchUpInside" id="Cyo-Za-ONx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -859,7 +871,7 @@
                                         <state key="selected" image="zuoyoushou2.png"/>
                                         <connections>
                                             <action selector="btnHand_click:" destination="71i-e3-K5Z" eventType="touchUpInside" id="Sed-Ev-AVA"/>
-                                            <segue destination="KYj-Mt-FsF" kind="popover" popoverAnchorView="BCT-IF-06P" id="1rC-mX-Tvz">
+                                            <segue destination="KYj-Mt-FsF" kind="popover" identifier="popoverHandSegue" popoverAnchorView="BCT-IF-06P" id="1rC-mX-Tvz">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -873,7 +885,7 @@
                                         <state key="selected" image="peilianyin2.png"/>
                                         <connections>
                                             <action selector="btnPeiLianYin_click:" destination="71i-e3-K5Z" eventType="touchUpInside" id="dPy-xP-i2J"/>
-                                            <segue destination="OlT-iO-pfT" kind="popover" popoverAnchorView="aHk-wv-G65" id="BRH-Al-noO">
+                                            <segue destination="OlT-iO-pfT" kind="popover" identifier="popoverSoundSegue" popoverAnchorView="aHk-wv-G65" id="BRH-Al-noO">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -1855,6 +1867,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2mR-bz-3dG"/>
+        <segue reference="rXj-7E-tRe"/>
     </inferredMetricsTieBreakers>
 </document>

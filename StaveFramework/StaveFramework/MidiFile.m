@@ -342,6 +342,14 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     controlList5 = [Array new:20];
     controlList6 = [Array new:20];
     controlList7 = [Array new:20];
+    controlList8 = [Array new:20];
+    controlList9 = [Array new:10];
+    controlList10 = [Array new:10];
+    controlList11 = [Array new:10];
+    controlList12 = [Array new:10];
+    controlList13 = [Array new:10];
+    controlList14 = [Array new:10];
+    controlList15 = [Array new:10];
     /** add by sunlie end */
     tracks = [Array new:5];
     trackPerChannel = NO;
@@ -405,6 +413,30 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             }
             if ([controlList7 count] > 0) {
                 [track setControlList7:controlList7];
+            }
+            if ([controlList8 count] > 0) {
+                [track setControlList8:controlList8];
+            }
+            if ([controlList9 count] > 0) {
+                [track setControlList9:controlList9];
+            }
+            if ([controlList10 count] > 0) {
+                [track setControlList10:controlList10];
+            }
+            if ([controlList11 count] > 0) {
+                [track setControlList11:controlList11];
+            }
+            if ([controlList12 count] > 0) {
+                [track setControlList12:controlList12];
+            }
+            if ([controlList13 count] > 0) {
+                [track setControlList13:controlList13];
+            }
+            if ([controlList14 count] > 0) {
+                [track setControlList14:controlList14];
+            }
+            if ([controlList15 count] > 0) {
+                [track setControlList15:controlList15];
             }
             /** add by sunlie end */
             [tracks add:track];
@@ -527,6 +559,14 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     [controlList5 release];
     [controlList6 release];
     [controlList7 release];
+    [controlList8 release];
+    [controlList9 release];
+    [controlList10 release];
+    [controlList11 release];
+    [controlList12 release];
+    [controlList13 release];
+    [controlList14 release];
+    [controlList15 release];
     /** add by sunlie end */
     [super dealloc];
 }
@@ -555,13 +595,31 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     int ctrecord2 = 0;
     int ctrecord3 = 0;
     int preValue3 = -1;
-    int preStart3 = 0;
+    int preStart3 = -1;
     int ctrecord4 = 0;
     int preValue4 = -1;
-    int preStart4 = 0;
+    int preStart4 = -1;
     int ctrecord5 = 0;
     int ctrecord6 = 0;
     int ctrecord7 = 0;
+    int ctrecord8 = 0;
+    int preValue8 = -1;
+    int preTime8 = -1;
+    int preValue9 = -1;
+    int preTime9 = -1;
+    int preValue10 = -1;
+    int preTime10 = -1;
+    int ctrecord11 = 0;
+    int preValue11 = -1;
+    int preStart11 = -1;
+    int ctrecord12 = 0;
+    int preValue12 = -1;
+    int preStart12 = -1;
+    int ctrecord13 = 0;
+    int ctrecord14 = 0;
+    int ctrecord15 = 0;
+    int preValue15 = -1;
+    int preStart15 = -1;
     
     [controlList clear];
     [controlList2 clear];
@@ -570,6 +628,14 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     [controlList5 clear];
     [controlList6 clear];
     [controlList7 clear];
+    [controlList8 clear];
+    [controlList9 clear];
+    [controlList10 clear];
+    [controlList11 clear];
+    [controlList12 clear];
+    [controlList13 clear];
+    [controlList14 clear];
+    [controlList15 clear];
     /** add by sunlie end */
 
     while ([file offset] < trackend) {
@@ -638,13 +704,13 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             if ([mevent controlNum] == 9) {
                 int value = [mevent controlValue];
                 ControlData *cdata;
-                if (value < 10) {
+                if (value < 20) {
                     if (ctrecord2 == 127) {
                         cdata = [controlList2 get:[controlList2 count]-1];
                         [cdata setEndtime:[mevent startTime]];
                         ctrecord2 = 0;
                     }
-                } else if (value > 120 && value <= 127) {
+                } else if (value > 110 && value <= 127) {
                     if (ctrecord2 == 0) {
                         ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:value andStarttime:[mevent startTime] andEndtime:0];
                         [controlList2 add:data];
@@ -656,7 +722,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             if ([mevent controlNum] == 14) {
                 int value = [mevent controlValue];
                 
-                if (preStart3 == 0 || [mevent startTime] - preStart3 > 40) {
+                if ([mevent startTime] - preStart3 > 50 || preStart3 == -1) {
                     if (preValue3 == -1) {
                         preValue3 = value;
                         preStart3 = [mevent startTime];
@@ -693,7 +759,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             if ([mevent controlNum] == 15) {
                 int value = [mevent controlValue];
                 
-                if (preStart4 == 0 || [mevent startTime] - preStart4 > 40) {
+                if ([mevent startTime] - preStart4 > 50 || preStart4 == -1) {
                     if (preValue4 == -1) {
                         preValue4 = value;
                         preStart4 = [mevent startTime];
@@ -730,7 +796,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             if ([mevent controlNum] == 64) {
                 int value = [mevent controlValue];
                 ControlData *cdata;
-                if (value < 30) {
+                if (value < 20) {
                     if (ctrecord5 == 127) {
                         cdata = [controlList5 get:[controlList5 count]-1];
                         [cdata setEndtime:[mevent startTime]];
@@ -750,7 +816,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             if ([mevent controlNum] == 20) {
                 int value = [mevent controlValue];
                 ControlData *cdata;
-                if (value < 30) {
+                if (value < 20) {
                     if (ctrecord6 == 127) {
                         cdata = [controlList6 get:[controlList6 count]-1];
                         [cdata setEndtime:[mevent startTime]];
@@ -769,7 +835,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             
             if ([mevent controlNum] == 21) {
                 int value = [mevent controlValue];
-                if (value < 30) {
+                if (value < 20) {
                     if (ctrecord7 == 127) {
                         ControlData *cdata = [controlList7 get:[controlList7 count]-1];
                         [cdata setEndtime:[mevent startTime]];
@@ -784,6 +850,213 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
                     }
                     
                 }
+            }
+            
+            if ([mevent controlNum] == 7) {
+                int value = [mevent controlValue];
+                int start = [mevent startTime];
+
+                if (value == preValue8 && start - preTime8 > quarternote) {
+                    
+                    if ([controlList8 count] > 0) {
+                        [[controlList8 get:[controlList8 count]-1] setEndtime:preTime8];
+                        [[controlList8 get:[controlList8 count]-1] setCValue:ctrecord8];
+                    }
+                    ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:value andStarttime:start andEndtime:0];
+                    [controlList8 add:data];
+                    
+                } else if (value < preValue8) {
+                    ctrecord8 = -1;
+                } else if (value > preValue8) {
+                    ctrecord8 = 1;
+                }
+                preValue8 = value;
+                preTime8 = start;
+            }
+            
+            if ([mevent controlNum] == 22) {
+                int value = [mevent controlValue];
+                int start = [mevent startTime];
+                
+                if (start - preTime9 > quarternote/2 && preTime9 != -1) {
+                    ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue9 andStarttime:preTime9 andEndtime:0];
+                    [controlList9 add:data];
+                }
+                
+                preValue9 = value;
+                preTime9 = start;
+            }
+            
+            if ([mevent controlNum] == 23) {
+                int value = [mevent controlValue];
+                int start = [mevent startTime];
+                
+                if (start - preTime10 > quarternote/2 && preTime10 != -1) {
+                    ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue10 andStarttime:preTime10 andEndtime:0];
+                    [controlList10 add:data];
+                }
+                
+                preValue10 = value;
+                preTime10 = start;
+            }
+            
+            if ([mevent controlNum] == 24) {
+                int value = [mevent controlValue];
+                
+                if ([mevent startTime] - preStart11 > 50 || preStart11 == -1) {
+                    if (preValue11 == -1) {
+                        preValue11 = value;
+                        preStart11 = [mevent startTime];
+                    }
+                    
+                    if (preValue11 >= 10 && preValue11 <=64) {
+                        if (ctrecord11 != 64) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue11 andStarttime:preStart11 andEndtime:0];
+                            [controlList11 add:data];
+                            ctrecord11 = 64;
+                        }
+                        
+                    } else if (preValue11 > 64 && preValue11 <= 127) {
+                        if (ctrecord11 != 127) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue11 andStarttime:preStart11 andEndtime:0];
+                            [controlList11 add:data];
+                            ctrecord11 = 127;
+                        }
+                    }
+                }
+                
+                if (value < 10) {
+                    if (ctrecord11 != 0) {
+                        if ([controlList11 count] > 0 && [[controlList11 get:[controlList11 count]-1] endtime] == 0) {
+                            [[controlList11 get:[controlList11 count]-1] setEndtime:[mevent startTime]];
+                            ctrecord11 = 0;
+                        }
+                    }
+                }
+                
+                preStart11 = [mevent startTime];
+                preValue11 = value;
+            }
+            
+            if ([mevent controlNum] == 25) {
+                int value = [mevent controlValue];
+                
+                if ([mevent startTime] - preStart12 > 50 || preStart12 == -1) {
+                    if (preValue12 == -1) {
+                        preValue12 = value;
+                        preStart12 = [mevent startTime];
+                    }
+                    
+                    if (preValue12 >= 10 && preValue12 <=64) {
+                        if (ctrecord12 != 64) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue12 andStarttime:preStart12 andEndtime:0];
+                            [controlList12 add:data];
+                            ctrecord12 = 64;
+                        }
+                        
+                    } else if (preValue12 > 64 && preValue12 <= 127) {
+                        if (ctrecord12 != 127) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue12 andStarttime:preStart12 andEndtime:0];
+                            [controlList12 add:data];
+                            ctrecord12 = 127;
+                        }
+                    }
+                }
+                
+                if (value < 10) {
+                    if (ctrecord12 != 0) {
+                        if ([controlList12 count] > 0 && [[controlList12 get:[controlList12 count]-1] endtime] == 0) {
+                            [[controlList12 get:[controlList12 count]-1] setEndtime:[mevent startTime]];
+                            ctrecord12 = 0;
+                        }
+                    }
+                }
+                
+                preStart12 = [mevent startTime];
+                preValue12 = value;
+            }
+            
+            if ([mevent controlNum] == 26) {
+                int value = [mevent controlValue];
+                if (value < 20) {
+                    if (ctrecord13 == 127) {
+                        ControlData *cdata = [controlList13 get:[controlList13 count]-1];
+                        [cdata setEndtime:[mevent startTime]];
+                        ctrecord13 = 0;
+                    }
+                }
+                if (value > 110) {
+                    if (ctrecord13 == 0) {
+                        ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:value andStarttime:[mevent startTime] andEndtime:0];
+                        [controlList13 add:data];
+                        ctrecord13 = 127;
+                    }
+                    
+                }
+            }
+            
+            if ([mevent controlNum] == 27) {
+                int value = [mevent controlValue];
+                ControlData *cdata;
+                if (value < 20) {
+                    if (ctrecord14 == 127) {
+                        cdata = [controlList14 get:[controlList14 count]-1];
+                        [cdata setEndtime:[mevent startTime]];
+                        ctrecord14 = 0;
+                    }
+                }
+                if (value > 110) {
+                    if (ctrecord14 == 0) {
+                        ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:value andStarttime:[mevent startTime] andEndtime:0];
+                        [controlList14 add:data];
+                        ctrecord14 = 127;
+                    }
+                    
+                }
+            }
+            
+            if ([mevent controlNum] == 28) {
+                int value = [mevent controlValue];
+                
+                if ([mevent startTime] - preStart15 > 50 || preStart15 == -1) {
+                    if (preValue15 == -1) {
+                        preValue15 = value;
+                        preStart15 = [mevent startTime];
+                    }
+                    
+                    if (preValue15 >= 21 && preValue15 <=50) {
+                        if (ctrecord15 != 50) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue15 andStarttime:preStart15 andEndtime:0];
+                            [controlList15 add:data];
+                            ctrecord15 = 50;
+                        }
+                        
+                    } else if (preValue15 > 51 && preValue15 <= 80) {
+                        if (ctrecord15 != 127) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue15 andStarttime:preStart15 andEndtime:0];
+                            [controlList15 add:data];
+                            ctrecord15 = 127;
+                        }
+                    } else if (preValue15 > 81 && preValue15 <= 127) {
+                        if (ctrecord15 != 127) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue15 andStarttime:preStart15 andEndtime:0];
+                            [controlList15 add:data];
+                            ctrecord15 = 127;
+                        }
+                    }
+                }
+                
+                if (value < 20) {
+                    if (ctrecord15 != 0) {
+                        if ([controlList15 count] > 0 && [[controlList15 get:[controlList15 count]-1] endtime] == 0) {
+                            [[controlList15 get:[controlList15 count]-1] setEndtime:[mevent startTime]];
+                            ctrecord15 = 0;
+                        }
+                    }
+                }
+                
+                preStart15 = [mevent startTime];
+                preValue15 = value;
             }
             /** add by sunlie end */
         }
@@ -863,6 +1136,13 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
         }
         [mevent release];
     }
+    
+    /** add by sunlie start */
+    if ([controlList8 count] > 0 && [[controlList8 get:[controlList8 count]-1] endtime] == 0) {
+        [[controlList8 get:[controlList8 count]-1] setEndtime:preTime8];
+        [[controlList8 get:[controlList8 count]-1] setCValue:ctrecord8];
+    }
+    /** add by sunlie end */
 
     return result;
 }
@@ -1037,7 +1317,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     }
     
     /** add by yizhq for tempo track start */
-    int dataLen, bFlag;
+    int dataLen, bFlag, tmpQuarternote;
     dowrite(file, (u_char*)"MTrk", 4, &error);
     
     if ([midifile quarternote]/128 <= 0) {
@@ -1060,14 +1340,24 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
         buf[2] = 0x60;
         buf[3] = 0x7F;
         
+        TimeSignature *sTime = [midifile time];
+        NSLog(@"denominator %i", sTime.denominator);
+        
+        if (sTime.denominator == 4) {
+            tmpQuarternote = [midifile quarternote];
+        }else if (sTime.denominator == 8){
+            tmpQuarternote = [midifile quarternote]/2;
+        }
+        
+        
         if (bFlag == 6) {
-            int tmp = [midifile quarternote]%128;
+            int tmp = tmpQuarternote%128;
             buf[4] = tmp;
             //            NSLog(@"buf[4] %i ", buf[4]);
             buf[5] = 0x4B;
         }else{
-            int tmp1 = [midifile quarternote]/128;
-            int tmp2 = [midifile quarternote]%128;
+            int tmp1 = tmpQuarternote/128;
+            int tmp2 = tmpQuarternote%128;
             buf[4] = tmp1 + 128;
             buf[5] = tmp2;
             //            NSLog(@"buf[4] %i buf[5] %i", buf[4], buf[5]);
@@ -1556,6 +1846,59 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
 
     if (notes_count == 0)
         return result;
+    
+    /** add by sunlie start */
+    if (notes_count > 0) {
+        if ([[track controlList] count ] > 0) {
+            [top setControlList:[track controlList]];
+        }
+        
+        if ([[track controlList2] count ] > 0) {
+            [top setControlList2:[track controlList2]];
+        }
+        
+        if ([[track controlList3] count ] > 0) {
+            [top setControlList3:[track controlList3]];
+        }
+        
+        if ([[track controlList4] count ] > 0) {
+            [top setControlList4:[track controlList4]];
+        }
+        if ([[track controlList5] count ] > 0) {
+            [top setControlList5:[track controlList5]];
+        }
+        if ([[track controlList6] count ] > 0) {
+            [top setControlList6:[track controlList6]];
+        }
+        if ([[track controlList7] count ] > 0) {
+            [top setControlList7:[track controlList7]];
+        }
+        if ([[track controlList8] count ] > 0) {
+            [top setControlList8:[track controlList8]];
+        }
+        if ([[track controlList9] count ] > 0) {
+            [top setControlList9:[track controlList9]];
+        }
+        if ([[track controlList10] count ] > 0) {
+            [top setControlList10:[track controlList10]];
+        }
+        if ([[track controlList11] count ] > 0) {
+            [top setControlList11:[track controlList11]];
+        }
+        if ([[track controlList12] count ] > 0) {
+            [top setControlList12:[track controlList12]];
+        }
+        if ([[track controlList13] count ] > 0) {
+            [top setControlList13:[track controlList13]];
+        }
+        if ([[track controlList14] count ] > 0) {
+            [top setControlList14:[track controlList14]];
+        }
+        if ([[track controlList15] count ] > 0) {
+            [top setControlList15:[track controlList15]];
+        }
+    }
+    /** add by sunlie end */
 
     int prevhigh  = 76; /* E5, top of treble staff */
     int prevlow   = 45; /* A3, bottom of bass staff */
@@ -1668,6 +2011,58 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
         for (int i = 0; i < [[track notes] count]; i++) {
             [result addNote:[[track notes] get:i] ];
         }
+        /** add by sunlie start */
+        if ([[result notes] count] > 0) {
+            if ([[track controlList] count ] > 0) {
+                [result setControlList:[track controlList]];
+            }
+            
+            if ([[track controlList2] count ] > 0) {
+                [result setControlList2:[track controlList2]];
+            }
+            
+            if ([[track controlList3] count ] > 0) {
+                [result setControlList3:[track controlList3]];
+            }
+            
+            if ([[track controlList4] count ] > 0) {
+                [result setControlList4:[track controlList4]];
+            }
+            if ([[track controlList5] count ] > 0) {
+                [result setControlList5:[track controlList5]];
+            }
+            if ([[track controlList6] count ] > 0) {
+                [result setControlList6:[track controlList6]];
+            }
+            if ([[track controlList7] count ] > 0) {
+                [result setControlList7:[track controlList7]];
+            }
+            if ([[track controlList8] count ] > 0) {
+                [result setControlList8:[track controlList8]];
+            }
+            if ([[track controlList9] count ] > 0) {
+                [result setControlList9:[track controlList9]];
+            }
+            if ([[track controlList10] count ] > 0) {
+                [result setControlList10:[track controlList10]];
+            }
+            if ([[track controlList11] count ] > 0) {
+                [result setControlList11:[track controlList11]];
+            }
+            if ([[track controlList12] count ] > 0) {
+                [result setControlList12:[track controlList12]];
+            }
+            if ([[track controlList13] count ] > 0) {
+                [result setControlList13:[track controlList13]];
+            }
+            if ([[track controlList14] count ] > 0) {
+                [result setControlList14:[track controlList14]];
+            }
+            if ([[track controlList15] count ] > 0) {
+                [result setControlList15:[track controlList15]];
+            }
+        }
+        /** add by sunlie end */
         return result;
     }
 
@@ -2238,6 +2633,14 @@ static NSArray* instrNames = NULL;
     options->playMeasuresInLoop = NO;
     options->playMeasuresInLoopStart = NO;
     options->playMeasuresInLoopEnd = [self endTime] / [timesig measure];
+    
+    /** add by yizhq start */
+    options->staveModel = 0;
+    options->startSecTime = 0;
+    options->endSecTime = 0;
+    options->normalColor = [UIColor blackColor];
+    options->highLightColor = [UIColor blackColor];
+    /** add by yizhq end */
 }
 
 /** Return true if this midi file has lyrics */

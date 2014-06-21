@@ -62,6 +62,15 @@ int sortChordSymbol(id chord1, id chord2, void *unused);
     int pedalFlag;
     int belongStaffHeight;
     int paFlag;
+    int yiFlag;
+    int volumeFlag;
+    ChordSymbol *volumeChord;
+    int volumeWidth;
+    int strengthFlag;
+    int boFlag;
+    int huiFlag;
+    int trFlag;
+    int stressFlag;
     /** add by sunlie end */
 
     /** add by yizhq start */
@@ -121,9 +130,28 @@ int sortChordSymbol(id chord1, id chord2, void *unused);
 -(ChordSymbol *)connectChordSymbol;
 -(void)setChordInfo;
 -(void)setBelongStaffHeight:(int)s;
+-(void)setStartTime:(int)s;
 -(void)setEndTime:(int)e;
 -(int)paFlag;
 -(void)setPaFlag:(int)p;
+-(int)yiFlag;
+-(void)setYiFlag:(int)y;
+-(int)volumeFlag;
+-(void)setVolumeFlag:(int)v;
+-(ChordSymbol *)volumeChord;
+-(void)setVolumeChord:(ChordSymbol *)c;
+-(int)volumeWidth;
+-(void)setVolumeWidth:(int)c;
+-(int)strengthFlag;
+-(void)setStrengthFlag:(int)s;
+-(int)boFlag;
+-(void)setBoFlag:(int)b;
+-(int)huiFlag;
+-(void)setHuiFlag:(int)h;
+-(int)trFlag;
+-(void)setTrFlag:(int)t;
+-(int)stressFlag;
+-(void)setStressFlag:(int)s;
 /* add by sunlie end */
 /** add by yizhq start */
 -(Stem*) stem1;

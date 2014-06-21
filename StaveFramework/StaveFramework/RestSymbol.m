@@ -92,9 +92,7 @@
 //    [trans concat];
     
     CGContextTranslateCTM (context, NoteHeight/2, 0);
-
-    [[UIColor blackColor] setFill];
-
+    
     if (duration == Whole) {
         [self drawWhole:context atY:ytop];
     }

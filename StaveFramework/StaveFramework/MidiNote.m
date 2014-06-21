@@ -122,6 +122,26 @@
     paflag = p;
 }
 
+-(int)boflag {
+    return boflag;
+}
+-(void)setBoflag:(int)b {
+    boflag = b;
+}
+
+-(int)huiFlag {
+    return huiFlag;
+}
+-(void)setHuiFlag:(int)h {
+    huiFlag = h;
+}
+
+-(int)trFlag {
+    return trFlag;
+}
+-(void)setTrFlag:(int)t {
+    trFlag = t;
+}
 /* add by sunlie end */
 
 /* A NoteOff event occurs for this note at the given time.
@@ -140,7 +160,11 @@
     /* add by sunlie start */
     [m setPrevious:previous];
     [m setNext:next];
-    [m setAddflag:0];
+    [m setAddflag:addflag];
+    [m setPaflag:paflag];
+    [m setBoflag:boflag];
+    [m setHuiFlag:huiFlag];
+    [m setTrFlag:trFlag];
     /* add by sunlie end */
     return m;
 }

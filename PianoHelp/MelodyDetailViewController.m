@@ -8,6 +8,8 @@
 
 #import "MelodyDetailViewController.h"
 #import "SectionPopViewController.h"
+#import "HandPopViewController.h"
+#import "SoundPopViewController.h"
 
 @interface MelodyDetailViewController ()
 {
@@ -90,6 +92,23 @@
     {
         SectionPopViewController *vc = [segue destinationViewController];
         vc.parentVC = self;
+        vc.shd = self;
+        self.popVC = ((UIStoryboardPopoverSegue*)segue).popoverController;
+    }
+    
+    if([segue.identifier isEqualToString:@"popoverHandSegue"])
+    {
+        HandPopViewController *vc = [segue destinationViewController];
+        vc.parentVC = self;
+        vc.shd = self;
+        self.popVC = ((UIStoryboardPopoverSegue*)segue).popoverController;
+    }
+    
+    if([segue.identifier isEqualToString:@"popoverSoundSegue"])
+    {
+        SoundPopViewController *vc = [segue destinationViewController];
+        vc.parentVC = self;
+        vc.shd = self;
         self.popVC = ((UIStoryboardPopoverSegue*)segue).popoverController;
     }
 }
@@ -184,7 +203,7 @@
     UISlider *slider = (UISlider*)sender;
     [self.btnXiaoJieTiaoZhuan setTitle:[NSString stringWithFormat:@"%d", (int)slider.value] forState:UIControlStateNormal];
     
-    [player jumpMeasure:(int)slider.value];
+    [player jumpMeasure:(int)slider.value-1];
 }
 
 - (IBAction)suduSlider_valueChanged:(id)sender
@@ -327,10 +346,17 @@
 #pragma mark SFCountdownViewDelegate
 - (void) countdownFinished:(SFCountdownView *)view
 {
-    [self.view bringSubviewToFront:sheetmsic1];
     int type = (int)self.iPlayMode + 1;
-    
-    type = 2;//add by zyw test
+    switch (type) {
+        case 1:
+            break;
+        case 2:
+            [self.view bringSubviewToFront:sheetmsic1];
+            break;
+        case 3:
+            [self.view bringSubviewToFront:sheetmsic1];
+            break;
+    }
     [player playByType:type];
 }
 
@@ -344,5 +370,70 @@
         [self hiddenMenuAndToolBar];
     }
 }
+
+
+
+#pragma mark - Delegate
+//拆分小节
+- (void) splitMeasure:(int) from andTo:(int)to
+{
+    [sheetmusic setJSModel:from withEndSectionNum:to withTimeNumerator:[[midifile time] numerator] withTimeQuarter:[[midifile time]quarter] withMeasure:[[midifile time]measure]];
+    
+    
+    [self loadSheetMusick];
+    [player playJumpSection:from];
+}
+
+//左右手模式
+- (void) handModel:(int)value
+{
+    switch (value) {
+        case 0://左右手模式
+            [midifile leftHandMute:&options andState:NO];
+            [midifile rightHandMute:&options andState:NO];
+            break;
+        case 1://左手模式
+            if ([midifile getLeftHadnMuteState:&options] == YES) {
+                [midifile leftHandMute:&options andState:NO];
+            }else{
+                [midifile leftHandMute:&options andState:YES];
+            }
+            break;
+        case 2://右手模式
+            if ([midifile getRightHadnMuteState:&options] == YES) {
+                [midifile rightHandMute:&options andState:NO];
+            }else{
+                [midifile rightHandMute:&options andState:YES];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+
+//陪练音开启关闭
+- (void) SparringMute:(int)value
+{
+    if (value == 1) {//开启
+        [midifile leftHandMute:&options andState:YES];
+        [midifile rightHandMute:&options andState:YES];
+    } else {//关闭
+        [midifile leftHandMute:&options andState:NO];
+        [midifile rightHandMute:&options andState:NO];
+    }
+}
+
+//节拍器开启关闭
+- (void) beatMute:(int)value
+{
+    if (value == 1) {//开启
+        
+    } else {//关闭
+        
+    }
+
+}
+
 
 @end

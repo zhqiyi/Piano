@@ -32,12 +32,12 @@
 -(void) initViews
 {
     
-    float margin = 20;
+    float margin = 50;
     
     [self setCurrentPulseTime:0];
     
     CGRect rect = [player1 frame];
-    int height = rect.size.height;
+    int height = 250;
     int width = rect.size.width;
     
     [player1 setFrame:CGRectMake(0, 0, width, height)];
@@ -120,7 +120,7 @@
     //0,1;2,3;4,5;6,7;8,9;10,11;
     int start = maxs(player2.endIndex, player1.endIndex)+1;
     int end = start + trackCount;
-    NSLog(@"the type is %i start is %i end is %i", type, start, end);
+//    NSLog(@"the type is %i start is %i end is %i", type, start, end);
     if (type == 1) {// 更新第2view
         
         if (end <= [staffs count])

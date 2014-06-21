@@ -28,7 +28,9 @@ static void	MyMIDIReadProc(const MIDIPacketList *pktlist, void *refCon, void *co
 		if ((midiCommand == 0x09) || //note on
 			(midiCommand == 0x08)) { //note off
             
-            NSLog(@"%s - NOTE : %d | %d", source, note, velocity);
+            if (velocity == 0) continue;
+            
+            NSLog(@"99999999999999999999 %s - NOTE : %d | %d", source, note, velocity);
             
             
             NSMutableDictionary* info = [[NSMutableDictionary alloc] init];
@@ -39,7 +41,7 @@ static void	MyMIDIReadProc(const MIDIPacketList *pktlist, void *refCon, void *co
             
 		} else {
             
-            NSLog(@"%s - CNTRL  : %d | %d", source, note, velocity);
+//            NSLog(@"%s - CNTRL  : %d | %d", source, note, velocity);
         }
         
         //After we are done reading the data, move to the next packet.
