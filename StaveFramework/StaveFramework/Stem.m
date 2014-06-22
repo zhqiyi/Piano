@@ -293,11 +293,12 @@
         [path moveToPoint:CGPointMake(xstart, y1)];
         [path addLineToPoint:CGPointMake(xstart, ystem)];
         [path stroke];
-//        if(threeFlag == 1) {
-//            CGContextSetRGBFillColor (context,  1, 0, 0, 1.0);
-//            UIFont  *font = [UIFont boldSystemFontOfSize:15.0];
-//            [@"3" drawInRect:CGRectMake(xstart, ystem-5, 10, 10) withFont:font];
-//        }
+        if(threeFlag == 1) {
+            CGContextSelectFont(context, "Georgia-Italic", 12.0, kCGEncodingMacRoman);
+            CGContextSetTextDrawingMode(context, kCGTextFill);
+            CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
+            CGContextShowTextAtPoint(context, xstart, ystem-5, "3", 1);
+        }
     }
     else if (direction == StemDown) {
         int y1 = ytop + [topstaff dist:top] * NoteHeight/2
@@ -321,11 +322,12 @@
         [path moveToPoint:CGPointMake(xstart, y1)];
         [path addLineToPoint:CGPointMake(xstart, ystem)];
         [path stroke];
-//        if(threeFlag == 1) {
-//            CGContextSetRGBFillColor (context,  1, 0, 0, 1.0);
-//            UIFont  *font = [UIFont boldSystemFontOfSize:15.0];
-//            [@"3" drawInRect:CGRectMake(xstart, ystem+12, 10, 10) withFont:font];
-//        }
+        if(threeFlag == 1) {
+            CGContextSelectFont(context, "Georgia-Italic", 12.0, kCGEncodingMacRoman);
+            CGContextSetTextDrawingMode(context, kCGTextFill);
+            CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
+            CGContextShowTextAtPoint(context, xstart, ystem+12, "3", 1);
+        }
     }
 }
 

@@ -415,6 +415,11 @@ id<MusicSymbol> getSymbol(Array *symbols, int index) {
                 for (int k = 0; k < [chord notedata_len]; k++) {
                     [chord notedata][k].number = [chord notedata][k].number-12;
                     [chord notedata][k].whitenote = [key getWhiteNote:[chord notedata][k].number];
+                    if ([[chord accidsymbols] count] > 0) {
+//                        for (int ac = 0; ac<[[chord accidsymbols] count]; ac++) {
+//                            AccidSymbol *accid = [[chord accidsymbols] get:ac]
+//                        }
+                    }
                 }
             } else if ([chord eightFlag] < 0) {
                 for (int k = 0; k < [chord notedata_len]; k++) {

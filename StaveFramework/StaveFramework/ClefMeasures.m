@@ -73,26 +73,22 @@
         }
     } else {
         ControlData *cdata = [clist get:k];
+
         for (j = 0; j < mcount; j++) {
-            if (([cdata starttime] + [time quarter])/m == j) {
-                if ([cdata cvalue] == 0) {
-                    clef = mainclef;
-                }
-                else if ([cdata cvalue] == 127) {
-                    if (mainclef == Clef_Treble) {
-                        clef = Clef_Bass;
-                    } else if(mainclef == Clef_Bass) {
-                        clef = Clef_Treble;
-                    }
-                }
+            if (([cdata endtime] + [time quarter])/m <= j) {
                 k++;
                 if (k < [clist count]) {
                     cdata = [clist get:k];
                 }
-            } else {
-                if (j == 0) {
-                    clef = mainclef;
+            }
+            if (([cdata starttime] + [time quarter])/m <= j && ([cdata endtime] + [time quarter])/m > j) {
+                if (mainclef == Clef_Treble) {
+                    clef = Clef_Bass;
+                } else if(mainclef == Clef_Bass) {
+                    clef = Clef_Treble;
                 }
+            } else {
+                clef = mainclef;
             }
             [clefs add:clef];
         }

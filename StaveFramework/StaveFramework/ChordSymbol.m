@@ -95,7 +95,7 @@ static UIImage* chanyin = nil;
 
     notedata_len = [midinotes count];
     [self createNoteData:midinotes withKey:key andTime:time];
-    [self createAccidSymbols];
+    
 
 //    /* Find out how many stems we need (1 or 2) */
 //    NoteDuration dur1 = notedata[0].duration;
@@ -501,6 +501,7 @@ static UIImage* chanyin = nil;
 -(void)setChordInfo {
     int i;
     
+    [self createAccidSymbols];
     /* Find out how many stems we need (1 or 2) */
     NoteDuration dur1 = notedata[0].duration;
     NoteDuration dur2 = dur1;
@@ -674,17 +675,16 @@ static UIImage* chanyin = nil;
     int result = 0;
     if (dist > 0)
         result = dist;
+    result += 20;
     
     /** add by sunlie start */
-    if (conLine > 0) {
-        result += 40;
-    } else if (conLine < 0) {
-        result += 35;
-    } else {
-        if (boFlag != 0 || huiFlag != 0 || trFlag != 0) {
-            result += [chanyin size].height;
-        }
-    }
+//    if (conLine != 0) {
+//        result += 1;
+//    } else {
+//        if (boFlag != 0 || huiFlag != 0 || trFlag != 0) {
+//            result += [chanyin size].height;
+//        }
+//    }
     /** add by sunlie end */
 
     
@@ -720,17 +720,18 @@ static UIImage* chanyin = nil;
     if (dist > 0)
         result = dist;
     
-    /** add by sunlie start */
-    if (conLine > 0) {
-        result += 40;
-    } else if (conLine < 0) {
-        result += 35;
-    }
-    /** add by sunlie end */
-
-    if (pedalFlag != 0) {
-        result += pedal1.size.height;
-    }
+    result += 20;
+//    /** add by sunlie start */
+//    if (conLine > 0) {
+//        result += 40;
+//    } else if (conLine < 0) {
+//        result += 35;
+//    }
+//    /** add by sunlie end */
+//
+//    if (pedalFlag != 0) {
+//        result += pedal1.size.height;
+//    }
     
     
     /* Check if any accidental symbols extend below the staff */
@@ -907,7 +908,10 @@ static UIImage* chanyin = nil;
             [self drawStress:context andYtop:ytop andTopStaff:topstaff];
     }
     
-    [self drawStrength:context withValue:(int)strengthFlag];
+    if (strengthFlag != 0) {
+        [self drawStrength:context withValue:(int)strengthFlag];
+    }
+    
     /** add by sunlie end */
     
     [self drawPedal:context];
@@ -945,7 +949,7 @@ static UIImage* chanyin = nil;
 
     if (direct == StemDown) {
         
-        ynote = ytop + [topStaff dist:[stem top]] * [SheetMusic getNoteHeight]/2 - 5;
+        ynote = ytop + [topStaff dist:[stem top]] * NoteHeight/2 - NoteHeight-NoteHeight/3;
         CGContextMoveToPoint(context, xpos, ynote);
         CGContextSetLineWidth(context, 1.5);
         CGContextSetLineCap(context, kCGLineCapButt);
@@ -954,7 +958,7 @@ static UIImage* chanyin = nil;
         CGContextAddLineToPoint(context, xpos, ynote - 5);
         CGContextDrawPath(context, kCGPathStroke);
     }else if (direct == StemUp) {
-        ynote = ytop + [topStaff dist:[stem end]] *  [SheetMusic getNoteHeight]/2 + 5;
+        ynote = ytop + [topStaff dist:[stem bottom]] *  NoteHeight/2 + NoteHeight*2;
         CGContextMoveToPoint(context, xpos, ynote);
         CGContextSetLineWidth(context, 1.5);
         CGContextSetLineCap(context, kCGLineCapButt);
@@ -989,7 +993,7 @@ static UIImage* chanyin = nil;
             str = "mp";
             break;
         case 1://mf
-            str = "pf";
+            str = "mf";
             break;
         case 2://f
             str = " f";
@@ -1003,7 +1007,7 @@ static UIImage* chanyin = nil;
         default:
             return;
     }
-    CGContextShowTextAtPoint(context, NoteWidth/2, belongStaffHeight, str, 2);
+    CGContextShowTextAtPoint(context, NoteWidth/2, belongStaffHeight-20, str, 2);
 }
 /*!
  *  draw gradient symbol
@@ -1311,9 +1315,12 @@ static UIImage* chanyin = nil;
             if ([time numerator] == 3 && [time denominator] == 8) {
                 return NO;
             }
-            BOOL correctTime =
-            ([time numerator] == 2 || [time numerator] == 4 || [time numerator] == 8);
-            if (!correctTime && dur != Sixteenth) {
+//            BOOL correctTime =
+//            ([time numerator] == 2 || [time numerator] == 4 || [time numerator] == 8);
+//            if (!correctTime && dur != Sixteenth) {
+//                return NO;
+//            }
+            if (dur == Triplet) {
                 return NO;
             }
             
@@ -1339,7 +1346,7 @@ static UIImage* chanyin = nil;
             BOOL valid = (dur == Triplet) ||
             (dur == Eighth &&
              [time numerator] == 12 && [time denominator] == 8) ||
-            (dur == Eighth) ||
+            ((dur == Eighth) && abs([chord0 startTime]/[time quarter]-[time quarter]/2)<[time quarter]/16) ||
             (dur == Sixteenth) ||
             ([firstStem duration] == Sixteenth && [secondStem duration] == Sixteenth && [lastStem duration] == Eighth) ||
             ([firstStem duration] == Eighth && [secondStem duration] == Sixteenth && [lastStem duration] == Sixteenth) ||
@@ -1385,9 +1392,9 @@ static UIImage* chanyin = nil;
         if ([chord stem] == nil) {
             return NO;
         }
-        if ([[chord stem] duration] != dur && !dotted8_to_16 && !notesixteenFlag) {
-            return NO;
-        }
+//        if ([[chord stem] duration] != dur && !dotted8_to_16 && !notesixteenFlag) {
+//            return NO;
+//        }
         if ([[chord stem] isBeam]) {
             return NO;
         }
@@ -1881,7 +1888,7 @@ static UIImage* chanyin = nil;
         return;
     
     
-    int leftDirect, rightDirect, direct, ynote, ynote1;
+    int leftDirect, rightDirect, direct, ynote, ynote1 = 0;
 //    UIColor *color = [UIColor blackColor];
 //    [color set];
     UIBezierPath* aPath = [UIBezierPath bezierPath];
@@ -1924,7 +1931,7 @@ static UIImage* chanyin = nil;
                 ynote1 = ytop + [topstaff dist:[[_conLineChord stem] end]] * NoteHeight/2 ;
             }
             
-            [aPath moveToPoint:CGPointMake(NoteWidth/2, ynote-5)];
+            [aPath moveToPoint:CGPointMake(NoteWidth/2, ynote-8)];
             [aPath addQuadCurveToPoint:CGPointMake(_conLineWidth+NoteWidth/2, ynote1) controlPoint:CGPointMake((NoteWidth/2+_conLineWidth+NoteWidth/2)/2, ynote-40)];
             [aPath stroke];
             
@@ -1996,12 +2003,16 @@ static UIImage* chanyin = nil;
         leftDirect = [stem direction];
     }
     
-    ypos = ytop + [topStaff dist:[stem top]] * [SheetMusic getNoteHeight]*2/3;
+    if (leftDirect == StemDown) {
+        ypos = ytop + [topStaff dist:[stem top]] * NoteHeight/2 - NoteHeight - 5;
+    } else if (leftDirect == StemUp) {
+        ypos = ytop + [topStaff dist:[stem bottom]] * NoteHeight/2+NoteHeight/3;
+    }
     
     if (jumpedFlag == 1) {
-        CGContextTranslateCTM (context, 0 , ypos-10);
+        CGContextTranslateCTM (context, 0 , ypos);
         CGContextFillEllipseInRect(context, CGRectMake(LineSpace/2, LineSpace, [SheetMusic getNoteWidth]/2, [SheetMusic getNoteWidth]/2));
-        CGContextTranslateCTM (context, 0 , -(ypos-10));
+        CGContextTranslateCTM (context, 0 , -ypos);
     } else if (jumpedFlag == 2) {
         CGContextMoveToPoint(context, LineSpace/2, 2*LineSpace);
         CGContextAddLineToPoint(context, 1.5*LineSpace, 2*LineSpace);
@@ -2040,11 +2051,11 @@ static UIImage* chanyin = nil;
 
         } else if (eightFlag < -1) {//down
             
-            [self draw8va:context:CGRectMake(-15, belongStaffHeight-20, 25, belongStaffHeight-10)];
+            [self draw8va:context:CGRectMake(-15, belongStaffHeight-30, 25, belongStaffHeight-20)];
             
-            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-10) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             
-            [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+            [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-30) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             
         } else if (eightFlag == 1) {
             
@@ -2056,10 +2067,10 @@ static UIImage* chanyin = nil;
             
         } else if (eightFlag == -1) {
             
-            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-10) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             
             if (eightWidth>0) {
-                [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+                [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-30) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             }
             
         }
@@ -2074,23 +2085,25 @@ static UIImage* chanyin = nil;
             [self drawVerticalLine:CGPointMake(10 + w, 10) andEnd:CGPointMake(10 + w, 20)];
             
         } else if (eightFlag == -200) {
-            [self draw8va:context:CGRectMake(-15, belongStaffHeight-20, 25, belongStaffHeight-10)];
+            [self draw8va:context:CGRectMake(-15, belongStaffHeight-30, 25, belongStaffHeight-20)];
             
-            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-10) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             
-            [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+            [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-30) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             
         } else if (eightFlag == 1) {
             [self drawDottedLine:context andStart:CGPointMake(10, 10) andEnd:CGPointMake(10 + w, 10)];
+            [self drawVerticalLine:CGPointMake(10 + w, 10) andEnd:CGPointMake(10 + w, 20)];
             
             if (eightWidth>0) {
                 [self drawVerticalLine:CGPointMake(10 + w, 10) andEnd:CGPointMake(10 + w, 20)];
             }
         } else if (eightFlag == -1) {
-            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-10) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+            [self drawDottedLine:context andStart:CGPointMake(10, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
+            [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-30) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             
             if (eightWidth>0) {
-                [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-20) andEnd:CGPointMake(10 + w, belongStaffHeight-10)];
+                [self drawVerticalLine:CGPointMake(10 + w, belongStaffHeight-30) andEnd:CGPointMake(10 + w, belongStaffHeight-20)];
             }
         }
     }

@@ -104,6 +104,7 @@ enum {
 
 /** add by yizhq start */
 -(void)playJumpSection:(int)startSectionNumber;
+-(void)clearJumpSection;
 /** add by yizhq end */
 
 @property (strong, nonatomic) SheetMusicPlay *sheetPlay;

@@ -81,10 +81,11 @@
     Array* controlList11;  /** control data for bo (24)*/
     Array* controlList12;  /** control data for hui (25)*/
     Array* controlList13;  /** control data for tr (26)*/
-    Array* controlList14;  /** control data for stress (27)*/
+    Array* controlList14;  /** control data for stress (28)*/
     Array* controlList15;  /** control data for repeat (28)*/
     
     /** add by sunlie end */
+    int tempoMuteState;
 }
 
 -(Array*)tracks;
@@ -147,6 +148,8 @@
 //取得文件时长 单位：毫秒
 -(int)getMidiFileTimes;
 
+-(void)tempoMute:(MidiOptions*)options andState:(BOOL)state;
+-(BOOL)getTempoMuteState:(MidiOptions*)options;
 @end
 
 

@@ -615,7 +615,7 @@ int sortbynote(void* note1, void* note2) {
                 startTime = [newnote startTime] + [newnote duration];
             } while (startTime/[time measure] < (endTime-interval)/[time measure]);
             
-            if (startTime/[time measure] < (endTime-interval)/[time measure]) {
+            if (startTime/[time measure] == (endTime-interval)/[time measure]) {
                 if ((endTime-startTime) > interval) {
                     MidiNote *newnote = [[MidiNote alloc]init];
                     [newnote setStarttime:startTime];
@@ -660,12 +660,34 @@ int sortbynote(void* note1, void* note2) {
     int dur = 0;
     int beginnum = [splitednotes count];
     Array *midiNotes = [Array new:10];
+    int err1 = 0;
+    int err2 = 0;
     
     n = [note copy];
-    if ([n duration]%([time quarter]/8) > [time quarter]/16) {
-        dur = ([n duration]/([time quarter]/8) + 1)*([time quarter]/8);
+    if([n duration]%([time quarter]/8) <= ([time quarter]/8 - [n duration]%([time quarter]/8))) {
+        err1 = [n duration]%([time quarter]/8);
     } else {
-        dur = ([n duration]/([time quarter]/8))*([time quarter]/8);
+        err1 = [time quarter]/8 - [n duration]%([time quarter]/8);
+    }
+    
+    if([n duration]%([time quarter]/6) <= ([time quarter]/6 - [n duration]%([time quarter]/6))) {
+        err2 = [n duration]%([time quarter]/6);
+    } else {
+        err2 = [time quarter]/6 - [n duration]%([time quarter]/6);
+    }
+    
+    if (err1 <= err2 || err1 < 20) {
+        if ([n duration]%([time quarter]/8) > [time quarter]/16) {
+            dur = ([n duration]/([time quarter]/8) + 1)*([time quarter]/8);
+        } else {
+            dur = ([n duration]/([time quarter]/8))*([time quarter]/8);
+        }
+    } else {
+        if ([n duration]%([time quarter]/6) > [time quarter]/12) {
+            dur = ([n duration]/([time quarter]/6) + 1)*([time quarter]/6);
+        } else {
+            dur = ([n duration]/([time quarter]/6))*([time quarter]/6);
+        }
     }
     [n setDuration:dur];
     
@@ -948,7 +970,7 @@ int sortbynote(void* note1, void* note2) {
 }
 
 -(void)createControlNotes:(TimeSignature *)time {
-    int flag6 = 0;
+    int flag6 = -1;
     int flag11 = -1;
     int flag12 = -1;
     int flag13 = -1;
@@ -976,21 +998,23 @@ int sortbynote(void* note1, void* note2) {
     while (i < [notes count]) {
         if (cdcount6 < [controlList6 count]) {
             MidiNote* note = [notes get:i];
-            if ([note startTime] > [cd6 starttime] && [note endTime] < [cd6 endtime] && [note duration] < [time quarter]/4 && flag6 == 0) {
-                flag6 = i;
-            }
-            else if ([note startTime] > [cd6 starttime] && [note endTime] >= [cd6 endtime] && flag6 > 0) {
-                for (int j = flag6; j < i; j++) {
+            if ([note startTime] > [cd6 endtime] && flag6 > 0) {
+                for (int j = flag6; j < i-1; j++) {
                     MidiNote* mn = [notes get:j];
-                    [mn setStarttime:[note startTime]];
-                    [mn setDuration:[note duration]];
+                    MidiNote* mn1 = [notes get:i-1];
+                    [mn setStarttime:[mn1 startTime]];
+                    [mn setDuration:[mn1 duration]];
                     [mn setPaflag:1];
                 }
-                flag6 = 0;
+                flag6 = -1;
                 cdcount6++;
                 if (cdcount6 < [controlList6 count]) {
                     cd6 = [controlList6 get:cdcount6];
                 }
+            }
+            
+            if ([note startTime] > [cd6 starttime] && flag6 == -1) {
+                flag6 = i;
             }
         }
         

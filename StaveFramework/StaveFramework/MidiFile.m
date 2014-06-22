@@ -592,6 +592,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     int eventflag = 0;
     
     /** add by sunlie start */
+    int ctrecord1 = 0;
     int ctrecord2 = 0;
     int ctrecord3 = 0;
     int preValue3 = -1;
@@ -605,8 +606,10 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
     int ctrecord8 = 0;
     int preValue8 = -1;
     int preTime8 = -1;
+    int ctrecord9 = 0;
     int preValue9 = -1;
     int preTime9 = -1;
+    int ctrecord10 = 0;
     int preValue10 = -1;
     int preTime10 = -1;
     int ctrecord11 = 0;
@@ -697,9 +700,23 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             [mevent setControlValue:[file readByte]];
 
             /** add by sunlie start */
-            if ([mevent controlNum] == 33) {
-                ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:[mevent controlValue] andStarttime:[mevent startTime] andEndtime:0];
-                [controlList add:data];
+            if ([mevent controlNum] == 3) {
+                int value = [mevent controlValue];
+                if (value < 20) {
+                    if (ctrecord1 == 127) {
+                        ControlData *cdata = [controlList get:[controlList count]-1];
+                        [cdata setEndtime:[mevent startTime]];
+                        ctrecord1 = 0;
+                    }
+                }
+                if (value > 110) {
+                    if (ctrecord1 == 0) {
+                        ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:value andStarttime:[mevent startTime] andEndtime:0];
+                        [controlList add:data];
+                        ctrecord1 = 127;
+                    }
+                    
+                }
             }
             if ([mevent controlNum] == 9) {
                 int value = [mevent controlValue];
@@ -876,28 +893,96 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             
             if ([mevent controlNum] == 22) {
                 int value = [mevent controlValue];
-                int start = [mevent startTime];
                 
-                if (start - preTime9 > quarternote/2 && preTime9 != -1) {
-                    ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue9 andStarttime:preTime9 andEndtime:0];
-                    [controlList9 add:data];
+                if ([mevent startTime] - preTime9 > 50 || preTime9 == -1) {
+                    if (preValue9 == -1) {
+                        preValue9 = value;
+                        preTime9 = [mevent startTime];
+                    }
+                    
+                    if (preValue9 >= 21 && preValue9 <=45) {
+                        if (ctrecord9 != 1) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue9 andStarttime:preTime9 andEndtime:0];
+                            [controlList9 add:data];
+                            ctrecord9 = 1;
+                        }
+                        
+                    } else if (preValue9 > 46 && preValue9 <= 70) {
+                        if (ctrecord9 != 2) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue9 andStarttime:preTime9 andEndtime:0];
+                            [controlList9 add:data];
+                            ctrecord9 = 2;
+                        }
+                    } else if (preValue9 > 71 && preValue9 <= 95) {
+                        if (ctrecord9 != 3) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue9 andStarttime:preTime9 andEndtime:0];
+                            [controlList9 add:data];
+                            ctrecord9 = 3;
+                        }
+                    } else if (preValue9 > 96 && preValue9 <= 127) {
+                        if (ctrecord9 != 4) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue9 andStarttime:preTime9 andEndtime:0];
+                            [controlList9 add:data];
+                            ctrecord9 = 4;
+                        }
+                    }
                 }
                 
+                if (value < 20) {
+                    if (ctrecord9 != 0) {
+                        if ([controlList9 count] > 0 && [[controlList9 get:[controlList9 count]-1] endtime] == 0) {
+                            [[controlList9 get:[controlList9 count]-1] setEndtime:[mevent startTime]];
+                            ctrecord9 = 0;
+                        }
+                    }
+                }
+                
+                preTime9 = [mevent startTime];
                 preValue9 = value;
-                preTime9 = start;
             }
             
             if ([mevent controlNum] == 23) {
                 int value = [mevent controlValue];
-                int start = [mevent startTime];
                 
-                if (start - preTime10 > quarternote/2 && preTime10 != -1) {
-                    ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue10 andStarttime:preTime10 andEndtime:0];
-                    [controlList10 add:data];
+                if ([mevent startTime] - preTime10 > 50 || preTime10 == -1) {
+                    if (preValue10 == -1) {
+                        preValue10 = value;
+                        preTime10 = [mevent startTime];
+                    }
+                    
+                    if (preValue10 >= 21 && preValue10 <=50) {
+                        if (ctrecord10 != 1) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue10 andStarttime:preTime10 andEndtime:0];
+                            [controlList10 add:data];
+                            ctrecord10 = 1;
+                        }
+                        
+                    } else if (preValue10 > 51 && preValue10 <= 80) {
+                        if (ctrecord10 != 2) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue10 andStarttime:preTime10 andEndtime:0];
+                            [controlList10 add:data];
+                            ctrecord10 = 2;
+                        }
+                    } else if (preValue10 > 81 && preValue10 <= 127) {
+                        if (ctrecord10 != 3) {
+                            ControlData *data = [[ControlData alloc] initWithNumber:[mevent controlNum] andValue:preValue10 andStarttime:preTime10 andEndtime:0];
+                            [controlList10 add:data];
+                            ctrecord10 = 3;
+                        }
+                    }
                 }
                 
+                if (value < 20) {
+                    if (ctrecord10 != 0) {
+                        if ([controlList10 count] > 0 && [[controlList10 get:[controlList10 count]-1] endtime] == 0) {
+                            [[controlList10 get:[controlList10 count]-1] setEndtime:[mevent startTime]];
+                            ctrecord10 = 0;
+                        }
+                    }
+                }
+                
+                preTime10 = [mevent startTime];
                 preValue10 = value;
-                preTime10 = start;
             }
             
             if ([mevent controlNum] == 24) {
@@ -995,7 +1080,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
                 }
             }
             
-            if ([mevent controlNum] == 27) {
+            if ([mevent controlNum] == 28) {
                 int value = [mevent controlValue];
                 ControlData *cdata;
                 if (value < 20) {
@@ -1015,7 +1100,7 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
                 }
             }
             
-            if ([mevent controlNum] == 28) {
+            if ([mevent controlNum] == 29) {
                 int value = [mevent controlValue];
                 
                 if ([mevent startTime] - preStart15 > 50 || preStart15 == -1) {
@@ -1338,8 +1423,12 @@ static void dowrite(int fd, u_char *buf, int len, int *error) {
             buf[1] = 0x00;
         
         buf[2] = 0x60;
-        buf[3] = 0x7F;
-        
+        //set tempo mute
+        if ([midifile getTempoMuteState] == -1 ) {
+            buf[3] = 0x00;
+        }else{
+            buf[3] = 0x7F;
+        }
         TimeSignature *sTime = [midifile time];
         NSLog(@"denominator %i", sTime.denominator);
         
@@ -2723,6 +2812,28 @@ static NSArray* instrNames = NULL;
 -(int)getMidiFileTimes
 {
     return (totalpulses/[[self time] quarter])*[[self time] tempo]/1000;
+}
+
+
+-(void)tempoMute:(MidiOptions*)options andState:(BOOL)state{
+    if (state == YES) {
+        
+        tempoMuteState = -1;
+    }else{
+        tempoMuteState = 0;
+    }
+}
+
+-(BOOL)getTempoMuteState:(MidiOptions*)options{
+    if ( tempoMuteState == -1) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+-(int)getTempoMuteState{
+    return tempoMuteState;
 }
 
 

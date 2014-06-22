@@ -32,7 +32,7 @@
 -(void) initViews
 {
     
-    float margin = 50;
+    float margin = 20;
     
     [self setCurrentPulseTime:0];
     

@@ -798,6 +798,7 @@
 		190E6E001907E27200AD8F6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/StaveFramework.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -814,6 +815,7 @@
 		190E6E011907E27200AD8F6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				DSTROOT = /tmp/StaveFramework.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

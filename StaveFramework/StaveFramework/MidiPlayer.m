@@ -260,7 +260,7 @@
      * highlighted notes.
      */
     BOOL isLine = [midiHandler setupMIDI];
-    isLine = TRUE; //add by test by zyw
+    //isLine = TRUE; //add by test by zyw
     if(sensor != nil || isLine) {
         sensor.delegate = self;
         pianoData = [[PianoDataJudged alloc] init];
@@ -302,12 +302,6 @@
         recognition.endDelegate = self.delegate;
 	recognition.sheetShadeDelegate = self;
     }
-
-    int dd = [midifile getMeasureCount];
-    int cc = [midifile getMidiFileTimes];
-    
-//    NSLog(@"dd is %i ff %i", dd, cc);
-    
     
 }
 
@@ -445,6 +439,7 @@
     
     
 }
+
 /** add by yizhq start */
 -(void)playJumpSection:(int)startSectionNumber{
     if (options.staveModel == 1) {
@@ -455,6 +450,20 @@
         [self jumpMeasure:startSec - 1];
     }
 }
+
+-(void)clearJumpSection
+{
+    playstate = paused;
+    currentPulseTime = 0;
+    
+    /* Remove any highlighted notes */
+    [sheetPlay shadeNotes:-10 withPrev:(int)currentPulseTime];
+    [piano shadeNotes:-10 withPrev:(int)currentPulseTime];
+    
+    prevPulseTime = currentPulseTime;
+    [sheetPlay setCurrentPulseTime:currentPulseTime];
+}
+
 /** add by yizhq end */
 /** The callback for the play/pause button (a single button).
  *  If we're stopped or pause, then play the midi file.

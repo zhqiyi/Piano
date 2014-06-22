@@ -259,6 +259,7 @@
     sheetmusic.scrollView = scrollView;
     sheetmsic1 = [[SheetMusicPlay alloc] initWithStaffs:[sheetmusic  getStaffs]
                                           andTrackCount: [sheetmusic getTrackCounts] andOptions:&options];
+    
     sheetmsic1.frame = frame;
     [sheetmsic1 setZoom:zoom];
     sheetmsic1.backgroundColor = [UIColor whiteColor];
@@ -277,10 +278,7 @@
     tapGesture.delegate = self;
     [scrollView addGestureRecognizer:tapGesture];
     
-    if (player != nil)
-    {
-        //[player release];
-    }
+
     player = [[MidiPlayer alloc] init];
     player.sheetPlay = sheetmsic1;
     [player changeSpeed:self.sliderSpeed.value];
@@ -446,12 +444,19 @@
 - (void) beatMute:(int)value
 {
     if (value == 1) {//开启
-        
+        [midifile tempoMute:&options andState:YES];
     } else {//关闭
-        
+        [midifile tempoMute:&options andState:NO];
     }
-
 }
+
+//清除拆分曲谱
+-(void)clearSplitMeasure{
+    [sheetmusic clearJSModel];
+    [self loadSheetMusick];
+    [player clearJumpSection];
+}
+
 
 -(void)dealloc
 {

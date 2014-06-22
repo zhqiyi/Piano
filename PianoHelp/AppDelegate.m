@@ -31,7 +31,7 @@
         [self initCategoryAndMelody];
         iLoop--;
     }
-    [self loadDemoMidiToSQL];
+    //[self loadDemoMidiToSQL];
     return YES;
 }
 
